@@ -1,0 +1,94 @@
+{
+  "projectType": "application",
+  "root": "apps/kampakam",
+  "sourceRoot": "apps/kampakam/src",
+  "prefix": "kampakam",
+  "targets": {
+    "build": {
+      "executor": "@angular-devkit/build-angular:browser",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/kampakam",
+        "index": "apps/kampakam/src/index.html",
+        "main": "apps/kampakam/src/main.ts",
+        "polyfills": "apps/kampakam/src/polyfills.ts",
+        "tsConfig": "apps/kampakam/tsconfig.app.json",
+        "inlineStyleLanguage": "scss",
+        "assets": ["apps/kampakam/src/favicon.ico", "apps/kampakam/src/assets"],
+        "styles": ["apps/kampakam/src/styles.scss"],
+        "scripts": []
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "2kb",
+              "maximumError": "4kb"
+            }
+          ],
+          "fileReplacements": [
+            {
+              "replace": "apps/kampakam/src/environments/environment.ts",
+              "with": "apps/kampakam/src/environments/environment.prod.ts"
+            }
+          ],
+          "outputHashing": "all"
+        },
+        "development": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@angular-devkit/build-angular:dev-server",
+      "configurations": {
+        "production": {
+          "browserTarget": "kampakam:build:production"
+        },
+        "development": {
+          "browserTarget": "kampakam:build:development"
+        }
+      },
+      "defaultConfiguration": "development",
+      "options": {
+        "proxyConfig": "apps/kampakam/proxy.conf.json"
+      }
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "browserTarget": "kampakam:build"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "apps/kampakam/src/**/*.ts",
+          "apps/kampakam/src/**/*.html"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/kampakam"],
+      "options": {
+        "jestConfig": "apps/kampakam/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}

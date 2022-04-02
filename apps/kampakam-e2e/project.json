@@ -1,0 +1,28 @@
+{
+  "root": "apps/kampakam-e2e",
+  "sourceRoot": "apps/kampakam-e2e/src",
+  "projectType": "application",
+  "targets": {
+    "e2e": {
+      "executor": "@nrwl/cypress:cypress",
+      "options": {
+        "cypressConfig": "apps/kampakam-e2e/cypress.json",
+        "devServerTarget": "kampakam:serve:development"
+      },
+      "configurations": {
+        "production": {
+          "devServerTarget": "kampakam:serve:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/kampakam-e2e/**/*.{js,ts}"]
+      }
+    }
+  },
+  "tags": [],
+  "implicitDependencies": ["kampakam"]
+}

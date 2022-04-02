@@ -1,0 +1,9 @@
+{
+  "version": 2,
+  "projects": {
+    "api": "apps/api",
+    "api-interfaces": "libs/api-interfaces",
+    "kampakam": "apps/kampakam",
+    "kampakam-e2e": "apps/kampakam-e2e"
+  }
+}
