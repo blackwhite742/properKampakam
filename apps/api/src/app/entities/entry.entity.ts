@@ -1,29 +1,36 @@
+import { Column, Entity, ManyToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Category } from "./category.entity";
 
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
-
-@Entity()
+@Entity("entry", { schema: "mydb" })
 export class Entry {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn({ type: "int", name: "id" })
   id: number;
 
-  @Column({name:"location"})
+  @Column("tinyint", { name: "price" })
+  price: number;
+
+  @Column("tinyint", { name: "accomodation" })
+  accomodation: number;
+
+  @Column("varchar", { name: "location", length: 255 })
   location: string;
 
-  @Column({name:"price"})
-  price: boolean;
+  @Column("varchar", {
+    name: "accessibility",
+    length: 255,
+    default: () => "'1'",
+  })
+  accessibility: string;
 
-  @Column({ name:"accessibility",default: true })
-  accesibility: string;
-
-  @Column({name:"accomodation"})
-  accomodation: boolean;
-
-  @Column({name:"season"})
+  @Column("varchar", { name: "season", length: 255 })
   season: string;
 
-  @Column({name:"description"})
+  @Column("varchar", { name: "description", length: 255 })
   description: string;
 
-  @Column({name:"image"})
+  @Column("varchar", { name: "image", length: 255 })
   image: string;
+
+  @ManyToMany(() => Category, (category) => category.entries)
+  categories: Category[];
 }

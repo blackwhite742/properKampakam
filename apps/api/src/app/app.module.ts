@@ -3,25 +3,20 @@ import { Module } from '@nestjs/common';
 
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm';
+import { TypeOrmModule } from '@nestjs/typeorm';
 import { EntryController } from './entry/entry.controller';
 import { EntryModule } from './entry/entry.module';
+import { Category } from './entities/category.entity';
+import { Municipality } from './entities/municipality.entity';
 import { Entry } from './entities/entry.entity';
-import { getConnectionOptions } from 'typeorm';
+import { Region } from './entities/region.entity';
+import { CategoryController } from './category/category.controller';
+import { CategoryModule } from './category/category.module';
+import { MunicipalityController } from './municipality/municipality.controller';
+import { RegionModule } from './region/region.module';
+import { RegionController } from './region/region.controller';
+import { MunicipalityModule } from './municipality/municipality.module';
 
-
-const dbConfig:TypeOrmModuleOptions={
-  type: 'mysql',
-  host: 'localhost',
-  port: 3306,
-  username: 'root',
-  password: 'mihap',
-  database: 'mydb',
-  entities: ["entities/*.js"],
-  synchronize: true,
-  autoLoadEntities:true,
-  logging:true
-}
 
 
 @Module({
@@ -33,13 +28,16 @@ const dbConfig:TypeOrmModuleOptions={
       username:"root",
       password:"mihap",
       database:"mydb",
-      entities:[Entry],
+      entities:[Entry,Category,Municipality,Region],
       synchronize:true,
       autoLoadEntities:true
     }),
     EntryModule,
+    CategoryModule,
+    MunicipalityModule,
+    RegionModule,
   ],
-  controllers: [AppController,EntryController],
+  controllers: [AppController,EntryController, CategoryController, MunicipalityController, RegionController],
   providers: [AppService,EntryService],
 })
 export class AppModule {}
