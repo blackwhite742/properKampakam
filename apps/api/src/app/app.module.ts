@@ -26,7 +26,17 @@ const dbConfig:TypeOrmModuleOptions={
 
 @Module({
   imports: [
-    TypeOrmModule.forRoot(),
+    TypeOrmModule.forRoot({
+      type:"mysql",
+      host:"localhost",
+      port:3306,
+      username:"root",
+      password:"mihap",
+      database:"mydb",
+      entities:[Entry],
+      synchronize:true,
+      autoLoadEntities:true
+    }),
     EntryModule,
   ],
   controllers: [AppController,EntryController],

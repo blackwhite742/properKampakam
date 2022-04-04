@@ -16,7 +16,7 @@ export class EntryService {
   }
 
   async getAll(){
-    const ans=await this.entryRepository.findOneOrFail();
+    const ans=await this.entryRepository.find();
     console.log(ans)
     return ans
   }

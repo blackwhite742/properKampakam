@@ -5,7 +5,7 @@ import {
   ManyToMany,
   PrimaryGeneratedColumn,
 } from "typeorm";
-import { Entry } from "./entry.entity";
+import { Entry } from "./Entry";
 
 @Entity("category", { schema: "mydb" })
 export class Category {

@@ -6,9 +6,10 @@ import { Entry } from '../entities/entry.entity';
 
 
 @Module({
+  imports:[TypeOrmModule.forFeature([Entry])],
   controllers:[EntryController],
   providers: [EntryService],
-  exports:[EntryService]
+  exports:[EntryService,TypeOrmModule]
 })
 export class EntryModule {
   constructor(private entryService:EntryService){}
