@@ -16,18 +16,14 @@ import { MunicipalityController } from './municipality/municipality.controller';
 import { RegionModule } from './region/region.module';
 import { RegionController } from './region/region.controller';
 import { MunicipalityModule } from './municipality/municipality.module';
+import { DbConfig } from 'dbConfig'
 
 
 
 @Module({
   imports: [
     TypeOrmModule.forRoot({
-      type:"mysql",
-      host:"localhost",
-      port:3306,
-      username:"root",
-      password:"mihap",
-      database:"mydb",
+      ...DbConfig,
       entities:[Entry,Category,Municipality,Region],
       synchronize:true,
       autoLoadEntities:true
