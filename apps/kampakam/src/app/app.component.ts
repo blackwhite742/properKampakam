@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Message } from '@kampakam/api-interfaces';
-
+import "reflect-metadata"
 @Component({
   selector: 'kampakam-root',
   templateUrl: './app.component.html',

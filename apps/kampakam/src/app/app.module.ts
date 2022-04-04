@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { NxWelcomeComponent } from './nx-welcome.component';
 import { HttpClientModule } from '@angular/common/http';
 
+import "reflect-metadata";
 @NgModule({
   declarations: [AppComponent, NxWelcomeComponent],
   imports: [BrowserModule, HttpClientModule],
