@@ -1,5 +1,7 @@
 For Db config create dbConfig.ts in root folder:
 
+
+```Typescript
 import { TypeOrmModuleOptions } from "@nestjs/typeorm";
 
 export const DbConfig:Partial<TypeOrmModuleOptions>={
@@ -10,3 +12,4 @@ export const DbConfig:Partial<TypeOrmModuleOptions>={
       password:...,
       database:...,
   }
+```
