@@ -16,4 +16,9 @@ export class RegionService {
   async getAll(){
     return await this.regionRepository.find();
   }
+
+  async addRegion(data){
+    return await this.regionRepository.save(data)
+  }
+
 }

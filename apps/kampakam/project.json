@@ -15,7 +15,9 @@
         "tsConfig": "apps/kampakam/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
         "assets": ["apps/kampakam/src/favicon.ico", "apps/kampakam/src/assets"],
-        "styles": ["apps/kampakam/src/styles.scss"],
+        "styles": ["apps/kampakam/src/styles.scss",
+                   "node_modules/bootstrap/dist/css/bootstrap.css"
+                  ],
         "scripts": []
       },
       "configurations": {
