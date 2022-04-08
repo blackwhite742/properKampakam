@@ -1,0 +1,48 @@
+
+
+<p-dropdown [options]="items" [(ngModel)]="selectedForm" optionLabel="name" optionValue="name"></p-dropdown>
+
+<!-- K porihtam autoincrement lahko dava ID input stran-->
+
+
+<ng-container [ngSwitch]="selectedForm">
+  <div *ngSwitchCase="'Region'" class="col-4">
+
+      <form [formGroup]="form">
+        <div class="form-group">
+          <label>Id</label>
+          <input type="number" class="form-control" formControlName="id" placeholder="Enter id">
+        </div>
+        <div class="form-group">
+          <label>Name</label>
+          <input type="text" class="form-control" formControlName="name" placeholder="Enter name">
+        </div>
+      </form>
+
+
+  </div>
+
+  <div *ngSwitchCase="'Municipality'" class="col-4">
+    <!-- TODO build a municipality form in .ts => either share form and build it according to selectedForm or create on for each entity,
+      dropdown with items from api -> getRegions -->
+    <form [formGroup]="form">
+      <div class="form-group">
+        <label>Name</label>
+        <input type="text" class="form-control" formControlName="name" placeholder="Enter name">
+      </div>
+      <div class="form-group">
+        <label>Region</label>
+        <input type="text" class="form-control" formControlName="region" placeholder="Pick a region">
+      </div>
+    </form>
+
+
+</div>
+</ng-container>
+
+<button pButton (click)="debug()">Debug</button>
+<!--
+
+
+</form>
+ -->
