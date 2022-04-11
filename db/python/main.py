@@ -1,6 +1,6 @@
 import requests
 
-f=open("pomurskaUtf-16.txt",'r',encoding="utf-16")
+f=open("pomurska.txt",'r',encoding="utf-8")
 
 
 i=1;
