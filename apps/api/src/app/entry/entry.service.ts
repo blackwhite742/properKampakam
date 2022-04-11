@@ -28,4 +28,8 @@ export class EntryService {
     return ans
   }
 
+  async addEntry(data){
+    return await this.entryRepository.save(data);
+  }
+
 }

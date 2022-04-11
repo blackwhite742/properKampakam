@@ -16,4 +16,8 @@ export class MunicipalityService {
   async getAll(){
     return await this.municipalityRepository.find();
   }
+
+  async addMunicipality(data){
+    return await this.municipalityRepository.save(data);
+  }
 }

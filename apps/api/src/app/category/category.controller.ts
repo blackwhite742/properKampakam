@@ -1,5 +1,5 @@
 import { CategoryService } from './category.service';
-import { Controller, Get } from '@nestjs/common';
+import { Body, Controller, Get, Post } from '@nestjs/common';
 
 @Controller('category')
 export class CategoryController {
@@ -13,6 +13,13 @@ export class CategoryController {
   @Get('/getAll')
   async getAll(){
     return this.categoryService.getAll();
+  }
+
+  @Post('/add')
+  async addCategory(
+    @Body()data:any
+  ){
+    return this.categoryService.add(data);
   }
 
 }

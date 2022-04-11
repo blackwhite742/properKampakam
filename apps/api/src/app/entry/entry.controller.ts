@@ -1,5 +1,5 @@
 import { EntryService } from './entry.service';
-import { Controller, Get, Param } from '@nestjs/common';
+import { Controller, Get, Param, Post, Body } from '@nestjs/common';
 
 @Controller('entry')
 export class EntryController {
@@ -24,7 +24,11 @@ export class EntryController {
     return this.entryService.getAll();
   }
 
-
-
+  @Post('/add')
+  addRegion(
+    @Body()data:any
+  ){
+    return this.entryService.addEntry(data);
+  }
 
 }

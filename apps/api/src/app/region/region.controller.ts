@@ -15,7 +15,7 @@ export class RegionController {
     return this.regionService.getAll();
   }
 
-  @Post('/addRegion')
+  @Post('/add')
   addRegion(
     @Body()data:any
   ){
