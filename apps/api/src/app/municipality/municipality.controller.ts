@@ -13,7 +13,6 @@ export class MunicipalityController {
 
   @Get('/getAll')
   async getAll(){
-    console.log("Get all");
     return this.municipalityService.getAll();
   }
 

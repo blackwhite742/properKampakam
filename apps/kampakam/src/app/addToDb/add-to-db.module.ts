@@ -5,6 +5,8 @@ import { CommonModule } from '@angular/common';
 import { DropdownModule } from 'primeng/dropdown';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
+import {InputTextModule} from 'primeng/inputtext';
+import {MultiSelectModule} from 'primeng/multiselect';
 
 
 @NgModule({
@@ -14,7 +16,9 @@ import { ButtonModule } from 'primeng/button';
     DropdownModule,
     FormsModule,
     ButtonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    InputTextModule,
+    MultiSelectModule
   ],
   exports:[
 

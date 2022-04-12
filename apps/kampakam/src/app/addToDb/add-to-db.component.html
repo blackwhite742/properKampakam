@@ -43,48 +43,46 @@
 
   <div *ngSwitchCase="'Entry'" class="col-4">
     <form [formGroup]="form">
-      <div class="form-group">
-        <label>ID</label>
-        <input type="number" class="form-control" formControlName="id" placeholder="ID">
-      </div>
-      <div class="form-group">
-        <label>Location</label>
-        <input type="text" class="form-control" formControlName="location" placeholder="Pick a location">
-      </div>
-      <div class="form-group">
-        <label>Price</label>
-        <input type="text" class="form-control" formControlName="price" placeholder="Price">
-      </div>
-      <div class="form-group">
-        <label>Accessibility</label>
-        <input type="text" class="form-control" formControlName="accessibility" placeholder="Accessibility">
-      </div>
-      <div class="form-group">
-        <label>Season</label>
-        <input type="text" class="form-control" formControlName="season" placeholder="Pick a season">
-      </div>
-      <div class="form-group">
-        <label>Accomodation</label>
-        <input type="text" class="form-control" formControlName="accomodation" placeholder="Accomodation">
-      </div>
-      <div class="form-group">
-        <label>Description</label>
-        <input type="text" class="form-control" formControlName="description" placeholder="Description">
-      </div>
-      <div class="form-group">
-        <label>Image</label>
-        <input type="text" class="form-control" formControlName="image" placeholder="Image">
-      </div>
-      <div class="form-group">
-        <label>Municipality</label>
-        <input type="text" class="form-control" formControlName="municipality" placeholder="Municipality">
-      </div>
+        <h6>ID</h6>
+        <input pInputText type="number" class="form-control" formControlName="id" placeholder="ID">
+
+        <h6>Location</h6>
+        <input pInputText type="text" class="form-control" formControlName="location" placeholder="Pick a location">
+
+        <h6>Price</h6>
+        <input pInputText type="text" class="form-control" formControlName="price" placeholder="Price">
+
+        <h6>Accessibility</h6>
+        <input pInputText type="text" class="form-control" formControlName="accessibility" placeholder="Accessibility">
+
+        <h6>Season</h6>
+        <input pInputText type="text" class="form-control" formControlName="season" placeholder="Pick a season">
+
+        <h6>Accomodation</h6>
+        <input pInputText type="text" class="form-control" formControlName="accomodation" placeholder="Accomodation">
+
+        <h6>Description</h6>
+        <input pInputText type="text" class="form-control" formControlName="description" placeholder="Description">
+
+        <h6>Image</h6>
+        <input pInputText type="text" class="form-control" formControlName="image" placeholder="Image">
+
+
+        <!--TODO add formControl names-->
+        <h6>Občina</h6>
+        <p-dropdown [options]="municipalities" [(ngModel)]="selectedMunicipality" formControlName="municipality"
+        optionLabel="name" [filter]="true" filterBy="name"  [showClear]="true" optionValue="id" placeholder="Izberi občino">
+        </p-dropdown>
+
+        <h6>Kategorije</h6>
+        <p-multiSelect [options]="categories" [(ngModel)]="selectedCategories" formControlName="category"
+        optionLabel="name" [filter]="true" filterBy="name" optionValue="id" placeholder="Izberi kategorijo">
+        </p-multiSelect>
+
     </form>
   </div>
 
   <div *ngSwitchCase="'Category'" class="col-4">
-    <!-- TODO build a municipality form in .ts => either share form and build it according to selectedForm or create on for each entity,
-      dropdown with items from api -> getRegions -->
     <form [formGroup]="form">
       <div class="form-group">
         <label>Id</label>
@@ -99,9 +97,11 @@
   </div>
 </ng-container>
 
+<div class="ms-1 mt-1">
 <button pButton (click)="submit()" label="Submit"></button>
 
 <button pButton (click)="debug()">Debug</button>
+</div>
 <!--
 
 

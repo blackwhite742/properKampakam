@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms'
 import { HttpClient } from '@angular/common/http';
-import { firstValueFrom } from 'rxjs';
-
+import { firstValueFrom, Observable } from 'rxjs';
 
 const REGION_FORM_FIELDS={
   id:[null],
@@ -25,7 +24,7 @@ const ENTRY_FORM_FIELDS={
   description:[''],
   image:[''],
   municipality:[''],
-
+  category:[null]
 }
 
 const CATEGORY_FORM_FIELDS={
@@ -52,6 +51,13 @@ export class AddToDbComponent implements OnInit {
 
   selectedForm:any;
 
+  selectedMunicipality:number;
+  municipalities:any;
+
+  selectedCategories:number;
+  categories:any;
+
+
   constructor(
     private formBuilder:FormBuilder,
     private http:HttpClient
@@ -60,15 +66,16 @@ export class AddToDbComponent implements OnInit {
 
   }
 
-  ngOnInit(): void {
+  async ngOnInit(){
     this.form=this.formBuilder.group(REGION_FORM_FIELDS);
+    this.municipalities=await firstValueFrom(this.http.get(`/api/municipality/getAll`));
+    this.categories=await firstValueFrom(this.http.get(`/api/category/getAll`));
   }
 
   submit(){
     console.log(this.form.getRawValue());
 
     const path=`/api/${this.selectedForm}/add`;
-    console.log("Path is",path);
     return firstValueFrom(this.http.post(path,this.form.getRawValue()));
     //return firstValueFrom(this.http.post('/api/region/addRegion',this.form.getRawValue()));
   }
@@ -86,7 +93,7 @@ export class AddToDbComponent implements OnInit {
   }
 
   debug(){
-    console.log("test");
+    console.log(this.form.getRawValue());
   }
 
 }
