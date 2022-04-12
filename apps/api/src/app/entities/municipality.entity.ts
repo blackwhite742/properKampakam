@@ -1,11 +1,11 @@
-import { Column, Entity, Index, JoinColumn, ManyToOne } from "typeorm";
+import { Column, Entity, Index, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { Region } from "./region.entity";
 
 
 @Index("fk_municipality_region1_idx", ["regionId"], {})
 @Entity("municipality", { schema: "mydb" })
 export class Municipality {
-  @Column("int", { primary: true, name: "id" })
+  @PrimaryGeneratedColumn()
   id: number;
 
   @Column("varchar", { name: "name", nullable: true, length: 45 })

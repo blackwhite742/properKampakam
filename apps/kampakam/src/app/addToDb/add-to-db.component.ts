@@ -5,18 +5,18 @@ import { firstValueFrom } from 'rxjs';
 
 
 const REGION_FORM_FIELDS={
-  id:[''],
+  id:[null],
   name:['']
 }
 
 const MUNICIPALITY_FORM_FIELDS={
-  id:[''],
+  id:[null],
   name:[''],
   regionId:['']
 }
 
 const ENTRY_FORM_FIELDS={
-  id:[''],
+  id:[null],
   location:[''],
   price:[''],
   accessibility:[''],
@@ -29,7 +29,7 @@ const ENTRY_FORM_FIELDS={
 }
 
 const CATEGORY_FORM_FIELDS={
-  id:[''],
+  id:[null],
   name:['']
 }
 
