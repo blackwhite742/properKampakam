@@ -39,7 +39,6 @@ const CATEGORY_FORM_FIELDS={
   styleUrls: ['./add-to-db.component.scss']
 })
 export class AddToDbComponent implements OnInit {
-
   form:FormGroup;
 
   items:any[]=[
