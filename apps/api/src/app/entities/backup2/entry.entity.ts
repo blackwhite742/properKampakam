@@ -1,10 +1,4 @@
-import {
-  Column,
-  Entity,
-  JoinTable,
-  ManyToMany,
-  PrimaryGeneratedColumn,
-} from "typeorm";
+import { Column, Entity, ManyToMany, PrimaryGeneratedColumn } from "typeorm";
 import { Category } from "./category.entity";
 
 @Entity("entry", { schema: "mydb" })
@@ -38,14 +32,5 @@ export class Entry {
   image: string;
 
   @ManyToMany(() => Category, (category) => category.entries)
-  @JoinTable({
-    name: "entryHasCategory",
-    joinColumns: [{ name: "idEntry", referencedColumnName: "id" }],
-    inverseJoinColumns: [{ name: "idCategory", referencedColumnName: "id" }],
-    schema: "mydb",
-  })
   categories: Category[];
-
-  @ManyToMany(() => Category, (category) => category.entries2)
-  categories2: Category[];
 }

@@ -3,7 +3,7 @@ import { Municipality } from "./municipality.entity";
 
 @Entity("region", { schema: "mydb" })
 export class Region {
-  @PrimaryGeneratedColumn({ type: "int", name: "id" })
+  @PrimaryGeneratedColumn()
   id: number;
 
   @Column("varchar", { name: "name", nullable: true, length: 45 })

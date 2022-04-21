@@ -10,6 +10,7 @@ import { Category } from './entities/category.entity';
 import { Municipality } from './entities/municipality.entity';
 import { Entry } from './entities/entry.entity';
 import { Region } from './entities/region.entity';
+import { MainCategory } from './entities/mainCategory.entity';
 import { CategoryController } from './category/category.controller';
 import { CategoryModule } from './category/category.module';
 import { MunicipalityController } from './municipality/municipality.controller';
@@ -24,7 +25,7 @@ import { DbConfig } from 'dbConfig'
   imports: [
     TypeOrmModule.forRoot({
       ...DbConfig,
-      entities:[Entry,Category,Municipality,Region],
+      entities:[Entry,Category,Municipality,Region,MainCategory],
       synchronize:true,
       autoLoadEntities:true
     }),
