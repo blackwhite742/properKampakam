@@ -1,3 +1,6 @@
+import { Region } from './region.entity';
+import { OneToMany } from 'typeorm';
+import { Entry } from './entry.entity';
 import {
   Column,
   Entity,
@@ -6,7 +9,6 @@ import {
   ManyToOne,
   PrimaryGeneratedColumn,
 } from "typeorm";
-import { Region } from "./region.entity";
 
 @Index("fk_municipality_region1_idx", ["regionId"], {})
 @Entity("municipality", { schema: "mydb" })
@@ -19,6 +21,9 @@ export class Municipality {
 
   @Column("int", { primary: true, name: "region_id" })
   regionId: number;
+
+  @OneToMany(() => Entry, (entry) => entry.municipality)
+  entries: Entry[];
 
   @ManyToOne(() => Region, (region) => region.municipalities, {
     onDelete: "NO ACTION",

@@ -1,51 +1,45 @@
-import {
-  Column,
-  Entity,
-  JoinTable,
-  ManyToMany,
-  PrimaryGeneratedColumn,
-} from "typeorm";
-import { Category } from "./category.entity";
+import { Category } from './category.entity';
+import { Column, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn, Index, ManyToOne, JoinColumn } from 'typeorm';
+import { Municipality } from './municipality.entity';
 
+@Index("fk_entry_municipality1_idx", ["municipalityId"], {})
 @Entity("entry", { schema: "mydb" })
 export class Entry {
   @PrimaryGeneratedColumn({ type: "int", name: "id" })
   id: number;
 
-  @Column("tinyint", { name: "price" })
-  price: number;
+  @Column("varchar", { name: "location", nullable: true, length: 45 })
+  location: string | null;
 
-  @Column("tinyint", { name: "accomodation" })
-  accomodation: number;
+  @Column("tinyint", { name: "price", nullable: true, width: 1 })
+  price: boolean | null;
 
-  @Column("varchar", { name: "location", length: 255 })
-  location: string;
+  @Column("varchar", { name: "accessibility", nullable: true, length: 45 })
+  accessibility: string | null;
 
-  @Column("varchar", {
-    name: "accessibility",
-    length: 255,
-    default: () => "'1'",
+  @Column("varchar", { name: "season", nullable: true, length: 45 })
+  season: string | null;
+
+  @Column("tinyint", { name: "accomodation", nullable: true })
+  accomodation: number | null;
+
+  @Column("varchar", { name: "description", nullable: true, length: 45 })
+  description: string | null;
+
+  @Column("varchar", { name: "image", nullable: true, length: 100 })
+  image: string | null;
+
+  @Column("int", { name: "municipality_id", nullable: true })
+  municipalityId: number | null;
+
+  @ManyToOne(() => Municipality, (municipality) => municipality.entries, {
+    onDelete: "NO ACTION",
+    onUpdate: "NO ACTION",
   })
-  accessibility: string;
-
-  @Column("varchar", { name: "season", length: 255 })
-  season: string;
-
-  @Column("varchar", { name: "description", length: 255 })
-  description: string;
-
-  @Column("varchar", { name: "image", length: 255 })
-  image: string;
+  @JoinColumn([{ name: "municipality_id", referencedColumnName: "id" }])
+  municipality: Municipality;
 
   @ManyToMany(() => Category, (category) => category.entries)
-  @JoinTable({
-    name: "entryHasCategory",
-    joinColumns: [{ name: "idEntry", referencedColumnName: "id" }],
-    inverseJoinColumns: [{ name: "idCategory", referencedColumnName: "id" }],
-    schema: "mydb",
-  })
   categories: Category[];
-
-  @ManyToMany(() => Category, (category) => category.entries2)
-  categories2: Category[];
 }
+

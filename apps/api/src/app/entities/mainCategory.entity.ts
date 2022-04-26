@@ -1,5 +1,5 @@
 import { Column, Entity, ManyToMany, PrimaryGeneratedColumn } from "typeorm";
-import { Category } from "./category.entity";
+import { Category } from './category.entity';
 
 @Entity("mainCategory", { schema: "mydb" })
 export class MainCategory {
