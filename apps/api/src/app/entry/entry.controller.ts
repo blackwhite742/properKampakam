@@ -23,6 +23,11 @@ export class EntryController {
     console.log("Get all");
     return this.entryService.getAll();
   }
+  /*
+  @Get('/random')
+  async getRandom(){
+    return this.entryService.getRandom();
+  }*/
 
   @Post('/add')
   addRegion(

@@ -27,6 +27,10 @@ export class EntryService {
     console.log(ans)
     return ans
   }
+  /*
+  async getRandom(){
+    //return await this.entryRepository.query('SELECT id FROM category ORDER BY RAND() LIMIT 1');
+  }*/
 
   async addEntry(data){
     return await this.entryRepository.save(data);

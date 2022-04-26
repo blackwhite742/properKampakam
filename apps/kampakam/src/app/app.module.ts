@@ -12,7 +12,7 @@ import { HomePageComponent } from "./home-page/home-page.component";
 import { HomePageModule } from './home-page/home-page.module';
 import { AppRoutingModule } from './app-routing.module';
 import { EntryComponent } from './entry/entry.component';
-
+import {MegaMenuModule} from 'primeng/megamenu';
 
 
 
