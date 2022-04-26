@@ -13,6 +13,8 @@ import { HomePageModule } from './home-page/home-page.module';
 import { AppRoutingModule } from './app-routing.module';
 import { EntryComponent } from './entry/entry.component';
 import {MegaMenuModule} from 'primeng/megamenu';
+import { NavbarComponent } from './navbar/navbar.component';
+import { NavbarModule } from './navbar/navbar.module';
 
 
 
@@ -25,11 +27,8 @@ import {MegaMenuModule} from 'primeng/megamenu';
     AddToDbModule,
     HomePageModule,
     BrowserAnimationsModule,
-    /*RouterModule.forRoot([
-      {path:'',component:HomePageComponent},
-      {path:'addToDb',component:AddToDbComponent}
-    ]),*/
-    AppRoutingModule],
+    AppRoutingModule,
+    NavbarModule],
   providers: [],
   bootstrap: [AppComponent],
 })
