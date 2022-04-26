@@ -1,15 +1,15 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ButtonModule } from 'primeng/button';
-import { HomePageComponent } from './home-page.component';
 import {MegaMenuModule} from 'primeng/megamenu';
+import { NavbarComponent } from './navbar.component';
+
 
 @NgModule({
-  declarations: [HomePageComponent],
+  declarations: [NavbarComponent],
   imports: [
     CommonModule,
-    ButtonModule,
     MegaMenuModule
-  ]
+  ],
+  exports: [NavbarComponent]
 })
-export class HomePageModule { }
+export class NavbarModule { }

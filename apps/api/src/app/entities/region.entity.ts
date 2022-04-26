@@ -1,5 +1,6 @@
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
-import { Municipality } from "./municipality.entity";
+import { Municipality } from './municipality.entity';
+
 
 @Entity("region", { schema: "mydb" })
 export class Region {

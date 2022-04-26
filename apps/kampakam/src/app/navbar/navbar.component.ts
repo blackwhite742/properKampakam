@@ -1,19 +1,20 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { MegaMenuItem } from 'primeng/api/megamenuitem';
 import { MenuItem } from 'primeng/api/menuitem';
 
+
 @Component({
-  selector: 'kampakam-home-page',
-  templateUrl: './home-page.component.html',
-  styleUrls: ['./home-page.component.scss'],
+  selector: 'kampakam-navbar',
+  templateUrl: './navbar.component.html',
+  styleUrls: ['./navbar.component.scss']
 })
-export class HomePageComponent implements OnInit {
-  constructor(private router: Router) {}
+export class NavbarComponent implements OnInit {
 
   items: MegaMenuItem[];
 
-  ngOnInit() {
+  constructor() { }
+
+  ngOnInit(): void {
     this.items = [
       {
         label: 'Dodaj v DB',
@@ -31,4 +32,5 @@ export class HomePageComponent implements OnInit {
       },
     ];
   }
+
 }
