@@ -25,14 +25,16 @@ export class MunicipalityService {
       const curr=ans[ind];
       if(curr.region.name){
         if(!(curr.region.name in obj)){
-          obj[curr.region.name]=[{id:curr.id, name:curr.name}];
+          obj[curr.region.name]={'label':curr.region.name};
+          obj[curr.region.name]['children']=[{id:curr.id, name:curr.name}];
+          regs.add(curr.region.name);
         }
         else
-          obj[curr.region.name].push({id:curr.id, name:curr.name});
+          obj[curr.region.name]['children'].push({id:curr.id, name:curr.name});
       }
     }
 
-    return obj;
+    return Object.values(obj);
   }
 
   async addMunicipality(data){
