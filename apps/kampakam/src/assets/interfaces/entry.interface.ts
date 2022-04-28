@@ -3,6 +3,7 @@
 
 export interface EntryInterface{
   id:number,
+  name:string,
   location:string,
   price:boolean,
   accesibility:string,

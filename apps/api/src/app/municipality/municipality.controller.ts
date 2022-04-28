@@ -16,6 +16,11 @@ export class MunicipalityController {
     return this.municipalityService.getAll();
   }
 
+  @Get('/getByRegion')
+  async getByRegion(){
+    return this.municipalityService.getByRegion();
+  }
+
   @Post('/add')
   addRegion(
     @Body()data:any

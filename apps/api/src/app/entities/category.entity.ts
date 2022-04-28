@@ -1,6 +1,13 @@
 import { Entry } from './entry.entity';
 import { MainCategory } from './mainCategory.entity';
-import { Column, Entity, ManyToMany, PrimaryGeneratedColumn,JoinTable } from 'typeorm';
+import {
+  Column,
+  Entity,
+  JoinTable,
+  ManyToMany,
+  PrimaryGeneratedColumn,
+} from "typeorm";
+import { Event } from "./event.entity";
 
 @Entity("category", { schema: "mydb" })
 export class Category {
@@ -9,6 +16,15 @@ export class Category {
 
   @Column("varchar", { name: "name", nullable: true, length: 45 })
   name: string | null;
+
+  @ManyToMany(() => Event, (event) => event.categories)
+  @JoinTable({
+    name: "category_has_event",
+    joinColumns: [{ name: "category_id", referencedColumnName: "id" }],
+    inverseJoinColumns: [{ name: "event_id", referencedColumnName: "id" }],
+    schema: "mydb",
+  })
+  events: Event[];
 
   @ManyToMany(() => MainCategory, (mainCategory) => mainCategory.categories)
   @JoinTable({
@@ -30,3 +46,4 @@ export class Category {
   })
   entries: Entry[];
 }
+

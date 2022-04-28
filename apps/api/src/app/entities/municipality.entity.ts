@@ -1,5 +1,4 @@
 import { Region } from './region.entity';
-import { OneToMany } from 'typeorm';
 import { Entry } from './entry.entity';
 import {
   Column,
@@ -7,8 +6,10 @@ import {
   Index,
   JoinColumn,
   ManyToOne,
+  OneToMany,
   PrimaryGeneratedColumn,
 } from "typeorm";
+import { Event } from "./event.entity";
 
 @Index("fk_municipality_region1_idx", ["regionId"], {})
 @Entity("municipality", { schema: "mydb" })
@@ -25,6 +26,9 @@ export class Municipality {
   @OneToMany(() => Entry, (entry) => entry.municipality)
   entries: Entry[];
 
+  @OneToMany(() => Event, (event) => event.municipality)
+  events: Event[];
+
   @ManyToOne(() => Region, (region) => region.municipalities, {
     onDelete: "NO ACTION",
     onUpdate: "NO ACTION",
@@ -32,3 +36,4 @@ export class Municipality {
   @JoinColumn([{ name: "region_id", referencedColumnName: "id" }])
   region: Region;
 }
+

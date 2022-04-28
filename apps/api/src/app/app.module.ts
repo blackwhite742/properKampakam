@@ -15,26 +15,19 @@ import { RegionController } from './region/region.controller';
 import { MunicipalityModule } from './municipality/municipality.module';
 import { DbConfig } from 'dbConfig'
 
-
 import {Category} from './entities/category.entity';
 import {Municipality} from './entities/municipality.entity';
 import {Entry} from './entities/entry.entity';
 import {Region} from './entities/region.entity';
 import {MainCategory} from './entities/mainCategory.entity';
+import {Event} from './entities/event.entity'
 
-/*
-import { Category } from './entities/category.entity';
-import { Municipality } from './entities/municipality.entity';
-import { Entry } from './entities/entry.entity';
-import { Region } from './entities/region.entity';
-import { MainCategory } from './entities/mainCategory.entity';
-*/
 
 @Module({
   imports: [
     TypeOrmModule.forRoot({
       ...DbConfig,
-      entities:[Entry,Category,Municipality,Region,MainCategory],
+      entities:[Entry,Category,Municipality,Region,MainCategory,Event],
       synchronize:true,
       autoLoadEntities:true
     }),
