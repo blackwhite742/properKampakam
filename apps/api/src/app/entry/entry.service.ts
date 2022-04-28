@@ -24,7 +24,6 @@ export class EntryService {
 
   async getId(givenId){
     const ans=await this.entryRepository.findOneOrFail({where:{id:givenId}});
-    console.log(ans)
     return ans
   }
 
@@ -33,6 +32,7 @@ export class EntryService {
   }
 
   async addEntry(data){
+    console.log(data);
     return await this.entryRepository.save(data);
   }
 

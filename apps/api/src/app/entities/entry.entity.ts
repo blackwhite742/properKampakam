@@ -1,6 +1,14 @@
 import { Category } from './category.entity';
-import { Column, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn, Index, ManyToOne, JoinColumn } from 'typeorm';
 import { Municipality } from './municipality.entity';
+import {
+  Column,
+  Entity,
+  Index,
+  JoinColumn,
+  ManyToMany,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+} from "typeorm";
 
 @Index("fk_entry_municipality1_idx", ["municipalityId"], {})
 @Entity("entry", { schema: "mydb" })
@@ -8,14 +16,17 @@ export class Entry {
   @PrimaryGeneratedColumn({ type: "int", name: "id" })
   id: number;
 
+  @Column("varchar", { name: "name", nullable: true, length: 45 })
+  name: string | null;
+
   @Column("varchar", { name: "location", nullable: true, length: 45 })
   location: string | null;
 
   @Column("tinyint", { name: "price", nullable: true, width: 1 })
   price: boolean | null;
 
-  @Column("varchar", { name: "accessibility", nullable: true, length: 45 })
-  accessibility: string | null;
+  @Column("tinyint", { name: "accessibility", nullable: true, width: 1 })
+  accessibility: boolean | null;
 
   @Column("varchar", { name: "season", nullable: true, length: 45 })
   season: string | null;
@@ -42,4 +53,3 @@ export class Entry {
   @ManyToMany(() => Category, (category) => category.entries)
   categories: Category[];
 }
-
