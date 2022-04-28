@@ -27,7 +27,6 @@ export class MunicipalityService {
         if(!(curr.region.name in obj)){
           obj[curr.region.name]={'label':curr.region.name};
           obj[curr.region.name]['children']=[{id:curr.id, name:curr.name}];
-          regs.add(curr.region.name);
         }
         else
           obj[curr.region.name]['children'].push({id:curr.id, name:curr.name});
