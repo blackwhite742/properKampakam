@@ -3,7 +3,17 @@
   <h6>Forma</h6>
   <div class="card">
     <div class="formgrid grid">
-      <div class="field col-12 md:col-4">
+      <div class="field col-12 md:col-3">
+        <label>Ime</label>
+        <input
+          pInputText
+          type="text"
+          class="form-control"
+          formControlName="name"
+          placeholder="Izberi ime"
+        />
+      </div>
+      <div class="field col-12 md:col-3">
         <label>Lokacija</label>
         <input
           pInputText
@@ -14,7 +24,7 @@
         />
       </div>
 
-      <div class="field col-12 md:col-4">
+      <div class="field col-12 md:col-3">
         <label>Sezona</label>
         <input
           pInputText
@@ -25,7 +35,7 @@
         />
       </div>
 
-      <div class="field col-12 md:col-4">
+      <div class="field col-12 md:col-3">
         <label>Slika</label>
         <input
           pInputText
@@ -63,15 +73,16 @@
   />
 
   <h6>Občina</h6>
-  <p-treeSelect
-    [(ngModel)]="regions"
-    [options]="api"
-    placeholder="Select Item"
-    formControlName="municipalityId"
-    display="chip"
-    [metaKeySelection]="false"
-    selectionMode="checkbox"
-  ></p-treeSelect>
+  <p-multiSelect
+  [options]="munOptions" [group]="true" [(ngModel)]="regions"
+  defaultLabel="Izberi občino" display="chip" [selectionLimit]="1"
+  formControlName="municipalityId">
+    <ng-template let-group pTemplate="group">
+        <div class="flex align-items-center">
+            <span>{{group.label}}</span>
+        </div>
+    </ng-template>
+</p-multiSelect>
 
   <h6>Kategorije</h6>
   <p-multiSelect

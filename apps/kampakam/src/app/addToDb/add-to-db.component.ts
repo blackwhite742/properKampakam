@@ -2,9 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { firstValueFrom, Observable } from 'rxjs';
+import { MUNICIPALITIES } from '../../assets/municipalities';
 
 const ENTRY_FORM_FIELDS = {
   id: [null],
+  name:[''],
   location: [''],
   price: [''],
   accessibility: [''],
@@ -22,7 +24,6 @@ const ENTRY_FORM_FIELDS = {
   styleUrls: ['./add-to-db.component.scss'],
 })
 export class AddToDbComponent implements OnInit {
-  api: any;
 
   regions: any[];
   municipality: any[] = [];
@@ -33,19 +34,14 @@ export class AddToDbComponent implements OnInit {
   selectedMunicipality: number;
   municipalities: any;
 
+  munOptions:any;
   selectedCategories: number;
   categories: any;
 
   constructor(private formBuilder: FormBuilder, private http: HttpClient) {}
 
   async ngOnInit() {
-    JSON.stringify(
-      (this.api = await firstValueFrom(
-        this.http.get(`/api/municipality/getByRegion`)
-      ))
-    );
-
-    console.log(this.api);
+    this.munOptions=MUNICIPALITIES;
     this.form = this.formBuilder.group(ENTRY_FORM_FIELDS);
     this.municipalities = await firstValueFrom(
       this.http.get(`/api/municipality/getAll`)
@@ -56,11 +52,11 @@ export class AddToDbComponent implements OnInit {
   }
 
   submit() {
-    console.log(this.form.getRawValue());
-
+    const formContent=this.form.getRawValue();
+    console.log(formContent);
+    formContent.municipalityId=formContent.municipalityId[0];
     const path = `/api/entry/add`;
-    return firstValueFrom(this.http.post(path, this.form.getRawValue()));
-    //return firstValueFrom(this.http.post('/api/region/addRegion',this.form.getRawValue()));
+    return firstValueFrom(this.http.post(path, formContent));
   }
 
   debug() {

@@ -17,6 +17,7 @@ export class MunicipalityService {
   async getByRegion() {
     const ans = await this.municipalityRepository.find({
       relations: ['region'],
+      order: {name:"ASC"}
     });
     const obj = {};
 
