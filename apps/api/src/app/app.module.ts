@@ -21,6 +21,8 @@ import {Entry} from './entities/entry.entity';
 import {Region} from './entities/region.entity';
 import {MainCategory} from './entities/mainCategory.entity';
 import {Event} from './entities/event.entity'
+import { EventController } from './event/event.controller';
+import { EventModule } from './event/event.module';
 
 
 @Module({
@@ -35,8 +37,9 @@ import {Event} from './entities/event.entity'
     CategoryModule,
     MunicipalityModule,
     RegionModule,
+    EventModule,
   ],
-  controllers: [AppController,EntryController, CategoryController, MunicipalityController, RegionController],
+  controllers: [AppController,EntryController, CategoryController, MunicipalityController, RegionController, EventController],
   providers: [AppService,EntryService],
 })
 export class AppModule {}
