@@ -5,9 +5,11 @@ import { CommonModule } from '@angular/common';
 import { DropdownModule } from 'primeng/dropdown';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
-import {InputTextModule} from 'primeng/inputtext';
-import {MultiSelectModule} from 'primeng/multiselect';
-
+import { InputTextModule } from 'primeng/inputtext';
+import { MultiSelectModule } from 'primeng/multiselect';
+import { SelectButtonModule } from 'primeng/selectbutton';
+import { InputSwitchModule } from 'primeng/inputswitch';
+import { TreeSelectModule } from 'primeng/treeselect';
 
 @NgModule({
   declarations: [AddToDbComponent],
@@ -18,10 +20,11 @@ import {MultiSelectModule} from 'primeng/multiselect';
     ButtonModule,
     ReactiveFormsModule,
     InputTextModule,
-    MultiSelectModule
+    MultiSelectModule,
+    SelectButtonModule,
+    InputSwitchModule,
+    TreeSelectModule,
   ],
-  exports:[
-
-  ]
+  exports: [],
 })
-export class AddToDbModule { }
+export class AddToDbModule {}
