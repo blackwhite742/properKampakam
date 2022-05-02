@@ -1,20 +1,24 @@
-
-
 <!--
   Filter by region, municipality => LOCATION
   Filter by entry parameters => DETAILS
   Filter by category, maincategory => CATEGORY
 -->
 
-<div [formGroup]="form">
+<div class="container">
 
+<div [formGroup]="form">
   <div>
     <h6>Občina</h6>
-    <p-treeSelect [(ngModel)]="regions" [options]="munOptions" selectionMode="checkbox"
-    [metaKeySelection]="false" display="chip" formControlName="regions">
+    <p-treeSelect
+      [(ngModel)]="regions"
+      [options]="munOptions"
+      selectionMode="checkbox"
+      [metaKeySelection]="false"
+      display="chip"
+      formControlName="regions"
+    >
     </p-treeSelect>
   </div>
-
 
   <div>
     <!-- Location radius, choose from google maps?-->
@@ -29,7 +33,10 @@
     />
 
     <h6>Cena</h6>
-    <p-inputSwitch formControlName="price" [(ngModel)]="priceChecked"></p-inputSwitch>
+    <p-inputSwitch
+      formControlName="price"
+      [(ngModel)]="priceChecked"
+    ></p-inputSwitch>
 
     <h6>Dostopnost</h6>
     <p-inputSwitch
@@ -44,16 +51,16 @@
     ></p-inputSwitch>
 
     <h6>Letni čas</h6>
-    <p-dropdown [options]="seasons" [ngModel]="selectedSeason"
-    optionLabel="name" optionValue="name" placeholder="Izberi letni čas"
-    formControlName="season">
-
+    <p-dropdown
+      [options]="seasons"
+      [ngModel]="selectedSeason"
+      optionLabel="name"
+      optionValue="name"
+      placeholder="Izberi letni čas"
+      formControlName="season"
+    >
     </p-dropdown>
-
   </div>
-
-
-
 
   <div>
     <h6>Kategorije</h6>
@@ -70,6 +77,6 @@
     </p-multiSelect>
   </div>
 
-  <button pButton label="Poišči" (click)="submit()"></button>
-
+  <button pButton label="Poišči" (click)="submit()" class="mt-1"></button>
+</div>
 </div>
