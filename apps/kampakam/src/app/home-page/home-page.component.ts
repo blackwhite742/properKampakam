@@ -60,8 +60,10 @@ export class HomePageComponent implements OnInit {
     );
   }
 
-  submit() {
+  async submit() {
     const formData = this.form.getRawValue();
     console.log('Form data:', formData);
+    const ans=await firstValueFrom(this.http.post(`/api/entry/query`,formData));
+    console.log("Api answer:",ans);
   }
 }

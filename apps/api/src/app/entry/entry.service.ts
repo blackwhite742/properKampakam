@@ -31,6 +31,11 @@ export class EntryService {
     return await this.entryRepository.query('SELECT id FROM entry ORDER BY RAND() LIMIT 1');
   }
 
+  async getSpecific(data:Partial<{regions:any[],price:boolean,accommodation:boolean,categories:number[],season:string,name:string}>){
+    return await this.entryRepository.find();
+    //return await this.entryRepository.
+  }
+
   async addEntry(data){
     console.log(data);
     return await this.entryRepository.save(data);

@@ -29,6 +29,14 @@ export class EntryController {
     return this.entryService.getRandom();
   }
 
+  @Post('query')
+  async getSpecific(
+    @Body()data:any
+  ){
+    console.log("Got data:",data);
+    return this.entryService.getSpecific(data);
+  }
+
   @Post('/add')
   addRegion(
     @Body()data:any
