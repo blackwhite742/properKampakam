@@ -15,6 +15,7 @@ const GENERATOR_FORM_FIELDS = {
   categories: [''],
   season: [''],
   name: [''],
+  municipality: [''],
 };
 
 @Component({
@@ -34,6 +35,7 @@ export class HomePageComponent implements OnInit {
 
   //Categories
   munOptions: any;
+  regOptions: any;
   categoryOptions: any;
   form: FormGroup;
 
@@ -44,9 +46,10 @@ export class HomePageComponent implements OnInit {
   accommodationChecked: boolean;
   selectedCategories: any[];
   selectedSeason: string;
+  selectedMunicipalities: any[];
 
   async ngOnInit() {
-    this.munOptions = MUNICIPALITIES;
+    this.regOptions = MUNICIPALITIES;
     this.seasons = [
       { name: 'Celoletno' },
       { name: 'Poletje' },
@@ -65,5 +68,10 @@ export class HomePageComponent implements OnInit {
     console.log('Form data:', formData);
     const ans=await firstValueFrom(this.http.post(`/api/entry/query`,formData));
     console.log("Api answer:",ans);
+  }
+
+  regionChange(change:any){
+    const temp=MUNICIPALITIES.filter(m => m.value===change.value);
+    this.munOptions=temp[0].children;
   }
 }
