@@ -15,11 +15,12 @@ import { EntryComponent } from './entry/entry.component';
 import {MegaMenuModule} from 'primeng/megamenu';
 import { NavbarComponent } from './navbar/navbar.component';
 import { NavbarModule } from './navbar/navbar.module';
+import { FooterComponent } from './footer/footer.component';
 
 
 
 @NgModule({
-  declarations: [AppComponent, EntryComponent],
+  declarations: [AppComponent, EntryComponent, FooterComponent],
   imports: [
     BrowserModule,
     HttpClientModule,

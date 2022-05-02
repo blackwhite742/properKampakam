@@ -1,107 +1,131 @@
 <link rel="stylesheet" href="https://unpkg.com/primeflex@3.1.0/primeflex.css" />
-<div [formGroup]="form">
-  <h6>Forma</h6>
-  <div class="card">
-    <div class="formgrid grid">
-      <div class="field col-12 md:col-3">
-        <label>Ime</label>
-        <input
-          pInputText
-          type="text"
-          class="form-control"
-          formControlName="name"
-          placeholder="Izberi ime"
-        />
-      </div>
-      <div class="field col-12 md:col-3">
-        <label>Lokacija</label>
-        <input
-          pInputText
-          type="text"
-          class="form-control"
-          formControlName="location"
-          placeholder="Izberi lokacijo"
-        />
-      </div>
+<div class="container">
+  <div [formGroup]="form">
+    <div class="form-check form-switch">
+      <input
+        class="form-check-input"
+        formControlName="price"
+        type="checkbox"
+        role="switch"
+        id="flexSwitchCheckDefault"
+        [(ngModel)]="checked"
+      />
+      <label class="form-check-label" for="flexSwitchCheckDefault"
+        >Default switch checkbox input</label
+      >
+    </div>
 
-      <div class="field col-12 md:col-3">
-        <label>Sezona</label>
-        <input
-          pInputText
-          type="text"
-          class="form-control"
-          formControlName="season"
-          placeholder="Vnesi sezono"
-        />
-      </div>
+    <h6>Forma</h6>
+    <div class="card">
+      <div class="formgrid grid">
+        <div class="field col-12 md:col-3">
+          <label>Ime</label>
+          <input
+            pInputText
+            type="text"
+            class="form-control"
+            formControlName="name"
+            placeholder="Izberi ime"
+          />
+        </div>
+        <div class="field col-12 md:col-3">
+          <label>Lokacija</label>
+          <input
+            pInputText
+            type="text"
+            class="form-control"
+            formControlName="location"
+            placeholder="Izberi lokacijo"
+          />
+        </div>
 
-      <div class="field col-12 md:col-3">
-        <label>Slika</label>
-        <input
-          pInputText
-          type="text"
-          class="form-control"
-          formControlName="image"
-          placeholder="Vnesi URL slike"
-        />
+        <div class="field col-12 md:col-3">
+          <label>Sezona</label>
+          <input
+            pInputText
+            type="text"
+            class="form-control"
+            formControlName="season"
+            placeholder="Vnesi sezono"
+          />
+        </div>
+
+        <div class="field col-12 md:col-3">
+          <label>Slika</label>
+          <input
+            pInputText
+            type="text"
+            class="form-control"
+            formControlName="image"
+            placeholder="Vnesi URL slike"
+          />
+        </div>
       </div>
     </div>
+
+    <!-- <h6>Price</h6>
+    <p-inputSwitch
+      formControlName="price"
+      [(ngModel)]="checked"
+    ></p-inputSwitch> -->
+
+    <h6>Accessibility</h6>
+    <p-inputSwitch
+      formControlName="accessibility"
+      [(ngModel)]="checked1"
+    ></p-inputSwitch>
+
+    <h6>Accomodation</h6>
+    <p-inputSwitch
+      formControlName="accomodation"
+      [(ngModel)]="checked3"
+    ></p-inputSwitch>
+
+    <h6>Description</h6>
+    <input
+      pInputText
+      type="text"
+      class="form-control"
+      formControlName="description"
+      placeholder="Description"
+    />
+
+    <h6>Občina</h6>
+    <p-multiSelect
+      [options]="munOptions"
+      [group]="true"
+      [(ngModel)]="regions"
+      defaultLabel="Izberi občino"
+      display="chip"
+      [selectionLimit]="1"
+      formControlName="municipalityId"
+    >
+      <ng-template let-group pTemplate="group">
+        <div class="flex align-items-center">
+          <span>{{ group.label }}</span>
+        </div>
+      </ng-template>
+    </p-multiSelect>
+
+    <h6>Kategorije</h6>
+    <p-multiSelect
+      [options]="categories"
+      [(ngModel)]="selectedCategories"
+      formControlName="categories"
+      optionLabel="name"
+      [filter]="true"
+      filterBy="name"
+      optionValue="id"
+      placeholder="Izberi kategorijo"
+    >
+    </p-multiSelect>
   </div>
 
-  <h6>Price</h6>
-  <p-inputSwitch formControlName="price" [(ngModel)]="checked"></p-inputSwitch>
+  <hr />
 
-  <h6>Accessibility</h6>
-  <p-inputSwitch
-    formControlName="accessibility"
-    [(ngModel)]="checked1"
-  ></p-inputSwitch>
-
-  <h6>Accomodation</h6>
-  <p-inputSwitch
-    formControlName="accomodation"
-    [(ngModel)]="checked3"
-  ></p-inputSwitch>
-
-  <h6>Description</h6>
-  <input
-    pInputText
-    type="text"
-    class="form-control"
-    formControlName="description"
-    placeholder="Description"
-  />
-
-  <h6>Občina</h6>
-  <p-multiSelect
-  [options]="munOptions" [group]="true" [(ngModel)]="regions"
-  defaultLabel="Izberi občino" display="chip" [selectionLimit]="1"
-  formControlName="municipalityId">
-    <ng-template let-group pTemplate="group">
-        <div class="flex align-items-center">
-            <span>{{group.label}}</span>
-        </div>
-    </ng-template>
-  </p-multiSelect>
-
-  <h6>Kategorije</h6>
-  <p-multiSelect
-    [options]="categories"
-    [(ngModel)]="selectedCategories"
-    formControlName="categories"
-    optionLabel="name"
-    [filter]="true"
-    filterBy="name"
-    optionValue="id"
-    placeholder="Izberi kategorijo"
-  >
-  </p-multiSelect>
-</div>
-
-<hr />
-
-<div class="flex flex-column card-container green-container">
-  <div class="flex align-items-center justify-content-center">
-    <button pButton (click)="submit()" label="Submit"></button>
+  <div class="flex flex-column card-container green-container">
+    <div class="flex align-items-center justify-content-center">
+      <button pButton (click)="submit()" label="Submit"></button>
+    </div>
   </div>
 </div>
