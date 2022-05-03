@@ -33,7 +33,6 @@ export class EntryController {
   async getSpecific(
     @Body()data:any
   ){
-    console.log("Got data:",data);
     return this.entryService.getSpecific(data);
   }
 

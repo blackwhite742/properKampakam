@@ -48,6 +48,8 @@ export class HomePageComponent implements OnInit {
   selectedSeason: string;
   selectedMunicipalities: any[];
 
+  queryResult:any;
+
   async ngOnInit() {
     this.regOptions = MUNICIPALITIES;
     this.seasons = [
@@ -64,9 +66,11 @@ export class HomePageComponent implements OnInit {
   }
 
   async submit() {
+    this.queryResult=null;
     const formData = this.form.getRawValue();
     console.log('Form data:', formData);
     const ans=await firstValueFrom(this.http.post(`/api/entry/query`,formData));
+    this.queryResult = ans;
     console.log("Api answer:",ans);
   }
 
