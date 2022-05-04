@@ -7,12 +7,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MapaComponent implements OnInit {
 
+  chosenRegion:string|null;
+
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  test(data:string){
-    console.log(data,"was clicked.");
+  regionClick(data:string){
+    if(this.chosenRegion==data){
+      this.chosenRegion=null;
+    }
+    else{
+      this.chosenRegion = data;
+    }
+    
   }
 }
