@@ -4,6 +4,7 @@ import { RouterModule,Routes } from '@angular/router';
 import { HomePageComponent } from './home-page/home-page.component';
 import { AddToDbComponent } from './addToDb/add-to-db.component';
 import { EntryComponent } from './entry/entry.component';
+import { MapaComponent } from './mapa/mapa.component';
 
 const routes: Routes = [
   {path:'',component:HomePageComponent},
@@ -11,7 +12,8 @@ const routes: Routes = [
   {
     path:'entry/:id',
     component:EntryComponent,
-  }
+  },
+  {path:'mapa',component:MapaComponent}
 ];
 
 @NgModule({

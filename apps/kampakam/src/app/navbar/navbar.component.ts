@@ -16,7 +16,7 @@ export class NavbarComponent implements OnInit {
   private entryId: any;
   model: any;
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private http: HttpClient, public router: Router) {}
 
   ngOnInit(): void {}
   async getRandom() {
@@ -25,15 +25,4 @@ export class NavbarComponent implements OnInit {
     this.router.navigate([`/entry/${this.entryId}`]);
   }
 
-  onAddToDb() {
-    this.router.navigate(['/addToDb']);
-  }
-
-  onRandomEntry() {
-    this.getRandom();
-  }
-
-  goHome() {
-    this.router.navigate(['']);
-  }
 }
