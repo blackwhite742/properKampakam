@@ -6,77 +6,90 @@
 
 <div class="container">
 
-<div [formGroup]="form">
-  <div>
-    <h6>Občina</h6>
-    <p-treeSelect
-      [(ngModel)]="regions"
-      [options]="munOptions"
-      selectionMode="checkbox"
-      [metaKeySelection]="false"
-      display="chip"
-      formControlName="regions"
-    >
-    </p-treeSelect>
+<div class="row" [formGroup]="form">
+
+  <div class="col-6">
+    <p-listbox [options]="regOptions" [(ngModel)]="regions"
+    optionLabel="label" optionValue="value" formControlName="regions" (onChange)="regionChange($event)">
+    </p-listbox>
   </div>
 
-  <div>
-    <!-- Location radius, choose from google maps?-->
+  <div class="col-6">
+      <!-- Location radius, choose from google maps?-->
 
-    <h6>Ime</h6>
-    <input
-      pInputText
-      type="text"
-      class="form-control"
-      formControlName="name"
-      placeholder="Izberi ime"
-    />
+      <div>
+        <h6>Občine</h6>
+        <p-multiSelect
+          [options]="munOptions"
+          [(ngModel)]="selectedMunicipalities"
+          formControlName="municipality"
+          optionLabel="label"
+          [filter]="true"
+          filterBy="label"
+          optionValue="value"
+          placeholder="Izberi občino"
+        >
+        </p-multiSelect>
+      </div>
 
-    <h6>Cena</h6>
-    <p-inputSwitch
-      formControlName="price"
-      [(ngModel)]="priceChecked"
-    ></p-inputSwitch>
+      <h6>Ime</h6>
+      <input class="ime"
+        pInputText
+        type="text"
+        class="form-control"
+        formControlName="name"
+        placeholder="Izberi ime"
+      />
 
-    <h6>Dostopnost</h6>
-    <p-inputSwitch
-      formControlName="accessibility"
-      [(ngModel)]="accessibilityChecked"
-    ></p-inputSwitch>
+      <h6>Cena</h6>
+      <p-inputSwitch
+        formControlName="price"
+        [(ngModel)]="priceChecked"
+      ></p-inputSwitch>
 
-    <h6>Nastanitev</h6>
-    <p-inputSwitch
-      formControlName="accommodation"
-      [(ngModel)]="accommodationChecked"
-    ></p-inputSwitch>
+      <h6>Dostopnost</h6>
+      <p-inputSwitch
+        formControlName="accessibility"
+        [(ngModel)]="accessibilityChecked"
+      ></p-inputSwitch>
 
-    <h6>Letni čas</h6>
-    <p-dropdown
-      [options]="seasons"
-      [ngModel]="selectedSeason"
-      optionLabel="name"
-      optionValue="name"
-      placeholder="Izberi letni čas"
-      formControlName="season"
-    >
-    </p-dropdown>
-  </div>
+      <h6>Nastanitev</h6>
+      <p-inputSwitch
+        formControlName="accommodation"
+        [(ngModel)]="accommodationChecked"
+      ></p-inputSwitch>
 
-  <div>
-    <h6>Kategorije</h6>
-    <p-multiSelect
-      [options]="categoryOptions"
-      [(ngModel)]="selectedCategories"
-      formControlName="categories"
-      optionLabel="name"
-      [filter]="true"
-      filterBy="name"
-      optionValue="id"
-      placeholder="Izberi kategorijo"
-    >
-    </p-multiSelect>
-  </div>
+      <h6>Letni čas</h6>
+      <p-dropdown
+        [options]="seasons"
+        [ngModel]="selectedSeason"
+        optionLabel="name"
+        optionValue="name"
+        placeholder="Izberi letni čas"
+        formControlName="season"
+      >
+      </p-dropdown>
+      <div>
+        <h6>Kategorije</h6>
+        <p-multiSelect
+          [options]="categoryOptions"
+          [(ngModel)]="selectedCategories"
+          formControlName="categories"
+          optionLabel="name"
+          [filter]="true"
+          filterBy="name"
+          optionValue="id"
+          placeholder="Izberi kategorijo"
+        >
+        </p-multiSelect>
+      </div>
+    </div>
 
-  <button pButton label="Poišči" (click)="submit()" class="mt-1"></button>
-</div>
+
+
+    <button pButton label="Poišči" (click)="submit()" class="mt-1"></button>
+    </div>
+
+
+    {{queryResult | json}}
 </div>
