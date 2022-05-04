@@ -17,6 +17,8 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { NavbarModule } from './navbar/navbar.module';
 import { FooterComponent } from './footer/footer.component';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
+import { MapaComponent } from './mapa/mapa.component';
+import { MapaModule } from './mapa/mapa.module';
 
 @NgModule({
   declarations: [AppComponent, EntryComponent, FooterComponent],
@@ -29,6 +31,7 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
     BrowserAnimationsModule,
     AppRoutingModule,
     NavbarModule,
+    MapaModule,
     MDBBootstrapModule.forRoot(),
   ],
   schemas: [NO_ERRORS_SCHEMA],
