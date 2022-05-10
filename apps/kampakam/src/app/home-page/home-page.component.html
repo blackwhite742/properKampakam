@@ -90,6 +90,7 @@
     <button pButton label="Poišči" (click)="submit()" class="mt-1"></button>
     </div>
 
-
-    {{queryResult | json}}
 </div>
+
+<kampakam-query-result [display]="popupDisplay" [data]="queryResult"></kampakam-query-result>
+

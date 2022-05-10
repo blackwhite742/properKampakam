@@ -19,9 +19,10 @@ import { FooterComponent } from './footer/footer.component';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { MapaComponent } from './mapa/mapa.component';
 import { MapaModule } from './mapa/mapa.module';
+import { QueryResultModule } from './home-page/query-result/query-result.module';
 
 @NgModule({
-  declarations: [AppComponent, EntryComponent, FooterComponent],
+  declarations: [AppComponent, EntryComponent, FooterComponent, ],
   imports: [
     BrowserModule,
     HttpClientModule,

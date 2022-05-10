@@ -10,6 +10,7 @@ import { InputSwitchModule } from 'primeng/inputswitch';
 import {DropdownModule} from 'primeng/dropdown';
 import {InputTextModule} from 'primeng/inputtext';
 import {ListboxModule} from 'primeng/listbox';
+import { QueryResultModule } from './query-result/query-result.module';
 
 @NgModule({
   declarations: [HomePageComponent],
@@ -23,7 +24,8 @@ import {ListboxModule} from 'primeng/listbox';
     TreeSelectModule,
     InputSwitchModule,
     DropdownModule,
-    ListboxModule
+    ListboxModule,
+    QueryResultModule
   ]
 })
 export class HomePageModule { }

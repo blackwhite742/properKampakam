@@ -1,0 +1,55 @@
+<!-- TODO Lazy loading-->
+
+<p-dialog header="Title" [(visible)]="display">
+  <div class="card">
+  <p-dataView #dv [value]="data" [paginator]="true" [rows]="5" filterBy="e_name">
+    <ng-template pTemplate="header">
+      <div class="flex flex-column md:flex-row md:justify-content-between">
+          <span class="p-input-icon-left mb-2 md:mb-0">
+              <i class="pi pi-search"></i>
+              <input type="search" pInputText placeholder="Search by Name">
+          </span>
+          <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
+      </div>
+  </ng-template>
+    <ng-template let-product pTemplate="listItem">
+        <div class="product-list-item">
+          <div class="product-name">
+            {{product.e_name}}
+          </div>
+        </div>
+    </ng-template>
+
+
+    <ng-template let-product pTemplate="gridItem">
+      <div class="col-12 md:col-4">
+          <div class="product-grid-item card">
+              <div class="product-grid-item-top">
+                  <div>
+                      <i class="pi pi-tag product-category-icon"></i>
+                      <span class="product-category">{{product.e_name}}</span>
+                  </div>
+              </div>
+              <div class="product-grid-item-content">
+                  <div class="product-description">{{product.e_name}}</div>
+              </div>
+              <div class="product-grid-item-bottom">
+                  <span class="product-price">{{product.e_name}}</span>
+              </div>
+          </div>
+      </div>
+  </ng-template>
+
+  </p-dataView>
+  </div>
+
+  <!--
+  <table class="table">
+    <tbody>
+      <tr *ngFor="let entry of data">
+        <td>{{entry | json}}</td>
+      </tr>
+    </tbody>
+  </table>
+  -->
+</p-dialog>
