@@ -1,5 +1,6 @@
 import { Category } from './category.entity';
 import { Municipality } from './municipality.entity';
+import {EntryHasCategory} from './entryHasCategory.entity';
 import {
   Column,
   Entity,
@@ -8,6 +9,7 @@ import {
   ManyToMany,
   ManyToOne,
   PrimaryGeneratedColumn,
+  OneToMany
 } from "typeorm";
 
 @Index("fk_entry_municipality1_idx", ["municipalityId"], {})
@@ -50,6 +52,7 @@ export class Entry {
   @JoinColumn([{ name: "municipality_id", referencedColumnName: "id" }])
   municipality: Municipality;
 
-  @ManyToMany(() => Category, (category) => category.entries)
+  //Has Category
+  @OneToMany(() => EntryHasCategory, (pair) => pair.entryId)
   categories: Category[];
 }
