@@ -92,5 +92,5 @@
 
 </div>
 
-<kampakam-query-result [display]="popupDisplay" [data]="queryResult"></kampakam-query-result>
+<kampakam-query-result [(display)]="popupDisplay" (displayChange)="popupDisplay=$event" [data]="queryResult"></kampakam-query-result>
 

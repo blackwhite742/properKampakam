@@ -1,6 +1,7 @@
 <!-- TODO Lazy loading-->
 
-<p-dialog header="Title" [(visible)]="display">
+<p-dialog header="Title" [(visible)]="display" (onHide)="toggleDialog()">
+  {{data | json}}
   <div class="card">
   <p-dataView #dv [value]="data" [paginator]="true" [rows]="5" filterBy="e_name">
     <ng-template pTemplate="header">

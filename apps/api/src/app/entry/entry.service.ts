@@ -19,7 +19,6 @@ export class EntryService {
 
   async getAll(){
     const ans=await this.entryRepository.find();
-    console.log(ans)
     return ans
   }
 
@@ -33,7 +32,6 @@ export class EntryService {
   }
 
   async getSpecific(data:Partial<DbEntry>){
-    console.log("Data is:",data);
 
     const query=this.entryRepository.createQueryBuilder('e');
 
@@ -78,7 +76,7 @@ export class EntryService {
       query.andWhere("ehc.category_id IN(:...ids)",{ids:data.categories});
     }
 
-    console.log(query.getQuery());
+    //console.log(query.getQuery());
 
 
     return await query.getRawMany(); //Distinct?
@@ -86,7 +84,6 @@ export class EntryService {
   }
 
   async addEntry(data){
-    console.log(data);
     return await this.entryRepository.save(data);
   }
 

@@ -14,13 +14,11 @@ export class EntryController {
   async getById(
     @Param('id')id:number
   ){
-    console.log("Get by id",id);
     return this.entryService.getId(id);
   }
 
   @Get('/getAll')
   async getAll(){
-    console.log("Get all");
     return this.entryService.getAll();
   }
 
