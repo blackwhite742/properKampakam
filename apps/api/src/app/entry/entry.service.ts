@@ -4,6 +4,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Entry } from '../entities/entry.entity';
 import { DbEntry } from '../interfaces/entry.interface';
+import { EntryHasCategoryService } from '../entry-has-category/entry-has-category.service';
 
 
 
@@ -12,7 +13,9 @@ export class EntryService {
 
   constructor(
     @InjectRepository(Entry)
-    private entryRepository:Repository<Entry>
+    private entryRepository:Repository<Entry>,
+
+    private entryHasCategoryService:EntryHasCategoryService
   ){
 
   }
@@ -84,7 +87,10 @@ export class EntryService {
   }
 
   async addEntry(data){
-    return await this.entryRepository.save(data);
+    const temp:number[]=data.categories;
+    const ans=await this.entryRepository.save(data);
+    await this.entryHasCategoryService.assignMultipleCategories(ans.id,temp);
+    return ans;
   }
 
 }

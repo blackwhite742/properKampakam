@@ -1,11 +1,13 @@
 import { Entry } from './entry.entity';
 import { MainCategory } from './mainCategory.entity';
+import { EntryHasCategory } from './entryHasCategory.entity';
 import {
   Column,
   Entity,
   JoinTable,
   ManyToMany,
   PrimaryGeneratedColumn,
+  OneToMany
 } from "typeorm";
 import { Event } from "./event.entity";
 
@@ -37,13 +39,8 @@ export class Category {
   })
   mainCategories: MainCategory[];
 
-  @ManyToMany(() => Entry, (entry) => entry.categories)
-  @JoinTable({
-    name: "entry_has_category",
-    joinColumns: [{ name: "category_id", referencedColumnName: "id" }],
-    inverseJoinColumns: [{ name: "entry_id", referencedColumnName: "id" }],
-    schema: "mydb",
-  })
+  //Has Category
+  @OneToMany(() => EntryHasCategory, (pair) => pair.categoryId)
   entries: Entry[];
 }
 
