@@ -28,4 +28,8 @@ export class QueryResultComponent implements OnInit,OnChanges {
     this.displayChange.emit(this.display);
   }
 
+  getInfo(id:number){
+    //engage dialog
+  }
+
 }

@@ -41,8 +41,8 @@ export class EntryService {
 
 
     //Relations
-    query.innerJoin("municipality","m", "m.id = e.municipality_id");
-    query.innerJoin("region","r", "r.id = m.region_id");
+    query.innerJoinAndSelect("municipality","m", "m.id = e.municipality_id");
+    query.innerJoinAndSelect("region","r", "r.id = m.region_id");
     query.leftJoin("entry_has_category","ehc","ehc.entry_id = e.id");
 
 

@@ -1,41 +1,62 @@
-<!-- TODO Lazy loading-->
+<!-- { "e_id": 1, "e_name": "bxyby", "e_location": "bcy", "e_price": 1, "e_accessibility": 0, "e_season": "Zima", "e_accomodation": 1, "e_description": "bcxybsdgs",
+  "e_image": null,
+  "e_municipality_id": 55,
+  "m_id": 55, "m_name": "Mežica", "m_region_id": 4,
+  "r_id": 4, "r_name": "Koroška" }-->
 
-<p-dialog header="Title" [(visible)]="display" (onHide)="toggleDialog()">
-  {{data | json}}
-  <div class="card">
-  <p-dataView #dv [value]="data" [paginator]="true" [rows]="5" filterBy="e_name">
+{{data[0] | json}}
+<div class="card">
+  <p-dataView #dv [value]="data" >
+
     <ng-template pTemplate="header">
       <div class="flex flex-column md:flex-row md:justify-content-between">
-          <span class="p-input-icon-left mb-2 md:mb-0">
-              <i class="pi pi-search"></i>
-              <input type="search" pInputText placeholder="Search by Name">
-          </span>
           <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
       </div>
   </ng-template>
-    <ng-template let-product pTemplate="listItem">
-        <div class="product-list-item">
-          <div class="product-name">
-            {{product.e_name}}
+
+    <ng-template let-entry pTemplate="listItem">
+      <div class="entry-list-item">
+      <div class="col-10">
+          <div class="entry-name">
+            {{entry.e_name}}
           </div>
+
+
+          <div class="entry-municipality">
+            {{entry.m_name}} ({{entry.r_name}})
+          </div>
+
+          <div class="entry-price">
+            Plačljivo: <i [ngClass]="entry.e_price ? 'pi pi-check greenIcon' : 'pi pi-times redIcon'"></i>
+          </div>
+
+          <div class="entry-accomodation">
+            Nastanitev: <i [ngClass]="entry.accomodation ? 'pi pi-check greenIcon' : 'pi pi-times redIcon'"></i>
+          </div>
+      </div>
+
+      <div class="col-2">
+        <div class="entry-info">
+          <button pButton label="Več informacij" (click)="getInfo(entry.id)"></button>
         </div>
+      </div>
+      </div>
     </ng-template>
 
 
-    <ng-template let-product pTemplate="gridItem">
+    <ng-template let-entry pTemplate="gridItem">
       <div class="col-12 md:col-4">
-          <div class="product-grid-item card">
-              <div class="product-grid-item-top">
+          <div class="entry-grid-item card">
+              <div class="entry-grid-item-top">
                   <div>
-                      <i class="pi pi-tag product-category-icon"></i>
-                      <span class="product-category">{{product.e_name}}</span>
+                      <span class="entry-category">{{entry.e_name}}</span>
                   </div>
               </div>
-              <div class="product-grid-item-content">
-                  <div class="product-description">{{product.e_name}}</div>
+              <div class="entry-grid-item-content">
+                  <div class="entry-description">{{entry.e_name}}</div>
               </div>
-              <div class="product-grid-item-bottom">
-                  <span class="product-price">{{product.e_name}}</span>
+              <div class="entry-grid-item-bottom">
+                  <span class="entry-price">{{entry.e_name}}</span>
               </div>
           </div>
       </div>
@@ -44,7 +65,13 @@
   </p-dataView>
   </div>
 
-  <!--
+<!--
+
+<p-dialog header="Title" [(visible)]="display" (onHide)="toggleDialog()">
+  {{data | json}}
+
+
+
   <table class="table">
     <tbody>
       <tr *ngFor="let entry of data">
@@ -52,5 +79,5 @@
       </tr>
     </tbody>
   </table>
-  -->
 </p-dialog>
+-->

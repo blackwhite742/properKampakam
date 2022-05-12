@@ -11,6 +11,8 @@ import {DropdownModule} from 'primeng/dropdown';
 import {InputTextModule} from 'primeng/inputtext';
 import {ListboxModule} from 'primeng/listbox';
 import { QueryResultModule } from './query-result/query-result.module';
+import {TableModule} from 'primeng/table';
+
 
 @NgModule({
   declarations: [HomePageComponent],
@@ -25,7 +27,8 @@ import { QueryResultModule } from './query-result/query-result.module';
     InputSwitchModule,
     DropdownModule,
     ListboxModule,
-    QueryResultModule
+    QueryResultModule,
+    TableModule
   ]
 })
 export class HomePageModule { }

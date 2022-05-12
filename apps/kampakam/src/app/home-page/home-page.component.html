@@ -90,7 +90,14 @@
     <button pButton label="Poišči" (click)="submit()" class="mt-1"></button>
     </div>
 
+    <div *ngIf="queryResult">
+      <kampakam-query-result [(display)]="popupDisplay" (displayChange)="popupDisplay=$event" [data]="queryResult"></kampakam-query-result>
+    </div>
 </div>
 
-<kampakam-query-result [(display)]="popupDisplay" (displayChange)="popupDisplay=$event" [data]="queryResult"></kampakam-query-result>
 
+
+
+<!--
+<kampakam-query-result [(display)]="popupDisplay" (displayChange)="popupDisplay=$event" [data]="queryResult"></kampakam-query-result>
+-->
