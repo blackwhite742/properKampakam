@@ -1,4 +1,4 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit, SimpleChanges, Input, OnChanges} from '@angular/core';
 import { Router } from '@angular/router';
 import {ActivatedRoute} from '@angular/router';
 import { Location } from '@angular/common';
@@ -11,16 +11,14 @@ import { firstValueFrom,map } from 'rxjs';
   templateUrl: './entry.component.html',
   styleUrls: ['./entry.component.scss']
 })
-export class EntryComponent implements OnInit {
+export class EntryComponent implements OnInit,OnChanges {
+
+  @Input() passedId:number;
+
   id:string|null;
   entryData:EntryInterface;
-
-  givenId=this.activatedRoute.paramMap.subscribe(
-    async params=>{
-      this.id=params.get('id')
-      this.entryData=await firstValueFrom(this.http.get('/api/entry/id/'+this.id)) as EntryInterface;
-    }
-  );
+  givenId:any;
+  loaded=false;
 
   constructor(
     private activatedRoute:ActivatedRoute,
@@ -28,11 +26,27 @@ export class EntryComponent implements OnInit {
     private http:HttpClient
   ) { }
 
-  ngOnInit(){
-
-    //TODO Api call to backend -> fetch entry data
-    //this.entryData=this.http.get(...)
+  async ngOnInit(){
+    if(!this.passedId){
+      this.givenId=this.activatedRoute.paramMap.subscribe(
+        async params=>{
+          this.loaded=false;
+          this.id=params.get('id')
+          this.entryData=await firstValueFrom(this.http.get('/api/entry/id/'+this.id)) as EntryInterface;
+          this.loaded=true;
+        }
+      );
+    }
   }
+
+  async ngOnChanges(changes: SimpleChanges){
+    if(this.passedId){
+      this.loaded=false;
+      this.entryData=await firstValueFrom(this.http.get('/api/entry/id/'+this.passedId)) as EntryInterface;
+      this.loaded=true;
+    }
+  }
+
 
 
 }

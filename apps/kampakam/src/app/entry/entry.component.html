@@ -1,4 +1,25 @@
-Id: {{id}}
-Data: {{entryData | json}}
+<div class="container">
+  <div class="row">
+    <img src="{{entryData?.image}}" width="300px" height="300px"/>
+  </div>
+
+  <div class="row align-items-center">
+    <div class="mx-auto">
+      <table class="table border-bottom-0">
+        <tbody>
+          <div *ngIf="loaded">
+            <tr><h3>Name: {{entryData.name}} (ID: {{entryData.id}})</h3></tr>
+            <tr><td>Price: <i [ngClass]="entryData.price ? 'pi pi-check greenIcon' : 'pi pi-times redIcon'"></i> </td></tr>
+            <tr><td>Accessibility: <i [ngClass]="entryData.accessibility ? 'pi pi-check greenIcon' : 'pi pi-times redIcon'"></i> </td></tr>
+            <tr><td>Accommodation: <i [ngClass]="entryData.accomodation ? 'pi pi-check greenIcon' : 'pi pi-times redIcon'"></i> </td></tr>
+            <tr><td>Season: {{entryData.season}}</tr>
+            <tr><td>Description: {{entryData.description}}</td></tr>
+            <tr><td>Municipality: {{entryData.municipalityId}}</td></tr>
+          </div>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
 
 <!--Display entryData-->

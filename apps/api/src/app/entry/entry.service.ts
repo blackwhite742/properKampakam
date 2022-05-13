@@ -22,7 +22,6 @@ export class EntryService {
 
   async getAll(){
     const ans=await this.entryRepository.find();
-    console.log(ans)
     return ans
   }
 
@@ -36,16 +35,17 @@ export class EntryService {
   }
 
   async getSpecific(data:Partial<DbEntry>){
-    console.log("Data is:",data);
 
     const query=this.entryRepository.createQueryBuilder('e');
 
+    query.distinct(true);
 
 
     //Relations
-    query.innerJoin("municipality","m", "m.id = e.municipality_id");
-    query.innerJoin("region","r", "r.id = m.region_id");
+    query.innerJoinAndSelect("municipality","m", "m.id = e.municipality_id");
+    query.innerJoinAndSelect("region","r", "r.id = m.region_id");
     query.leftJoin("entry_has_category","ehc","ehc.entry_id = e.id");
+
 
 
     //Data filtering
@@ -81,10 +81,10 @@ export class EntryService {
       query.andWhere("ehc.category_id IN(:...ids)",{ids:data.categories});
     }
 
-    console.log(query.getQuery());
+    //console.log(query.getQuery());
 
 
-    return await query.getRawMany(); //Distinct?
+    return await query.getRawMany();
 
   }
 

@@ -53,7 +53,6 @@ export class AddToDbComponent implements OnInit {
 
   submit() {
     const formContent=this.form.getRawValue();
-    console.log(formContent);
     formContent.municipalityId=formContent.municipalityId[0];
     const path = `/api/entry/add`;
     return firstValueFrom(this.http.post(path, formContent));

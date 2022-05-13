@@ -1,0 +1,68 @@
+<!-- { "e_id": 1, "e_name": "bxyby", "e_location": "bcy", "e_price": 1, "e_accessibility": 0, "e_season": "Zima", "e_accomodation": 1, "e_description": "bcxybsdgs",
+  "e_image": null,
+  "e_municipality_id": 55,
+  "m_id": 55, "m_name": "Mežica", "m_region_id": 4,
+  "r_id": 4, "r_name": "Koroška" }-->
+
+{{data[0] | json}}
+<div class="card">
+  <p-dataView #dv [value]="data" >
+
+    <ng-template pTemplate="header">
+      <div class="flex flex-column md:flex-row md:justify-content-between">
+          <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
+      </div>
+  </ng-template>
+
+    <ng-template let-entry pTemplate="listItem">
+      <div class="entry-list-item">
+      <div class="col-10">
+          <div class="entry-name">
+            {{entry.e_name}}
+          </div>
+
+
+          <div class="entry-municipality">
+            {{entry.m_name}} ({{entry.r_name}})
+          </div>
+
+          <div class="entry-price">
+            Plačljivo: <i [ngClass]="entry.e_price ? 'pi pi-check greenIcon' : 'pi pi-times redIcon'"></i>
+          </div>
+
+          <div class="entry-accomodation">
+            Nastanitev: <i [ngClass]="entry.accomodation ? 'pi pi-check greenIcon' : 'pi pi-times redIcon'"></i>
+          </div>
+      </div>
+
+      <div class="col-2">
+        <div class="entry-info">
+          <button pButton label="Več informacij" (click)="getInfo(entry.e_id)"></button>
+        </div>
+      </div>
+      </div>
+    </ng-template>
+
+
+    <ng-template let-entry pTemplate="gridItem">
+      <div class="col-12 md:col-4">
+          <div class="entry-grid-item card">
+              <div class="entry-grid-item-top">
+                  <div>
+                      <span class="entry-category">{{entry.e_name}}</span>
+                  </div>
+              </div>
+              <div class="entry-grid-item-content">
+                  <div class="entry-description">{{entry.e_name}}</div>
+              </div>
+              <div class="entry-grid-item-bottom">
+                  <span class="entry-price">{{entry.e_name}}</span>
+              </div>
+          </div>
+      </div>
+  </ng-template>
+
+  </p-dataView>
+  </div>
+
+<kampakam-info-dialog [entryData]="entryOfInterest"></kampakam-info-dialog>

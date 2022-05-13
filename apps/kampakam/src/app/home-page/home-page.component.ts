@@ -49,6 +49,7 @@ export class HomePageComponent implements OnInit {
   selectedMunicipalities: any[];
 
   queryResult:any;
+  popupDisplay=false;
 
   async ngOnInit() {
     this.regOptions = MUNICIPALITIES;
@@ -67,11 +68,13 @@ export class HomePageComponent implements OnInit {
 
   async submit() {
     this.queryResult=null;
+
     const formData = this.form.getRawValue();
-    console.log('Form data:', formData);
+
     const ans=await firstValueFrom(this.http.post(`/api/entry/query`,formData));
     this.queryResult = ans;
-    console.log("Api answer:",ans);
+
+    this.popupDisplay=true;
   }
 
   regionChange(change:any){
