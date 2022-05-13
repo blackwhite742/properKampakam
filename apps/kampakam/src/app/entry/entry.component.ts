@@ -17,8 +17,13 @@ export class EntryComponent implements OnInit,OnChanges {
 
   id:string|null;
   entryData:EntryInterface;
+  editData:EntryInterface;
   givenId:any;
+
+
+  //Flags
   loaded=false;
+  editMode=false;
 
   constructor(
     private activatedRoute:ActivatedRoute,
@@ -45,6 +50,11 @@ export class EntryComponent implements OnInit,OnChanges {
       this.entryData=await firstValueFrom(this.http.get('/api/entry/id/'+this.passedId)) as EntryInterface;
       this.loaded=true;
     }
+  }
+
+  edit(){
+    this.editData=this.entryData;
+    this.editMode=true;
   }
 
 
