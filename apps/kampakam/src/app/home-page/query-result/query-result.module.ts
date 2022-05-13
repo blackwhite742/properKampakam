@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { QueryResultComponent } from './query-result.component';
 import {DataViewModule} from 'primeng/dataview';
 import {ButtonModule} from 'primeng/button';
-import { InfoDialogComponent } from './info-dialog/info-dialog.component';
+import { InfoDialogModule} from './info-dialog/info-dialog.module'
 
 @NgModule({
   declarations: [QueryResultComponent],
@@ -14,7 +14,8 @@ import { InfoDialogComponent } from './info-dialog/info-dialog.component';
     FormsModule,
     DialogModule,
     DataViewModule,
-    ButtonModule
+    ButtonModule,
+    InfoDialogModule
   ],
   exports: [QueryResultComponent]
 })

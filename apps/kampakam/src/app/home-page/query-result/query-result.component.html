@@ -37,7 +37,7 @@
 
       <div class="col-2">
         <div class="entry-info">
-          <button pButton label="Več informacij" (click)="getInfo(entry.id)"></button>
+          <button pButton label="Več informacij" (click)="getInfo(entry.e_id)"></button>
         </div>
       </div>
       </div>
@@ -65,19 +65,4 @@
   </p-dataView>
   </div>
 
-<!--
-
-<p-dialog header="Title" [(visible)]="display" (onHide)="toggleDialog()">
-  {{data | json}}
-
-
-
-  <table class="table">
-    <tbody>
-      <tr *ngFor="let entry of data">
-        <td>{{entry | json}}</td>
-      </tr>
-    </tbody>
-  </table>
-</p-dialog>
--->
+<kampakam-info-dialog [entryData]="entryOfInterest"></kampakam-info-dialog>

@@ -8,7 +8,7 @@
       <table class="table border-bottom-0">
         <tbody>
           <div *ngIf="loaded">
-            <tr><h3>Name: {{entryData.id}} (ID: {{entryData.id}})</h3></tr>
+            <tr><h3>Name: {{entryData.name}} (ID: {{entryData.id}})</h3></tr>
             <tr><td>Price: <i [ngClass]="entryData.price ? 'pi pi-check greenIcon' : 'pi pi-times redIcon'"></i> </td></tr>
             <tr><td>Accessibility: <i [ngClass]="entryData.accessibility ? 'pi pi-check greenIcon' : 'pi pi-times redIcon'"></i> </td></tr>
             <tr><td>Accommodation: <i [ngClass]="entryData.accomodation ? 'pi pi-check greenIcon' : 'pi pi-times redIcon'"></i> </td></tr>

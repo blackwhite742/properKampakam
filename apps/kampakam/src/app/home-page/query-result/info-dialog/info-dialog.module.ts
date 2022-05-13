@@ -1,8 +1,9 @@
-import { NgModule } from '@angular/core';
+import { NgModule} from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {DialogModule} from 'primeng/dialog';
+import { DialogModule, Dialog } from 'primeng/dialog';
 import { InfoDialogComponent } from './info-dialog.component';
 import { FormsModule } from '@angular/forms';
+import { EntryModule } from '../../../entry/entry.module';
 
 
 @NgModule({
@@ -10,8 +11,9 @@ import { FormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     FormsModule,
-    DialogModule
+    DialogModule,
+    EntryModule
   ],
-  exports: [InfoDialogComponent]
+  exports: [InfoDialogComponent],
 })
 export class InfoDialogModule { }

@@ -38,12 +38,14 @@ export class EntryService {
 
     const query=this.entryRepository.createQueryBuilder('e');
 
+    query.distinct(true);
 
 
     //Relations
     query.innerJoinAndSelect("municipality","m", "m.id = e.municipality_id");
     query.innerJoinAndSelect("region","r", "r.id = m.region_id");
     query.leftJoin("entry_has_category","ehc","ehc.entry_id = e.id");
+
 
 
     //Data filtering
@@ -82,7 +84,7 @@ export class EntryService {
     //console.log(query.getQuery());
 
 
-    return await query.getRawMany(); //Distinct?
+    return await query.getRawMany();
 
   }
 

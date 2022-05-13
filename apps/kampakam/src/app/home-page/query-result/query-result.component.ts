@@ -12,6 +12,7 @@ export class QueryResultComponent implements OnInit,OnChanges {
   @Input()display: boolean; // TODO two way binding
   @Output()displayChange = new EventEmitter<boolean>();
 
+  entryOfInterest:number;
 
   constructor() { }
 
@@ -29,7 +30,7 @@ export class QueryResultComponent implements OnInit,OnChanges {
   }
 
   getInfo(id:number){
-    //engage dialog
+    this.entryOfInterest=id;
   }
 
 }
