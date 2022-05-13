@@ -3,7 +3,7 @@ import { Entry } from './entry.entity';
 import { Category } from './category.entity';
 
 
-@Entity()
+@Entity("entry_has_category", { schema: "mydb" })
 export class EntryHasCategory{
   @PrimaryGeneratedColumn({ type: "int", name: "id" })
   id:number;

@@ -25,6 +25,6 @@ import { TreeSelectModule } from 'primeng/treeselect';
     InputSwitchModule,
     TreeSelectModule,
   ],
-  exports: [],
+  exports: [AddToDbComponent],
 })
 export class AddToDbModule {}

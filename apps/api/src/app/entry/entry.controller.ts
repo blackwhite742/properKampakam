@@ -17,6 +17,13 @@ export class EntryController {
     return this.entryService.getId(id);
   }
 
+  @Get('/getWithCat/:id')
+  async getWithCat(
+    @Param('id')id:number
+  ){
+    return this. entryService.getByIdWithCategory(id);
+  }
+
   @Get('/getAll')
   async getAll(){
     return this.entryService.getAll();

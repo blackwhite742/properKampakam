@@ -15,6 +15,10 @@ export class EntryHasCategoryService {
     return this.entryHasCategoryRepository.find();
   }
 
+  async getUserCategories(id:number){
+    return await this.entryHasCategoryRepository.find({select:['categoryId'],where: {entryId:id}})
+  }
+
   async assignPair(entryId:number, categoryId:number){
     return this.entryHasCategoryRepository.save({entryId,categoryId})
   }

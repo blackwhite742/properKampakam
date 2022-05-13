@@ -19,7 +19,6 @@ export class EntryEditDialogComponent implements OnInit,OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges){
-    console.log("Changes in entry edit dialog",changes);
     if(changes['entryData'] != undefined && !changes['entryData']['firstChange'])
       this.display=true;
   }

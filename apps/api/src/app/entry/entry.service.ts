@@ -21,13 +21,61 @@ export class EntryService {
   }
 
   async getAll(){
-    const ans=await this.entryRepository.find();
-    return ans
+    const ans:Entry[]=await this.entryRepository.find();
+    console.log("Ans is",ans);
+    return ans;
   }
 
   async getId(givenId){
-    const ans=await this.entryRepository.findOneOrFail({where:{id:givenId}});
-    return ans
+    const ans:Entry=await this.entryRepository.findOneOrFail({where:{id:givenId}});
+
+    const temp1:boolean=ans.accessibility?true:false;
+    const temp2:boolean=ans.accomodation?true:false;
+    const temp3:boolean=ans.price?true:false;
+
+    //Needed to force boolean data type instead of interpreting it as number (Subsequent trouble with PrimeNg component)
+    return {
+      id:ans.id,
+      name:ans.name,
+      location:ans.location,
+      price:temp3,
+      accessibility:temp1,
+      accomodation:temp2,
+      season:ans.season,
+      description:ans.description,
+      image:ans.image,
+      municipalityId:ans.municipalityId,
+    } as Entry
+  }
+
+  async getByIdWithCategory(id:number){
+    //TODO merge with getId function (optional params)
+
+    const ans:Entry=await this.entryRepository.findOneOrFail({where:{id}});
+    const cats:any=await this.entryHasCategoryService.getUserCategories(id);
+    const temp1:boolean=ans.accessibility?true:false;
+    const temp2:boolean=ans.accomodation?true:false;
+    const temp3:boolean=ans.price?true:false;
+
+    const catIds:number[]=[];
+    cats.forEach(el=>{
+      catIds.push(el["categoryId"]);
+    })
+
+    return {
+      id:ans.id,
+      name:ans.name,
+      location:ans.location,
+      price:temp3,
+      accessibility:temp1,
+      accomodation:temp2,
+      season:ans.season,
+      description:ans.description,
+      image:ans.image,
+      municipalityId:ans.municipalityId,
+      categories:catIds
+    } as Entry
+    return ans;
   }
 
   async getRandom(){

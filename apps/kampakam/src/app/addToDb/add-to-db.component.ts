@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { firstValueFrom, Observable } from 'rxjs';
 import { MUNICIPALITIES } from '../../assets/municipalities';
+import { EntryInterface, EntryInterfaceForm } from '../../assets/interfaces/entry.interface';
+
 
 const ENTRY_FORM_FIELDS = {
   id: [null],
@@ -23,7 +25,9 @@ const ENTRY_FORM_FIELDS = {
   templateUrl: './add-to-db.component.html',
   styleUrls: ['./add-to-db.component.scss'],
 })
-export class AddToDbComponent implements OnInit {
+export class AddToDbComponent implements OnInit,OnChanges {
+
+  @Input()editData:EntryInterface;
 
   regions: any[];
   municipality: any[] = [];
@@ -49,6 +53,16 @@ export class AddToDbComponent implements OnInit {
     this.categories = await firstValueFrom(
       this.http.get(`/api/category/getAll`)
     );
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if(changes['editData'] && !changes['editData']['firstChange']){
+
+      const temp:any={...this.editData,municipalityId:[this.editData.municipalityId]};
+
+      this.form.patchValue(temp);
+
+    }
   }
 
   submit() {
