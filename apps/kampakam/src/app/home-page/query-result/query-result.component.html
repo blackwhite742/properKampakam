@@ -2,11 +2,11 @@
   "e_image": null,
   "e_municipality_id": 55,
   "m_id": 55, "m_name": "Mežica", "m_region_id": 4,
-  "r_id": 4, "r_name": "Koroška" }-->
+  "r_id": 4, "r_name": "Koroška" }
 
-{{data[0] | json}}
+{{data[0] | json}}-->
 <div class="card">
-  <p-dataView #dv [value]="data" >
+  <p-dataView #dv [value]="data" [paginator]="true" [rows]="5">
 
     <ng-template pTemplate="header">
       <div class="flex flex-column md:flex-row md:justify-content-between">

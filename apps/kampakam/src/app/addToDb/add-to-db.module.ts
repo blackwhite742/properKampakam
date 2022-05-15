@@ -10,6 +10,8 @@ import { MultiSelectModule } from 'primeng/multiselect';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { InputSwitchModule } from 'primeng/inputswitch';
 import { TreeSelectModule } from 'primeng/treeselect';
+import { MessageService } from 'primeng/api';
+
 
 @NgModule({
   declarations: [AddToDbComponent],
@@ -26,5 +28,6 @@ import { TreeSelectModule } from 'primeng/treeselect';
     TreeSelectModule,
   ],
   exports: [AddToDbComponent],
+  providers:[MessageService]
 })
 export class AddToDbModule {}

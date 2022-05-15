@@ -13,6 +13,7 @@ import { FooterComponent } from './footer/footer.component';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { MapaModule } from './mapa/mapa.module';
 import { QueryResultModule } from './home-page/query-result/query-result.module';
+import {ToastModule} from 'primeng/toast';
 
 @NgModule({
   declarations: [AppComponent, FooterComponent, ],
@@ -26,6 +27,7 @@ import { QueryResultModule } from './home-page/query-result/query-result.module'
     AppRoutingModule,
     NavbarModule,
     MapaModule,
+    ToastModule,
     MDBBootstrapModule.forRoot(),
   ],
   schemas: [NO_ERRORS_SCHEMA],
