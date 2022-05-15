@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChanges,EventEmitter,Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { firstValueFrom, Observable } from 'rxjs';
@@ -28,7 +28,9 @@ const ENTRY_FORM_FIELDS = {
 export class AddToDbComponent implements OnInit,OnChanges {
 
   @Input()editData:EntryInterface;
+  @Output()editDataChange=new EventEmitter();
 
+  // Form models
   regions: any[];
   municipality: any[] = [];
   form: FormGroup;
@@ -38,6 +40,7 @@ export class AddToDbComponent implements OnInit,OnChanges {
   selectedMunicipality: number;
   municipalities: any;
 
+  // Form options and selections
   munOptions:any;
   selectedCategories: number;
   categories: any;
@@ -66,19 +69,25 @@ export class AddToDbComponent implements OnInit,OnChanges {
   }
 
   async submit() {
+
     const formContent=this.form.getRawValue();
     formContent.municipalityId=formContent.municipalityId[0];
-    let resp:EntryInterface;
+    let resp:boolean;
+
     if(!this.editData){
       const path = `/api/entry/add`;
-      resp=await firstValueFrom(this.http.post(path, formContent)) as EntryInterface;
+      resp=await firstValueFrom(this.http.post(path, formContent)) as boolean;
     }
     else{
       const path = `/api/entry/edit`;
-      resp=await firstValueFrom(this.http.patch(path, formContent)) as EntryInterface;
+      resp=await firstValueFrom(this.http.patch(path, formContent)) as boolean;
     }
-    console.log("Response:",resp);
-    this.editData=resp;
+
+    if(resp){
+      this.editData=formContent as EntryInterface;
+      this.editDataChange.emit(this.editData);
+    }
+
   }
 
   debug() {

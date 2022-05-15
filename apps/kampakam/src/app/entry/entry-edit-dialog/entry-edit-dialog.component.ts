@@ -10,6 +10,8 @@ export class EntryEditDialogComponent implements OnInit,OnChanges {
 
   @Input()entryData:EntryInterface;
   @Input()display=false;
+
+  @Output()entryDataChange=new EventEmitter(); // TODO consider creating a service with BehaviorSubject?
   @Output()displayChange=new EventEmitter();
 
   constructor() { }
@@ -19,13 +21,22 @@ export class EntryEditDialogComponent implements OnInit,OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges){
-    if(changes['entryData'] != undefined && !changes['entryData']['firstChange'])
+    if(changes['entryData'] != undefined && !changes['entryData']['firstChange']){
       this.display=true;
+      return
+    }
+
   }
 
   hideDialog(){
-    this.display=true;
-    this.displayChange.emit();
+    this.display=false;
+    this.displayChange.emit(this.display);
+  }
+
+  editChange(data:any){
+    this.entryData=data;
+    this.entryDataChange.emit(data);
+    this.hideDialog();
   }
 
 }

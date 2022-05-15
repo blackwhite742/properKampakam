@@ -1,3 +1,3 @@
 <p-dialog [(visible)]="display" (onHide)="hideDialog()">
-  <kampakam-add-to-db [editData]="entryData"></kampakam-add-to-db>
+  <kampakam-add-to-db [(editData)]="entryData" (editDataChange)="editChange($event)"></kampakam-add-to-db>
 </p-dialog>
