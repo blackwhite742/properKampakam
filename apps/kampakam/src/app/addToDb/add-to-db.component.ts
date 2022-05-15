@@ -1,10 +1,10 @@
 import { Component, OnInit, Input, OnChanges, SimpleChanges,EventEmitter,Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
-import { firstValueFrom, Observable } from 'rxjs';
+import { firstValueFrom, Observable, first } from 'rxjs';
 import { MUNICIPALITIES } from '../../assets/municipalities';
 import { EntryInterface, EntryInterfaceForm } from '../../assets/interfaces/entry.interface';
-
+import {MessageService} from 'primeng/api';
 
 const ENTRY_FORM_FIELDS = {
   id: [null],
@@ -34,9 +34,9 @@ export class AddToDbComponent implements OnInit,OnChanges {
   regions: any[];
   municipality: any[] = [];
   form: FormGroup;
-  checked: boolean;
-  checked1: boolean;
-  checked3: boolean;
+  checked=false;
+  checked1=false;
+  checked3=false;
   selectedMunicipality: number;
   municipalities: any;
 
@@ -45,7 +45,13 @@ export class AddToDbComponent implements OnInit,OnChanges {
   selectedCategories: number;
   categories: any;
 
-  constructor(private formBuilder: FormBuilder, private http: HttpClient) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private http: HttpClient,
+    private messageService: MessageService
+  ){
+
+  }
 
   async ngOnInit() {
     this.munOptions=MUNICIPALITIES;
@@ -72,21 +78,29 @@ export class AddToDbComponent implements OnInit,OnChanges {
 
     const formContent=this.form.getRawValue();
     formContent.municipalityId=formContent.municipalityId[0];
-    let resp:boolean;
 
-    if(!this.editData){
-      const path = `/api/entry/add`;
-      resp=await firstValueFrom(this.http.post(path, formContent)) as boolean;
+    const path = `/api/entry/${this.editData?'edit':'add'}`;
+    const prompt=this.editData?'posodobljen':'dodan';
+
+    let req;
+    if(this.editData){
+      req=this.http.patch(path, formContent);
     }
     else{
-      const path = `/api/entry/edit`;
-      resp=await firstValueFrom(this.http.patch(path, formContent)) as boolean;
+      req=this.http.post(path, formContent);
     }
 
-    if(resp){
-      this.editData=formContent as EntryInterface;
-      this.editDataChange.emit(this.editData);
-    }
+    const ans=await req.pipe(first()).subscribe(r=>{
+
+      if(r){
+        this.messageService.add({severity:'success', summary:`Zapis ${prompt}`, detail:`Zapis je bil uspešno ${prompt}.`});
+        this.editData=formContent as EntryInterface;
+        this.editDataChange.emit(this.editData);
+        this.form.reset();
+      }
+      else
+        this.messageService.add({severity:'danger', summary:'Napaka', detail:`Prišlo je do napake - ${r}.`}); //TODO maybe dont print r
+    })
 
   }
 
