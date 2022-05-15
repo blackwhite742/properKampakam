@@ -3,7 +3,7 @@ import { Entry } from './entry.entity';
 import { Category } from './category.entity';
 
 
-@Entity()
+@Entity("entry_has_category", { schema: "mydb" })
 export class EntryHasCategory{
   @PrimaryGeneratedColumn({ type: "int", name: "id" })
   id:number;
@@ -13,15 +13,6 @@ export class EntryHasCategory{
 
   @Column("int", {name: "category_id"})
   categoryId:number;
-
-  @ManyToOne(type=>Entry, entry => entry.categories)
-  @JoinColumn({name:"entry_id"})
-  entry:Entry|number;
-
-
-  @ManyToOne(type=>Category, category => category.entries)
-  @JoinColumn({name:"category_id"})
-  categories:Category|number;
 
 }
 

@@ -1,5 +1,6 @@
 import { EntryService } from './entry.service';
-import { Controller, Get, Param, Post, Body } from '@nestjs/common';
+import { Controller, Get, Param, Post, Body, Patch } from '@nestjs/common';
+import { Entry } from '../entities/entry.entity';
 
 @Controller('entry')
 export class EntryController {
@@ -15,6 +16,13 @@ export class EntryController {
     @Param('id')id:number
   ){
     return this.entryService.getId(id);
+  }
+
+  @Get('/getWithCat/:id')
+  async getWithCat(
+    @Param('id')id:number
+  ){
+    return this. entryService.getByIdWithCategory(id);
   }
 
   @Get('/getAll')
@@ -35,10 +43,17 @@ export class EntryController {
   }
 
   @Post('/add')
-  addRegion(
+  addEntry(
     @Body()data:any
   ){
     return this.entryService.addEntry(data);
+  }
+
+  @Patch('/edit')
+  editEntry(
+    @Body()data
+  ){
+    return this.entryService.editEntry(data);
   }
 
 }

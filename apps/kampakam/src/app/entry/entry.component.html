@@ -1,10 +1,12 @@
 <div class="container">
   <div class="row">
+
     <img src="{{entryData?.image}}" width="300px" height="300px"/>
+
   </div>
 
-  <div class="row align-items-center">
-    <div class="mx-auto">
+  <div class="row">
+    <div class="col-11">
       <table class="table border-bottom-0">
         <tbody>
           <div *ngIf="loaded">
@@ -19,7 +21,11 @@
         </tbody>
       </table>
     </div>
+    <div class="col-1">
+      <button pButton icon="pi pi-pencil" class="p-button-rounded p-button-warning float-end" (click)="edit()"></button>
+    </div>
   </div>
+
 </div>
 
-<!--Display entryData-->
+<kampakam-entry-edit-dialog [entryData]="editData" [(display)]="editMode" (displayChange)="editMode=$event" (entryDataChange)="entryDataChange($event)"></kampakam-entry-edit-dialog>

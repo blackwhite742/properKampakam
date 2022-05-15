@@ -34,7 +34,7 @@ export class Entry {
   season: string | null;
 
   @Column("tinyint", { name: "accomodation", nullable: true })
-  accomodation: number | null;
+  accomodation: boolean | null;
 
   @Column("varchar", { name: "description", nullable: true, length: 45 })
   description: string | null;
@@ -52,7 +52,8 @@ export class Entry {
   @JoinColumn([{ name: "municipality_id", referencedColumnName: "id" }])
   municipality: Municipality;
 
-  //Has Category
-  @OneToMany(() => EntryHasCategory, (pair) => pair.entryId)
-  categories: Category[];
+}
+
+export interface EntryDbInterface extends Entry{
+  categories: Category[]|number[];
 }
