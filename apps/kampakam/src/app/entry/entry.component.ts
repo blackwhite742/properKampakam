@@ -57,6 +57,4 @@ export class EntryComponent implements OnInit,OnChanges {
     this.editMode=true;
   }
 
-
-
 }

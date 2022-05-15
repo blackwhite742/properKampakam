@@ -30,4 +30,9 @@ export class EntryHasCategoryService {
     return true;
   }
 
+  async wipeByEntryId(entryId:number){
+    console.log("Deleting categories from entryId", entryId);
+    return await this.entryHasCategoryRepository.delete({entryId})
+  }
+
 }

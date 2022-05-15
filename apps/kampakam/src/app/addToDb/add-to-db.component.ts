@@ -65,11 +65,20 @@ export class AddToDbComponent implements OnInit,OnChanges {
     }
   }
 
-  submit() {
+  async submit() {
     const formContent=this.form.getRawValue();
     formContent.municipalityId=formContent.municipalityId[0];
-    const path = `/api/entry/add`;
-    return firstValueFrom(this.http.post(path, formContent));
+    let resp:EntryInterface;
+    if(!this.editData){
+      const path = `/api/entry/add`;
+      resp=await firstValueFrom(this.http.post(path, formContent)) as EntryInterface;
+    }
+    else{
+      const path = `/api/entry/edit`;
+      resp=await firstValueFrom(this.http.patch(path, formContent)) as EntryInterface;
+    }
+    console.log("Response:",resp);
+    this.editData=resp;
   }
 
   debug() {

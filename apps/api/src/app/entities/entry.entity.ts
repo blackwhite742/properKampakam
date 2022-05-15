@@ -52,7 +52,8 @@ export class Entry {
   @JoinColumn([{ name: "municipality_id", referencedColumnName: "id" }])
   municipality: Municipality;
 
-  //Has Category
-  @OneToMany(() => EntryHasCategory, (pair) => pair.entryId)
+}
+
+export interface EntryDbInterface extends Entry{
   categories: Category[]|number[];
 }

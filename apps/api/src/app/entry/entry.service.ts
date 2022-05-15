@@ -74,7 +74,7 @@ export class EntryService {
       image:ans.image,
       municipalityId:ans.municipalityId,
       categories:catIds
-    } as Entry
+    }
     return ans;
   }
 
@@ -137,10 +137,27 @@ export class EntryService {
   }
 
   async addEntry(data){
+    console.log("Adding entry",data);
     const temp:number[]=data.categories;
     const ans=await this.entryRepository.save(data);
     await this.entryHasCategoryService.assignMultipleCategories(ans.id,temp);
     return ans;
+  }
+
+
+  //Patch
+  async editEntry(data:DbEntry){
+    console.log("Editing entry",data);
+
+    const entryObj:any={...data};
+    delete entryObj.categories
+
+    if(data.id && data.categories){
+      this.entryRepository.update(data.id,entryObj as Entry);
+      await this.entryHasCategoryService.wipeByEntryId(data.id);
+      this.entryHasCategoryService.assignMultipleCategories(data.id,data.categories as number[]);
+    }
+    return true;
   }
 
 }
