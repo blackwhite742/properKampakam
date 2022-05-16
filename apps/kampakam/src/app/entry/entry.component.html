@@ -10,13 +10,13 @@
       <table class="table border-bottom-0">
         <tbody>
           <div *ngIf="loaded">
-            <tr><h3>Name: {{entryData.name}} (ID: {{entryData.id}})</h3></tr>
-            <tr><td>Price: <i [ngClass]="entryData.price ? 'pi pi-check greenIcon' : 'pi pi-times redIcon'"></i> </td></tr>
-            <tr><td>Accessibility: <i [ngClass]="entryData.accessibility ? 'pi pi-check greenIcon' : 'pi pi-times redIcon'"></i> </td></tr>
-            <tr><td>Accommodation: <i [ngClass]="entryData.accomodation ? 'pi pi-check greenIcon' : 'pi pi-times redIcon'"></i> </td></tr>
-            <tr><td>Season: {{entryData.season}}</tr>
-            <tr><td>Description: {{entryData.description}}</td></tr>
-            <tr><td>Municipality: {{entryData.municipalityId}}</td></tr>
+            <tr><h3>Ime: {{entryData.name}} (ID: {{entryData.id}})</h3></tr>
+            <tr><td>Cena: <i [ngClass]="entryData.price ? 'pi pi-check greenIcon' : 'pi pi-times redIcon'"></i> </td></tr>
+            <tr><td>Dostopnost: <i [ngClass]="entryData.accessibility ? 'pi pi-check greenIcon' : 'pi pi-times redIcon'"></i> </td></tr>
+            <tr><td>Nastanitev: <i [ngClass]="entryData.accomodation ? 'pi pi-check greenIcon' : 'pi pi-times redIcon'"></i> </td></tr>
+            <tr><td>Letni čas: {{entryData.season}}</tr>
+            <tr><td>Opis: {{entryData.description}}</td></tr>
+            <tr><td>Občina: {{entryData.municipalityId}}</td></tr> <!-- TODO JOIN in api, so it show the municipality name-->
           </div>
         </tbody>
       </table>
