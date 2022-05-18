@@ -12,6 +12,7 @@ import {InputTextModule} from 'primeng/inputtext';
 import {ListboxModule} from 'primeng/listbox';
 import { QueryResultModule } from './query-result/query-result.module';
 import {TableModule} from 'primeng/table';
+import { NavbarModule } from '../navbar/navbar.module';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import {TableModule} from 'primeng/table';
     DropdownModule,
     ListboxModule,
     QueryResultModule,
-    TableModule
+    TableModule,
+    NavbarModule
   ]
 })
 export class HomePageModule { }

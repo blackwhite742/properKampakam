@@ -5,9 +5,11 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { AddToDbComponent } from './addToDb/add-to-db.component';
 import { EntryComponent } from './entry/entry.component';
 import { MapaComponent } from './mapa/mapa.component';
+import { HomepageComponent } from './homepage/homepage.component';
 
 const routes: Routes = [
-  {path:'',component:HomePageComponent},
+  {path:'',component:HomepageComponent},
+  {path:'activityHomePage',component:HomePageComponent},
   {path:'addToDb',component:AddToDbComponent},
   {
     path:'entry/:id',

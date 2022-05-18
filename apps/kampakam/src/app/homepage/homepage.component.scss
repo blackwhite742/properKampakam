@@ -1,0 +1,64 @@
+@import url("https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap");
+
+.landing {
+  font-family: "Major Mono Display", monospace;
+  font-weight: bolder;
+  font-size: 3.5vw;
+  overflow-y: hidden;
+  overflow-x: hidden;
+  color: white;
+}
+
+
+.rightside,
+.leftside {
+  height: 50vh;
+  width: 100%;
+}
+
+@media screen and (min-width: 768px) {
+  .rightside,
+  .leftside {
+    height: 100vh;
+  }
+}
+
+.rightside {
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url("./assets/koncert3.jpg");
+  background-position: center;
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: cover;
+  cursor: pointer;
+}
+.leftside {
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url("./assets/bowling.jpg");
+  background-position: top;
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: cover;
+  cursor: pointer;
+}
+
+// .leftside:hover {
+//   background: url("pohodnik.jpg");
+//   background-position: center;
+//   background-repeat: no-repeat; /* Do not repeat the image */
+//   background-size: cover;
+// }
+// .rightside:hover {
+//   background: url("koncert.jpg");
+//   background-position: center;
+//   background-repeat: no-repeat; /* Do not repeat the image */
+//   background-size: cover;
+// }
+
+.row > div > .slike:not(:hover) {
+  filter: grayscale(100%);
+  transition: 1s;
+  font-size: 3.5vw;
+
+  &::after {
+    background-color: rgba(#000, 0.5);
+  }
+}
