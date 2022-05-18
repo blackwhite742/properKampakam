@@ -13,10 +13,10 @@ import { FooterComponent } from './footer/footer.component';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { MapaModule } from './mapa/mapa.module';
 import { QueryResultModule } from './home-page/query-result/query-result.module';
-import {ToastModule} from 'primeng/toast';
+import { ToastModule } from 'primeng/toast';
 
 @NgModule({
-  declarations: [AppComponent, FooterComponent, ],
+  declarations: [AppComponent, FooterComponent],
   imports: [
     BrowserModule,
     HttpClientModule,

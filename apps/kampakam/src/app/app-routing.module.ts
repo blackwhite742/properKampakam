@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule,Routes } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { HomePageComponent } from './home-page/home-page.component';
 import { AddToDbComponent } from './addToDb/add-to-db.component';
 import { EntryComponent } from './entry/entry.component';
@@ -8,23 +8,23 @@ import { MapaComponent } from './mapa/mapa.component';
 import { HomepageComponent } from './homepage/homepage.component';
 
 const routes: Routes = [
-  {path:'',component:HomepageComponent},
-  {path:'activityHomePage',component:HomePageComponent},
-  {path:'addToDb',component:AddToDbComponent},
+  { path: '', component: HomepageComponent },
   {
-    path:'entry/:id',
-    component:EntryComponent,
+    path: 'activityHomePage',
+    component: HomePageComponent,
+    data: { animation: 'isRight' },
   },
-  {path:'mapa',component:MapaComponent}
+  { path: 'addToDb', component: AddToDbComponent },
+  {
+    path: 'entry/:id',
+    component: EntryComponent,
+  },
+  { path: 'mapa', component: MapaComponent },
 ];
 
 @NgModule({
   declarations: [],
-  imports: [
-    CommonModule,
-    RouterModule.forRoot(routes)
-  ],
-  exports: [RouterModule]
-
+  imports: [CommonModule, RouterModule.forRoot(routes)],
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

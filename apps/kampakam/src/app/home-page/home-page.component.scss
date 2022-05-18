@@ -1,1 +1,20 @@
+main {
+  background: url('./assets/bowling2.jpg');
+  height: 100vh;
+  width: auto;
+  background-position: center;
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
+.container {
+  background: white;
+  opacity: 0.8;
+  border-radius: 10px;
+  border: solid wheat 5;
+  border-style: solid;
+  padding: 1em;
+}
