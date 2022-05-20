@@ -3,8 +3,31 @@
   Filter by entry parameters => DETAILS
   Filter by category, maincategory => CATEGORY
 -->
+
 <main>
+  <nav class="navbar sticky-top navbar-expand-lg navbar-light mb-2">
+    <div class="container-fluid">
+      <i class="bi bi-house pe-2" [routerLink]="['/']" style="font-size:3em; cursor:pointer"></i>
+      <!--<a class="navbar-brand" [routerLink]="['/']">Kam pa Kam</a>-->
+
+      <div class="collapse navbar-collapse">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/addToDb']" >Add to DB</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/']" >Entry</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/mapa']">Mapa</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
   <div class="container">
+  <div class="forma justify-content-center align-items-center">
     <div class="row" [formGroup]="form">
       <div class="col-6">
         <p-listbox
@@ -101,6 +124,7 @@
       ></kampakam-query-result>
     </div>
   </div>
+</div>
 </main>
 <!--
 <kampakam-query-result [(display)]="popupDisplay" (displayChange)="popupDisplay=$event" [data]="queryResult"></kampakam-query-result>

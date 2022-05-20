@@ -5,12 +5,18 @@ main {
   background-position: center;
   background-repeat: no-repeat; /* Do not repeat the image */
   background-size: auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
-.container {
+nav {
+  box-shadow:none;
+}
+
+.main{
+  display:flex;
+  align-items: center;
+}
+
+.forma {
   background: white;
   opacity: 0.8;
   border-radius: 10px;
