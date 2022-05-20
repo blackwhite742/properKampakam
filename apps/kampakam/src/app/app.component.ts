@@ -13,12 +13,12 @@ import {
 } from '@angular/animations';
 
 import { Router, RouterOutlet } from '@angular/router';
-import { fader } from './route-animations';
+import { fader,slider } from './route-animations';
 @Component({
   selector: 'kampakam-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  animations: [fader],
+  animations: [slider],
 })
 export class AppComponent {
   items: any;

@@ -12,7 +12,7 @@ const routes: Routes = [
   {
     path: 'activityHomePage',
     component: HomePageComponent,
-    data: { animation: 'isRight' },
+    data: { animation: 'isLeft' },
   },
   { path: 'addToDb', component: AddToDbComponent },
   {
