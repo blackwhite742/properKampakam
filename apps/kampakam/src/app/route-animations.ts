@@ -25,18 +25,20 @@ export const slider =
           position: 'absolute',
           top: 0,
           [direction]: 0,
-          width: '100%'
+          width: '100%',
+          overflow: 'hidden',
         })
       ], optional),
       query(':enter', [
-        style({ [direction]: '-100%'})
+        style({ [direction]: '-100%',overflow:"hidden"}),
+
       ]),
       group([
         query(':leave', [
-          animate('600ms ease', style({ [direction]: '100%'}))
+          animate('600ms ease', style({ [direction]: '100%', overflow:'hidden'}))
         ], optional),
         query(':enter', [
-          animate('600ms ease', style({ [direction]: '0%'}))
+          animate('600ms ease', style({ [direction]: '0%', overflow:'hidden'}))
         ])
       ]),
       // Normalize the page style... Might not be necessary

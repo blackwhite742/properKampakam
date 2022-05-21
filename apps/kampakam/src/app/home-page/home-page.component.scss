@@ -1,19 +1,16 @@
 main {
   background: url('./assets/bowling2.jpg');
-  height: 100vh;
+  height: 100%;
   width: auto;
   background-position: center;
+  background-attachment: fixed;
   background-repeat: no-repeat; /* Do not repeat the image */
   background-size: auto;
+  min-height: 100vh;
 }
 
 nav {
   box-shadow:none;
-}
-
-.main{
-  display:flex;
-  align-items: center;
 }
 
 .forma {
