@@ -30,7 +30,7 @@ import { NavbarModule } from '../navbar/navbar.module';
     ListboxModule,
     QueryResultModule,
     TableModule,
-    NavbarModule
+    NavbarModule,
   ]
 })
 export class ActivityModule { }
