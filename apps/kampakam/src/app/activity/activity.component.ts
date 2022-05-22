@@ -19,11 +19,11 @@ const GENERATOR_FORM_FIELDS = {
 };
 
 @Component({
-  selector: 'kampakam-home-page',
-  templateUrl: './home-page.component.html',
-  styleUrls: ['./home-page.component.scss'],
+  selector: 'kampakam-activity',
+  templateUrl: './activity.component.html',
+  styleUrls: ['./activity.component.scss'],
 })
-export class HomePageComponent implements OnInit {
+export class ActivityComponent implements OnInit {
   constructor(
     private router: Router,
     private formBuilder: FormBuilder,
