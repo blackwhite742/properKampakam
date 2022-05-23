@@ -13,6 +13,7 @@ import {ListboxModule} from 'primeng/listbox';
 import { QueryResultModule } from './query-result/query-result.module';
 import {TableModule} from 'primeng/table';
 import { NavbarModule } from '../navbar/navbar.module';
+import { MapaModule } from '../mapa/mapa.module';
 
 
 @NgModule({
@@ -31,6 +32,7 @@ import { NavbarModule } from '../navbar/navbar.module';
     QueryResultModule,
     TableModule,
     NavbarModule,
+    MapaModule
   ]
 })
 export class ActivityModule { }

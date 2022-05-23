@@ -9,6 +9,7 @@
   <div class="container pb-5">
   <div class="forma justify-content-center align-items-center">
     <div class="row" [formGroup]="form">
+      <!--
       <div class="col-6">
         <p-listbox
           [options]="regOptions"
@@ -20,8 +21,12 @@
         >
         </p-listbox>
       </div>
+      -->
+      <div class="lg-col-8 sm-col-12">
+        <kampakam-mapa [displayNavbar]="false"></kampakam-mapa>
+      </div>
 
-      <div class="col-6">
+      <div class="lg-col-4 sm-col-12">
         <!-- Location radius, choose from google maps?-->
 
         <div>

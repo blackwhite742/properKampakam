@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'kampakam-mapa',
@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MapaComponent implements OnInit {
 
+  @Input() displayNavbar=true;
   chosenRegion:string|null;
 
   constructor() { }
@@ -21,6 +22,6 @@ export class MapaComponent implements OnInit {
     else{
       this.chosenRegion = data;
     }
-    
+
   }
 }
