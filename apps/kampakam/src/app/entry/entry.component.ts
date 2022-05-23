@@ -14,6 +14,7 @@ import { firstValueFrom,map } from 'rxjs';
 export class EntryComponent implements OnInit,OnChanges {
 
   @Input() passedId:number;
+  @Input() displayNavbar=true;
 
   id:string|null;
   entryData:EntryInterface;

@@ -27,6 +27,7 @@ const ENTRY_FORM_FIELDS = {
 })
 export class AddToDbComponent implements OnInit,OnChanges {
 
+  @Input()displayNavbar=true;
   @Input()editData:EntryInterface;
   @Output()editDataChange=new EventEmitter();
 
