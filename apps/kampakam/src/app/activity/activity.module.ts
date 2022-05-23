@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
-import { HomePageComponent } from './home-page.component';
+import { ActivityComponent } from './activity.component';
 import {MegaMenuModule} from 'primeng/megamenu';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
@@ -16,7 +16,7 @@ import { NavbarModule } from '../navbar/navbar.module';
 
 
 @NgModule({
-  declarations: [HomePageComponent],
+  declarations: [ActivityComponent],
   imports: [
     CommonModule,
     ButtonModule,
@@ -30,7 +30,7 @@ import { NavbarModule } from '../navbar/navbar.module';
     ListboxModule,
     QueryResultModule,
     TableModule,
-    NavbarModule
+    NavbarModule,
   ]
 })
-export class HomePageModule { }
+export class ActivityModule { }

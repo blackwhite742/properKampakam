@@ -6,23 +6,23 @@ import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import 'reflect-metadata';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HomePageModule } from './home-page/home-page.module';
+import { ActivityModule } from './activity/activity.module';
 import { AppRoutingModule } from './app-routing.module';
 import { NavbarModule } from './navbar/navbar.module';
 import { FooterComponent } from './footer/footer.component';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { MapaModule } from './mapa/mapa.module';
-import { QueryResultModule } from './home-page/query-result/query-result.module';
-import {ToastModule} from 'primeng/toast';
+import { QueryResultModule } from './activity/query-result/query-result.module';
+import { ToastModule } from 'primeng/toast';
 
 @NgModule({
-  declarations: [AppComponent, FooterComponent, ],
+  declarations: [AppComponent, FooterComponent],
   imports: [
     BrowserModule,
     HttpClientModule,
     ReactiveFormsModule,
     AddToDbModule,
-    HomePageModule,
+    ActivityModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     NavbarModule,
