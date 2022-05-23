@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'kampakam-mapa',
@@ -8,6 +8,8 @@ import { Component, OnInit, Input } from '@angular/core';
 export class MapaComponent implements OnInit {
 
   @Input() displayNavbar=true;
+  @Output() regionChange=new EventEmitter<string|null>();
+
   chosenRegion:string|null;
 
   constructor() { }
@@ -22,6 +24,6 @@ export class MapaComponent implements OnInit {
     else{
       this.chosenRegion = data;
     }
-
+    this.regionChange.emit(this.chosenRegion);
   }
 }

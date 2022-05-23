@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MegaMenuItem } from 'primeng/api/megamenuitem';
 
-import { MUNICIPALITIES } from '../../assets/municipalities2';
+import { MUNICIPALITIES, MUNICIPALITY_KEYS } from '../../assets/municipalities2';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { firstValueFrom } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
@@ -19,6 +19,10 @@ const GENERATOR_FORM_FIELDS = {
   name: [''],
   municipality: [''],
 };
+
+interface MunMap{
+  [name:string]:number;
+}
 
 @Component({
   selector: 'kampakam-activity',
@@ -43,7 +47,7 @@ export class ActivityComponent implements OnInit {
   form: FormGroup;
 
   //Ng Models
-  regions: any[];
+  regions: number|null;
   priceChecked: boolean;
   accessibilityChecked: boolean;
   accommodationChecked: boolean;
@@ -55,6 +59,8 @@ export class ActivityComponent implements OnInit {
   popupDisplay=false;
 
   bigDisplay:boolean;
+
+  municipalityKeys:MunMap=MUNICIPALITY_KEYS;
 
   async ngOnInit() {
     this.regOptions = MUNICIPALITIES;
@@ -70,24 +76,44 @@ export class ActivityComponent implements OnInit {
       this.http.get(`/api/category/getAll`)
     );
 
-    this.breakpointObserver.observe(["(max-width:820px)"]).subscribe((res:BreakpointState)=>{
-      this.bigDisplay=res.matches;
+    this.breakpointObserver.observe(["(max-width:992px)"]).subscribe((res:BreakpointState)=>{
+      this.bigDisplay=!res.matches;
     })
   }
 
   async submit() {
     this.queryResult=null;
-
+    let queryData:any;
     const formData = this.form.getRawValue();
-
-    const ans=await firstValueFrom(this.http.post(`/api/entry/query`,formData));
+    if(!this.bigDisplay){
+      queryData=formData;
+    }
+    else{
+      const temp:any={...formData,regions:this.regions};
+      queryData=temp;
+    }
+    const ans=await firstValueFrom(this.http.post(`/api/entry/query`,queryData));
     this.queryResult = ans;
 
     this.popupDisplay=true;
   }
 
-  regionChange(change:any){
-    const temp=MUNICIPALITIES.filter(m => m.value===change.value);
+  regionChange(change:number|string){
+    if(!change)return;
+    const temp=MUNICIPALITIES.filter(m => m.value===change);
     this.munOptions=temp[0].children;
+  }
+
+  mapSelect(data:string|null){
+    if(data){
+      this.regions=this.municipalityKeys[data];
+      this.regionChange(this.regions);
+    }
+    else
+      this.regions=null;
+  }
+
+  debug(){
+    console.log("Big display:",this.bigDisplay);
   }
 }

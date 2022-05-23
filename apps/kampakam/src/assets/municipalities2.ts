@@ -1,3 +1,17 @@
+export const MUNICIPALITY_KEYS={
+  "Dolenjska":1,
+  "Gorenjska":2,
+  "Goriška":3,
+  "Koroška":4,
+  "Obalno-kraška":5,
+  "Osrednjeslovenska":6,
+  "Podravska":7,
+  "Pomurska":8,
+  "Posavska":9,
+  "Primorsko-notranjska":10,
+  "Savinjska":11,
+  "Zasavska":12
+}
 
 export const MUNICIPALITIES = [
   {

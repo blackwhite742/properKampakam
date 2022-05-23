@@ -6,27 +6,28 @@
 
 <main>
   <kampakam-navbar></kampakam-navbar>
+  <!--<button pButton (click)="debug()"></button>-->
   <div class="container pb-5">
   <div class="forma justify-content-center align-items-center">
     <div class="row" [formGroup]="form">
-      <div class="sm-col-6 formField" *ngIf="bigDisplay">
+      <div class="col-12 formField " *ngIf="!bigDisplay">
         <h6>Regije</h6>
-
-        <p-dropdown
+        <p-dropdown styleClass="w-100"
           [options]="regOptions"
           [(ngModel)]="regions"
           optionLabel="label"
           optionValue="value"
           formControlName="regions"
-          (onChange)="regionChange($event)">
+          (onChange)="regionChange($event.value)"
+          placeholder="Vse regije">
         </p-dropdown>
       </div>
 
-      <div class="lg-col-8 sm-col-12 formField" *ngIf="!bigDisplay">
-        <kampakam-mapa [displayNavbar]="false"></kampakam-mapa>
+      <div class="col-lg-8 col-12 formField w-100" *ngIf="bigDisplay">
+        <kampakam-mapa [displayNavbar]="false" (regionChange)="mapSelect($event)"></kampakam-mapa>
       </div>
 
-      <div class="lg-col-4 sm-col-6">
+      <div class="col-lg-4 col-12">
         <!-- Location radius, choose from google maps?-->
 
         <div class="formField">
@@ -39,7 +40,9 @@
             [filter]="true"
             filterBy="label"
             optionValue="value"
-            placeholder="Izberi občino"
+            placeholder="Vse občine"
+            styleClass="w-100"
+            [disabled]="!regions"
           >
           </p-multiSelect>
         </div>
@@ -89,6 +92,7 @@
           optionValue="name"
           placeholder="Izberi letni čas"
           formControlName="season"
+          styleClass="w-100"
         >
         </p-dropdown>
         </div>
@@ -104,6 +108,7 @@
             filterBy="name"
             optionValue="id"
             placeholder="Izberi kategorijo"
+            styleClass="w-100"
           >
           </p-multiSelect>
         </div>
