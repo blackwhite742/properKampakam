@@ -6,6 +6,8 @@ import { MUNICIPALITIES } from '../../assets/municipalities2';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { firstValueFrom } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
+
 
 const GENERATOR_FORM_FIELDS = {
   regions: [''],
@@ -27,7 +29,8 @@ export class ActivityComponent implements OnInit {
   constructor(
     private router: Router,
     private formBuilder: FormBuilder,
-    private http: HttpClient
+    private http: HttpClient,
+    private breakpointObserver: BreakpointObserver
   ) {}
 
   items: MegaMenuItem[];
@@ -51,6 +54,8 @@ export class ActivityComponent implements OnInit {
   queryResult:any;
   popupDisplay=false;
 
+  bigDisplay:boolean;
+
   async ngOnInit() {
     this.regOptions = MUNICIPALITIES;
     this.seasons = [
@@ -64,6 +69,10 @@ export class ActivityComponent implements OnInit {
     this.categoryOptions = await firstValueFrom(
       this.http.get(`/api/category/getAll`)
     );
+
+    this.breakpointObserver.observe(["(max-width:820px)"]).subscribe((res:BreakpointState)=>{
+      this.bigDisplay=res.matches;
+    })
   }
 
   async submit() {

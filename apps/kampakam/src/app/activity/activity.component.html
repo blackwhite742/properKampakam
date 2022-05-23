@@ -9,27 +9,27 @@
   <div class="container pb-5">
   <div class="forma justify-content-center align-items-center">
     <div class="row" [formGroup]="form">
-      <!--
-      <div class="col-6">
-        <p-listbox
+      <div class="sm-col-6 formField" *ngIf="bigDisplay">
+        <h6>Regije</h6>
+
+        <p-dropdown
           [options]="regOptions"
           [(ngModel)]="regions"
           optionLabel="label"
           optionValue="value"
           formControlName="regions"
-          (onChange)="regionChange($event)"
-        >
-        </p-listbox>
+          (onChange)="regionChange($event)">
+        </p-dropdown>
       </div>
-      -->
-      <div class="lg-col-8 sm-col-12">
+
+      <div class="lg-col-8 sm-col-12 formField" *ngIf="!bigDisplay">
         <kampakam-mapa [displayNavbar]="false"></kampakam-mapa>
       </div>
 
-      <div class="lg-col-4 sm-col-12">
+      <div class="lg-col-4 sm-col-6">
         <!-- Location radius, choose from google maps?-->
 
-        <div>
+        <div class="formField">
           <h6>Občine</h6>
           <p-multiSelect
             [options]="munOptions"
@@ -44,6 +44,7 @@
           </p-multiSelect>
         </div>
 
+        <div class="formField">
         <h6>Ime</h6>
         <input
           class="ime"
@@ -53,25 +54,33 @@
           formControlName="name"
           placeholder="Izberi ime"
         />
+        </div>
 
+        <div class="formField">
         <h6>Cena</h6>
         <p-inputSwitch
           formControlName="price"
           [(ngModel)]="priceChecked"
         ></p-inputSwitch>
+        </div>
 
+        <div class="formField">
         <h6>Dostopnost</h6>
         <p-inputSwitch
           formControlName="accessibility"
           [(ngModel)]="accessibilityChecked"
         ></p-inputSwitch>
+        </div>
 
+        <div class="formField">
         <h6>Nastanitev</h6>
         <p-inputSwitch
           formControlName="accommodation"
           [(ngModel)]="accommodationChecked"
         ></p-inputSwitch>
+        </div>
 
+        <div class="formField">
         <h6>Letni čas</h6>
         <p-dropdown
           [options]="seasons"
@@ -82,7 +91,9 @@
           formControlName="season"
         >
         </p-dropdown>
-        <div>
+        </div>
+
+        <div class="formField">
           <h6>Kategorije</h6>
           <p-multiSelect
             [options]="categoryOptions"
@@ -111,6 +122,3 @@
   </div>
 </div>
 </main>
-<!--
-<kampakam-query-result [(display)]="popupDisplay" (displayChange)="popupDisplay=$event" [data]="queryResult"></kampakam-query-result>
--->
