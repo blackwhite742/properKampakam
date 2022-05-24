@@ -54,8 +54,8 @@ export class ActivityComponent implements OnInit {
   //Ng Models
   regions: number|null;
   priceChecked: boolean|null=null;
-  accessibilityChecked: boolean;
-  accommodationChecked: boolean;
+  accessibilityChecked: boolean|null=null;
+  accommodationChecked: boolean|null=null;
   selectedCategories: any[];
   selectedSeason: string;
   selectedMunicipalities: any[];
@@ -69,7 +69,8 @@ export class ActivityComponent implements OnInit {
   municipalityKeys:MunMap=MUNICIPALITY_KEYS;
 
   async ngOnInit() {
-    this.regOptions = MUNICIPALITIES;
+
+    this.regOptions = [{label:"Vse regije",value:null},...MUNICIPALITIES]
 
     this.seasons = [
       { name: 'Celoletno' },
@@ -123,6 +124,7 @@ export class ActivityComponent implements OnInit {
 
   regionChange(change:number|string){
     if(!change)return;
+    this.selectedMunicipalities=[];
     const temp=MUNICIPALITIES.filter(m => m.value===change);
     this.munOptions=temp[0].children;
   }
@@ -132,8 +134,11 @@ export class ActivityComponent implements OnInit {
       this.regions=this.municipalityKeys[data];
       this.regionChange(this.regions);
     }
-    else
+    else{
       this.regions=null;
+      this.munOptions=[];
+    }
+
   }
 
   debug(){

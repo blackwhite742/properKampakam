@@ -22,7 +22,6 @@ export class EntryService {
 
   async getAll(){
     const ans:Entry[]=await this.entryRepository.find();
-    console.log("Ans is",ans);
     return ans;
   }
 
@@ -103,7 +102,7 @@ export class EntryService {
 
     if(data.regions != undefined ){
       // No specific municipality is chosen
-      if(data.municipality == undefined)
+      if(data.municipality == undefined || data.municipality.length == 0)
         query.andWhere("r.id = :id",{id:data.regions});
       else
         query.andWhere("e.municipality_id IN(:...ids)",{ids:data.municipality})
@@ -137,7 +136,6 @@ export class EntryService {
   }
 
   async addEntry(data){
-    console.log("Adding entry",data);
     const temp:number[]=data.categories;
     const ans=await this.entryRepository.save(data);
     await this.entryHasCategoryService.assignMultipleCategories(ans.id,temp);
@@ -147,7 +145,6 @@ export class EntryService {
 
   //Patch
   async editEntry(data:DbEntry){
-    console.log("Editing entry",data);
 
     const entryObj:any={...data};
     delete entryObj.categories
