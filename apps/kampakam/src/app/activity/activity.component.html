@@ -61,27 +61,28 @@
 
         <div class="formField">
         <h6>Cena</h6>
-        <p-inputSwitch
-          formControlName="price"
-          [(ngModel)]="priceChecked"
-        ></p-inputSwitch>
+        <p-selectButton
+        [options]="priceOptions" [(ngModel)]="priceChecked" formControlName="price"
+        optionLabel="name" optionValue="value" styleClass="lessBold"
+        ></p-selectButton>
         </div>
 
         <div class="formField">
         <h6>Dostopnost</h6>
-        <p-inputSwitch
-          formControlName="accessibility"
-          [(ngModel)]="accessibilityChecked"
-        ></p-inputSwitch>
+        <p-selectButton
+        [options]="accessibilityOptions" [(ngModel)]="accessibilityChecked" formControlName="accessibility"
+        optionLabel="name" optionValue="value"
+        ></p-selectButton>
         </div>
 
         <div class="formField">
         <h6>Nastanitev</h6>
-        <p-inputSwitch
-          formControlName="accommodation"
-          [(ngModel)]="accommodationChecked"
-        ></p-inputSwitch>
+        <p-selectButton
+        [options]="accommodationOptions" [(ngModel)]="accommodationChecked" formControlName="accommodation"
+        optionLabel="name" optionValue="value"
+        ></p-selectButton>
         </div>
+
 
         <div class="formField">
         <h6>Letni čas</h6>
@@ -114,7 +115,7 @@
         </div>
       </div>
 
-      <button pButton label="Poišči" (click)="submit()" class="mt-1"></button>
+      <button pButton label="Poišči" (click)="submit()" class="mt-1 w-75 mx-auto"></button>
     </div>
 
     <div *ngIf="queryResult">

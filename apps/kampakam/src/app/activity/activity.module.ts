@@ -14,7 +14,7 @@ import { QueryResultModule } from './query-result/query-result.module';
 import {TableModule} from 'primeng/table';
 import { NavbarModule } from '../navbar/navbar.module';
 import { MapaModule } from '../mapa/mapa.module';
-
+import {SelectButtonModule} from 'primeng/selectbutton';
 
 @NgModule({
   declarations: [ActivityComponent],
@@ -32,7 +32,8 @@ import { MapaModule } from '../mapa/mapa.module';
     QueryResultModule,
     TableModule,
     NavbarModule,
-    MapaModule
+    MapaModule,
+    SelectButtonModule
   ]
 })
 export class ActivityModule { }

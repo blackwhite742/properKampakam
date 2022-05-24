@@ -40,6 +40,11 @@ export class ActivityComponent implements OnInit {
   items: MegaMenuItem[];
   seasons: any[];
 
+  //Component options
+  priceOptions:any[];
+  accessibilityOptions:any[];
+  accommodationOptions:any[];
+
   //Categories
   munOptions: any;
   regOptions: any;
@@ -48,13 +53,14 @@ export class ActivityComponent implements OnInit {
 
   //Ng Models
   regions: number|null;
-  priceChecked: boolean;
+  priceChecked: boolean|null=null;
   accessibilityChecked: boolean;
   accommodationChecked: boolean;
   selectedCategories: any[];
   selectedSeason: string;
   selectedMunicipalities: any[];
 
+  //Dialog
   queryResult:any;
   popupDisplay=false;
 
@@ -64,11 +70,28 @@ export class ActivityComponent implements OnInit {
 
   async ngOnInit() {
     this.regOptions = MUNICIPALITIES;
+
     this.seasons = [
       { name: 'Celoletno' },
       { name: 'Poletje' },
       { name: 'Zima' },
     ];
+
+    this.priceOptions=[
+      {name:"Vseeno", value:null},
+      {name:"Zastonj", value:false},
+      {name:"Plačljivo", value:true}
+    ]
+
+    this.accessibilityOptions=[
+      {name:"Vseeno", value:null},
+      {name:"Gibalno omejeni", value:true},
+    ]
+
+    this.accommodationOptions=[
+      {name:"Vseeno", value:null},
+      {name:"Da", value:true},
+    ]
 
     this.form = this.formBuilder.group(GENERATOR_FORM_FIELDS);
 
