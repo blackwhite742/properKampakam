@@ -6,25 +6,31 @@
 
 <main>
   <kampakam-navbar></kampakam-navbar>
+  <!--<button pButton (click)="debug()"></button>-->
   <div class="container pb-5">
   <div class="forma justify-content-center align-items-center">
     <div class="row" [formGroup]="form">
-      <div class="col-6">
-        <p-listbox
+      <div class="col-12 formField " *ngIf="!bigDisplay">
+        <h6>Regije</h6>
+        <p-dropdown styleClass="w-100"
           [options]="regOptions"
           [(ngModel)]="regions"
           optionLabel="label"
           optionValue="value"
           formControlName="regions"
-          (onChange)="regionChange($event)"
-        >
-        </p-listbox>
+          (onChange)="regionChange($event.value)"
+          placeholder="Vse regije">
+        </p-dropdown>
       </div>
 
-      <div class="col-6">
+      <div class="col-lg-8 col-12 formField w-100" *ngIf="bigDisplay">
+        <kampakam-mapa [displayNavbar]="false" (regionChange)="mapSelect($event)"></kampakam-mapa>
+      </div>
+
+      <div class="col-lg-4 col-12">
         <!-- Location radius, choose from google maps?-->
 
-        <div>
+        <div class="formField">
           <h6>Občine</h6>
           <p-multiSelect
             [options]="munOptions"
@@ -34,11 +40,14 @@
             [filter]="true"
             filterBy="label"
             optionValue="value"
-            placeholder="Izberi občino"
+            placeholder="Vse občine"
+            styleClass="w-100"
+            [disabled]="!regions"
           >
           </p-multiSelect>
         </div>
 
+        <div class="formField">
         <h6>Ime</h6>
         <input
           class="ime"
@@ -48,25 +57,34 @@
           formControlName="name"
           placeholder="Izberi ime"
         />
+        </div>
 
+        <div class="formField">
         <h6>Cena</h6>
-        <p-inputSwitch
-          formControlName="price"
-          [(ngModel)]="priceChecked"
-        ></p-inputSwitch>
+        <p-selectButton
+        [options]="priceOptions" [(ngModel)]="priceChecked" formControlName="price"
+        optionLabel="name" optionValue="value" styleClass="lessBold"
+        ></p-selectButton>
+        </div>
 
+        <div class="formField">
         <h6>Dostopnost</h6>
-        <p-inputSwitch
-          formControlName="accessibility"
-          [(ngModel)]="accessibilityChecked"
-        ></p-inputSwitch>
+        <p-selectButton
+        [options]="accessibilityOptions" [(ngModel)]="accessibilityChecked" formControlName="accessibility"
+        optionLabel="name" optionValue="value"
+        ></p-selectButton>
+        </div>
 
+        <div class="formField">
         <h6>Nastanitev</h6>
-        <p-inputSwitch
-          formControlName="accommodation"
-          [(ngModel)]="accommodationChecked"
-        ></p-inputSwitch>
+        <p-selectButton
+        [options]="accommodationOptions" [(ngModel)]="accommodationChecked" formControlName="accommodation"
+        optionLabel="name" optionValue="value"
+        ></p-selectButton>
+        </div>
 
+
+        <div class="formField">
         <h6>Letni čas</h6>
         <p-dropdown
           [options]="seasons"
@@ -75,9 +93,12 @@
           optionValue="name"
           placeholder="Izberi letni čas"
           formControlName="season"
+          styleClass="w-100"
         >
         </p-dropdown>
-        <div>
+        </div>
+
+        <div class="formField">
           <h6>Kategorije</h6>
           <p-multiSelect
             [options]="categoryOptions"
@@ -88,12 +109,13 @@
             filterBy="name"
             optionValue="id"
             placeholder="Izberi kategorijo"
+            styleClass="w-100"
           >
           </p-multiSelect>
         </div>
       </div>
 
-      <button pButton label="Poišči" (click)="submit()" class="mt-1"></button>
+      <button pButton label="Poišči" (click)="submit()" class="mt-1 w-75 mx-auto"></button>
     </div>
 
     <div *ngIf="queryResult">
@@ -106,6 +128,3 @@
   </div>
 </div>
 </main>
-<!--
-<kampakam-query-result [(display)]="popupDisplay" (displayChange)="popupDisplay=$event" [data]="queryResult"></kampakam-query-result>
--->
