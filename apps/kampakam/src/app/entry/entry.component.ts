@@ -1,10 +1,9 @@
-import { Component, OnInit, SimpleChanges, Input, OnChanges} from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit, Input, OnChanges} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import { Location } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { EntryInterface } from '../../assets/interfaces/entry.interface';
-import { firstValueFrom,map } from 'rxjs';
+import { firstValueFrom } from 'rxjs';
 
 @Component({
   selector: 'kampakam-entry',
@@ -45,7 +44,7 @@ export class EntryComponent implements OnInit,OnChanges {
     }
   }
 
-  async ngOnChanges(changes: SimpleChanges){
+  async ngOnChanges(){
     if(this.passedId){
       this.loaded=false;
       this.entryData=await firstValueFrom(this.http.get('/api/entry/id/'+this.passedId)) as EntryInterface;

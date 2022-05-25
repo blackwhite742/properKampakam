@@ -1,13 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MegaMenuItem } from 'primeng/api/megamenuitem';
-
 import { MUNICIPALITIES, MUNICIPALITY_KEYS } from '../../assets/municipalities2';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { firstValueFrom } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
-
+import { MainService } from '../../shared/services/main.service';
 
 const GENERATOR_FORM_FIELDS = {
   regions: [''],
@@ -34,7 +33,8 @@ export class ActivityComponent implements OnInit {
     private router: Router,
     private formBuilder: FormBuilder,
     private http: HttpClient,
-    private breakpointObserver: BreakpointObserver
+    private breakpointObserver: BreakpointObserver,
+    private mainService:MainService
   ) {}
 
   items: MegaMenuItem[];
@@ -118,8 +118,6 @@ export class ActivityComponent implements OnInit {
     }
     const ans=await firstValueFrom(this.http.post(`/api/entry/query`,queryData));
     this.queryResult = ans;
-
-    this.popupDisplay=true;
   }
 
   regionChange(change:number|string){
@@ -138,10 +136,9 @@ export class ActivityComponent implements OnInit {
       this.regions=null;
       this.munOptions=[];
     }
-
   }
 
   debug(){
-    console.log("Big display:",this.bigDisplay);
+
   }
 }

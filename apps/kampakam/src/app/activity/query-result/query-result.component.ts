@@ -1,36 +1,27 @@
-import { Component,Input, OnInit, OnChanges, SimpleChanges, Output, EventEmitter } from '@angular/core';
+import { Component,Input, OnInit} from '@angular/core';
+import { ActivityService } from '../activity.service';
 
 @Component({
   selector: 'kampakam-query-result',
   templateUrl: './query-result.component.html',
   styleUrls: ['./query-result.component.scss']
 })
-export class QueryResultComponent implements OnInit,OnChanges {
+export class QueryResultComponent implements OnInit {
 
   @Input()data: any[];
 
-  @Input()display: boolean; // TODO two way binding
-  @Output()displayChange = new EventEmitter<boolean>();
-
-  entryOfInterest:number;
-
-  constructor() { }
-
-  ngOnChanges(changes: SimpleChanges) {
-    //console.log("Change detected",changes);
-  }
+  constructor(
+    private activityService:ActivityService
+  ) { }
 
   ngOnInit(): void {
 
   }
 
-  toggleDialog(){
-    this.display=false;
-    this.displayChange.emit(this.display);
-  }
 
   getInfo(id:number){
-    this.entryOfInterest=id;
+    this.activityService.toggleDialog();
+    this.activityService.setEntry(id)
   }
 
 }

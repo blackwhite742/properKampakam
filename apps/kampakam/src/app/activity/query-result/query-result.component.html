@@ -5,12 +5,13 @@
   "r_id": 4, "r_name": "Koroška" }
 
 {{data[0] | json}}-->
-<div class="card">
-  <p-dataView #dv [value]="data" [paginator]="true" [rows]="5">
+<div class="card mt-4">
+  <p-dataView #dv [value]="data" [paginator]="true" [rows]="10">
 
     <ng-template pTemplate="header">
       <div class="flex flex-column md:flex-row md:justify-content-between">
-          <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
+        <!--Alternate view, maybe in the future-->
+        <!--<p-dataViewLayoutOptions></p-dataViewLayoutOptions> -->
       </div>
   </ng-template>
 
@@ -43,26 +44,7 @@
       </div>
     </ng-template>
 
-
-    <ng-template let-entry pTemplate="gridItem">
-      <div class="col-12 md:col-4">
-          <div class="entry-grid-item card">
-              <div class="entry-grid-item-top">
-                  <div>
-                      <span class="entry-category">{{entry.e_name}}</span>
-                  </div>
-              </div>
-              <div class="entry-grid-item-content">
-                  <div class="entry-description">{{entry.e_name}}</div>
-              </div>
-              <div class="entry-grid-item-bottom">
-                  <span class="entry-price">{{entry.e_name}}</span>
-              </div>
-          </div>
-      </div>
-  </ng-template>
-
   </p-dataView>
   </div>
 
-<kampakam-info-dialog [entryData]="entryOfInterest"></kampakam-info-dialog>
+<kampakam-info-dialog></kampakam-info-dialog>

@@ -1,5 +1,5 @@
 import { AddToDbModule } from './addToDb/add-to-db.module';
-import { NgModule, Component, NO_ERRORS_SCHEMA } from '@angular/core';
+import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -12,8 +12,8 @@ import { NavbarModule } from './navbar/navbar.module';
 import { FooterComponent } from './footer/footer.component';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { MapaModule } from './mapa/mapa.module';
-import { QueryResultModule } from './activity/query-result/query-result.module';
 import { ToastModule } from 'primeng/toast';
+import { MainService } from '../shared/services/main.service';
 
 @NgModule({
   declarations: [AppComponent, FooterComponent],
@@ -31,7 +31,7 @@ import { ToastModule } from 'primeng/toast';
     MDBBootstrapModule.forRoot(),
   ],
   schemas: [NO_ERRORS_SCHEMA],
-  providers: [],
+  providers: [MainService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

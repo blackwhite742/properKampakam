@@ -1,19 +1,8 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import 'reflect-metadata';
-import {
-  trigger,
-  transition,
-  style,
-  query,
-  group,
-  animateChild,
-  animate,
-  keyframes,
-} from '@angular/animations';
-
 import { Router, RouterOutlet } from '@angular/router';
-import { fader,slider } from './route-animations';
+import { slider } from './route-animations';
 @Component({
   selector: 'kampakam-root',
   templateUrl: './app.component.html',
