@@ -1,25 +1,32 @@
-import { Component, OnInit, Input, SimpleChanges, OnChanges } from '@angular/core';
-import { EntryInterface } from '../../../../assets/interfaces/entry.interface';
+import { Component, OnInit} from '@angular/core';
+import { ActivityService } from '../../activity.service';
 
 @Component({
   selector: 'kampakam-info-dialog',
   templateUrl: './info-dialog.component.html',
   styleUrls: ['./info-dialog.component.scss']
 })
-export class InfoDialogComponent implements OnInit, OnChanges {
+export class InfoDialogComponent implements OnInit {
 
-  @Input()entryData:number;
-  display = false;
+  display:boolean;
+  entryId:number;
 
-  constructor() { }
+  constructor(
+    private activityService:ActivityService
+  ) { }
 
   ngOnInit(): void {
+    this.activityService.displayDialogEmit.subscribe(resp=>{
+      this.display=resp;
+    })
 
+    this.activityService.entryId.subscribe(resp=>{
+      this.entryId=resp;
+    })
   }
 
-  ngOnChanges(changes: SimpleChanges){
-    if(!changes['entryData']['firstChange'])
-      this.display=true;
+  closeDialog(){
+    this.activityService.toggleDialog();
   }
 
 }

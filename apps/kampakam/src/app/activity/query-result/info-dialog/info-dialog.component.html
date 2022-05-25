@@ -1,5 +1,5 @@
-<p-dialog [(visible)]="display">
-  <div *ngIf="entryData">
-    <kampakam-entry [passedId]="entryData" [displayNavbar]="false"></kampakam-entry>
+<p-dialog [(visible)]="display" (onHide)="closeDialog()">
+  <div *ngIf="entryId">
+    <kampakam-entry [passedId]="entryId" [displayNavbar]="false"></kampakam-entry>
   </div>
 </p-dialog>

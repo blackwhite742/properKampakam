@@ -1,9 +1,9 @@
 import { Component, OnInit, Input, OnChanges, SimpleChanges,EventEmitter,Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
-import { firstValueFrom, Observable, first } from 'rxjs';
+import { firstValueFrom, first } from 'rxjs';
 import { MUNICIPALITIES } from '../../assets/municipalities';
-import { EntryInterface, EntryInterfaceForm } from '../../assets/interfaces/entry.interface';
+import { EntryInterface } from '../../assets/interfaces/entry.interface';
 import {MessageService} from 'primeng/api';
 
 const ENTRY_FORM_FIELDS = {
@@ -91,7 +91,7 @@ export class AddToDbComponent implements OnInit,OnChanges {
       req=this.http.post(path, formContent);
     }
 
-    const ans=await req.pipe(first()).subscribe(r=>{
+    await req.pipe(first()).subscribe(r=>{
 
       if(r){
         this.messageService.add({severity:'success', summary:`Zapis ${prompt}`, detail:`Zapis je bil uspešno ${prompt}.`});

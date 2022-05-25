@@ -8,13 +8,13 @@ import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import {TreeSelectModule} from 'primeng/treeselect';
 import { InputSwitchModule } from 'primeng/inputswitch';
 import {DropdownModule} from 'primeng/dropdown';
-import {InputTextModule} from 'primeng/inputtext';
 import {ListboxModule} from 'primeng/listbox';
 import { QueryResultModule } from './query-result/query-result.module';
 import {TableModule} from 'primeng/table';
 import { NavbarModule } from '../navbar/navbar.module';
 import { MapaModule } from '../mapa/mapa.module';
 import {SelectButtonModule} from 'primeng/selectbutton';
+import { ActivityService } from './activity.service';
 
 @NgModule({
   declarations: [ActivityComponent],
@@ -34,6 +34,9 @@ import {SelectButtonModule} from 'primeng/selectbutton';
     NavbarModule,
     MapaModule,
     SelectButtonModule
+  ],
+  providers:[
+    ActivityService
   ]
 })
 export class ActivityModule { }
