@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
+import { HttpClient } from '@angular/common/http';
+import { firstValueFrom } from 'rxjs';
 @Component({
   selector: 'kampakam-event',
   templateUrl: './event.component.html',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EventComponent implements OnInit {
 
-  constructor() { }
+  data: any;
 
-  ngOnInit(): void {
+  constructor(
+    private http: HttpClient
+  ) { }
+
+  async ngOnInit() {
+    this.data=await firstValueFrom(this.http.get('/api/event/getAll'))
   }
 
 }

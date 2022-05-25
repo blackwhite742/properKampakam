@@ -1,4 +1,39 @@
 
 <main>
   <kampakam-navbar></kampakam-navbar>
+  <div class="container pb-5">
+    <div class="forma justify-content-center align-items-center">
+      <!-- Filter here -->
+      <div class="card mt-4">
+        <p-dataView #dv [value]="data" [paginator]="true" [rows]="10">
+
+          <ng-template let-event pTemplate="listItem">
+
+            <div class="event-list-item">
+            <div class="col-10">
+                <div class="event-name">
+                  {{event.name}}
+                </div>
+
+
+                <div class="event-date">
+                  Datum: {{event.date | date:'dd-MM-YYYY HH:MM:SS'}}
+                </div>
+
+                <div class="event-price">
+                  Plačljivo: <i [ngClass]="event.price ? 'pi pi-check greenIcon' : 'pi pi-times redIcon'"></i>
+                </div>
+
+                <div class="event-accomodation">
+                  Kraj: {{event.municipality.name }}
+                </div>
+            </div>
+
+            </div>
+          </ng-template>
+
+        </p-dataView>
+        </div>
+    </div>
+  </div>
 </main>
