@@ -14,6 +14,8 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { MapaModule } from './mapa/mapa.module';
 import { ToastModule } from 'primeng/toast';
 import { MainService } from '../shared/services/main.service';
+import { EventModule } from './event/event.module';
+
 
 @NgModule({
   declarations: [AppComponent, FooterComponent],
@@ -28,6 +30,7 @@ import { MainService } from '../shared/services/main.service';
     NavbarModule,
     MapaModule,
     ToastModule,
+    EventModule,
     MDBBootstrapModule.forRoot(),
   ],
   schemas: [NO_ERRORS_SCHEMA],

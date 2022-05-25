@@ -6,6 +6,7 @@ import { AddToDbComponent } from './addToDb/add-to-db.component';
 import { EntryComponent } from './entry/entry.component';
 import { MapaComponent } from './mapa/mapa.component';
 import { HomepageComponent } from './homepage/homepage.component';
+import { EventComponent } from './event/event.component';
 
 const routes: Routes = [
   { path: '', component: HomepageComponent },
@@ -20,6 +21,11 @@ const routes: Routes = [
     component: EntryComponent,
   },
   { path: 'mapa', component: MapaComponent },
+  {
+    path: 'events',
+    component: EventComponent,
+    data: { animation: 'isRight'}
+  }
 ];
 
 @NgModule({
