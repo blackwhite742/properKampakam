@@ -95,8 +95,10 @@ export class AddToDbComponent implements OnInit,OnChanges {
 
       if(r){
         this.messageService.add({severity:'success', summary:`Zapis ${prompt}`, detail:`Zapis je bil uspešno ${prompt}.`});
-        this.editData=formContent as EntryInterface;
-        this.editDataChange.emit(this.editData);
+        if(this.editData){
+          this.editData=formContent as EntryInterface;
+          this.editDataChange.emit(this.editData);
+        }
         this.form.reset();
       }
       else
