@@ -1,0 +1,19 @@
+main {
+  background: url('../../assets/jpg/activity/koncert2.jpg');
+  height: 100%;
+  width: auto;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: auto;
+  min-height: 100vh;
+}
+
+.forma {
+  background: white;
+  opacity: 0.8;
+  border-radius: 10px;
+  border: solid wheat 5;
+  border-style: solid;
+  padding: 1rem;
+}

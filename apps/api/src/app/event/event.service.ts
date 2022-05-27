@@ -14,7 +14,7 @@ export class EventService {
   }
 
   async getAll(){
-    return await this.eventRepository.find();
+    return await this.eventRepository.find({relations:['municipality'],order:{date:"ASC"}});
   }
 
   async getId(givenId:number){

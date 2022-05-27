@@ -21,8 +21,15 @@ export class EntryService {
   }
 
   async getAll(){
-    const ans:Entry[]=await this.entryRepository.find();
-    return ans;
+    //const ans:any=await this.entryRepository.find({relations:['municipality','entry_has_category','category']});
+    return await this.entryRepository.find();
+
+    /* const query = this.entryRepository.createQueryBuilder('e');
+
+    query.innerJoinAndSelect("municipality", "m", "m.id=e.municipality_id");
+    query.innerJoin("entry_has_category", "ehc", "ehc.entry_id=e.id");
+    query.innerJoinAndSelect("category","c","c.id=ehc.category_id");
+    return await query.getRawMany(); */
   }
 
   async getId(givenId){

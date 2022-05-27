@@ -8,11 +8,12 @@ import {
 } from "typeorm";
 import { Category } from "./category.entity";
 import { Municipality } from "./municipality.entity";
+import { PrimaryGeneratedColumn } from 'typeorm';
 
 @Index("fk_event_municipality1_idx", ["municipalityId"], {})
 @Entity("event", { schema: "mydb" })
 export class Event {
-  @Column("int", { primary: true, name: "id" })
+  @PrimaryGeneratedColumn({ type: "int", name: "id" })
   id: number;
 
   @Column("varchar", { name: "name", nullable: true, length: 45 })

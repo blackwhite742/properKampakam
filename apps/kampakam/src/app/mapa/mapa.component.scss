@@ -1,3 +1,84 @@
-.active{
-    fill: orange;
+.active {
+  filter: drop-shadow(0.35rem 0.35rem 0.4rem rgba(0, 0, 0, 0.5));
+  fill: orange;
+}
+
+.textNotranjska,
+.textGoriška,
+.textObala,
+.textDolenjska,
+.textOsrednja,
+.textGorenjska,
+.textZasavska,
+.textPosavska,
+.textSavinjska,
+.textKoroska,
+.textStajerska,
+.textPomurska {
+  display: none;
+}
+#Koroška-2:hover {
+  .textKoroska {
+    display: block;
+  }
+}
+#Štajerska-2:hover {
+  .textStajerska {
+    display: block;
+  }
+}
+
+#Prekmurje-2:hover {
+  .textPomurska {
+    display: block;
+  }
+}
+
+#Zasavska-2:hover {
+  .textZasavska {
+    display: block;
+  }
+}
+
+#Posavska-2:hover {
+  .textPosavska {
+    display: block;
+  }
+}
+#Savinjska-2:hover {
+  .textSavinjska {
+    display: block;
+  }
+}
+
+#Notranjska-2:hover {
+  .textNotranjska {
+    display: block;
+  }
+}
+
+#Goriška-2:hover {
+  .textGoriška {
+    display: block;
+  }
+}
+#Obala-2:hover {
+  .textObala {
+    display: block;
+  }
+}
+#Dolenjska-2:hover {
+  .textDolenjska {
+    display: block;
+  }
+}
+#Osrednja-2:hover {
+  .textOsrednja {
+    display: block;
+  }
+}
+#Gorenjska-2:hover {
+  .textGorenjska {
+    display: block;
+  }
 }
