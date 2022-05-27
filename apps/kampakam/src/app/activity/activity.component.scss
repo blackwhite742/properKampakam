@@ -1,3 +1,13 @@
+
+/*
+Example for custom styling of PrimeNg component
+:host ::ng-deep {
+  .greenBg.p-multiselect .p-multiselect-label{
+    background: green;
+  }
+}
+*/
+
 main {
   background: url('../../assets/jpg/activity/bowling2.jpg');
   height: 100%;
