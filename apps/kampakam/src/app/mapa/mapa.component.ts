@@ -23,4 +23,8 @@ export class MapaComponent implements OnInit {
     }
     this.regionChange.emit(this.chosenRegion);
   }
+
+  debug(){
+    console.log("Chosen region: " + this.chosenRegion);
+  }
 }
