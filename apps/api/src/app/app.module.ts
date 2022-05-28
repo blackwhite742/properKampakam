@@ -26,12 +26,15 @@ import { EventModule } from './event/event.module';
 import {EntryHasCategory} from './entities/entryHasCategory.entity';
 import { EntryHasCategoryModule } from './entry-has-category/entry-has-category.module';
 import { EntryHasCategoryController } from './entry-has-category/entry-has-category.controller';
+import { Tag } from './entities/tag.entity';
+import { TagController } from './tag/tag.controller';
+import { TagModule } from './tag/tag.module';
 
 @Module({
   imports: [
     TypeOrmModule.forRoot({
       ...DbConfig,
-      entities:[Entry,Category,Municipality,Region,MainCategory,Event,EntryHasCategory],
+      entities:[Entry,Category,Municipality,Region,MainCategory,Event,EntryHasCategory,Tag],
       synchronize:true,
       autoLoadEntities:true
     }),
@@ -40,9 +43,10 @@ import { EntryHasCategoryController } from './entry-has-category/entry-has-categ
     MunicipalityModule,
     RegionModule,
     EventModule,
-    EntryHasCategoryModule
+    EntryHasCategoryModule,
+    TagModule
   ],
-  controllers: [AppController,EntryController, CategoryController, MunicipalityController, RegionController, EventController, EntryHasCategoryController],
+  controllers: [AppController,EntryController, CategoryController, MunicipalityController, RegionController, EventController, EntryHasCategoryController, TagController],
   providers: [AppService,EntryService],
 })
 export class AppModule {}

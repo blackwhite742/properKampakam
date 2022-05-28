@@ -18,6 +18,7 @@
             <tr><td>Letni čas: {{entryData.season}}</tr>
             <tr><td>Opis: {{entryData.description}}</td></tr>
             <tr><td>Občina: {{entryData.municipalityId}}</td></tr> <!-- TODO JOIN in api, so it show the municipality name-->
+            <tr><td>Oznake: <span *ngFor="let tag of entryData.tags">{{tag.name}} </span></td></tr>
           </div>
         </tbody>
       </table>

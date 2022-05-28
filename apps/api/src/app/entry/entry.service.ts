@@ -22,7 +22,7 @@ export class EntryService {
 
   async getAll(){
     //const ans:any=await this.entryRepository.find({relations:['municipality','entry_has_category','category']});
-    return await this.entryRepository.find();
+    return await this.entryRepository.find({relations:['tags']});
 
     /* const query = this.entryRepository.createQueryBuilder('e');
 
@@ -33,7 +33,7 @@ export class EntryService {
   }
 
   async getId(givenId){
-    const ans:Entry=await this.entryRepository.findOneOrFail({where:{id:givenId}});
+    const ans:Entry=await this.entryRepository.findOneOrFail({relations:["tags"],where:{id:givenId}});
 
     const temp1:boolean=ans.accessibility?true:false;
     const temp2:boolean=ans.accomodation?true:false;
@@ -51,6 +51,7 @@ export class EntryService {
       description:ans.description,
       image:ans.image,
       municipalityId:ans.municipalityId,
+      tags:ans.tags
     } as Entry
   }
 

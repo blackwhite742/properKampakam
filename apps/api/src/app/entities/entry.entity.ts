@@ -1,6 +1,6 @@
 import { Category } from './category.entity';
 import { Municipality } from './municipality.entity';
-import {EntryHasCategory} from './entryHasCategory.entity';
+import { Tag } from './tag.entity';
 import {
   Column,
   Entity,
@@ -9,7 +9,7 @@ import {
   ManyToMany,
   ManyToOne,
   PrimaryGeneratedColumn,
-  OneToMany
+  JoinTable
 } from "typeorm";
 
 @Index("fk_entry_municipality1_idx", ["municipalityId"], {})
@@ -51,6 +51,15 @@ export class Entry {
   })
   @JoinColumn([{ name: "municipality_id", referencedColumnName: "id" }])
   municipality: Municipality;
+
+  @ManyToMany(() => Tag, (tag) => tag.entries, {cascade:true})
+  @JoinTable({
+    name: "entry_has_tag",
+    joinColumns: [{ name: "entry_id", referencedColumnName: "id" }],
+    inverseJoinColumns: [{ name: "tag_name", referencedColumnName: "name" }],
+    schema: "mydb",
+  })
+  tags: Tag[];
 
 }
 
