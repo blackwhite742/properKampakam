@@ -12,7 +12,8 @@ export class TagService {
   ){}
 
   async getAll(){
-    return await this.tagRepository.find();
+    const ans=await this.tagRepository.find();
+    return ans.map((el:any)=>el.name);
   }
 
 }

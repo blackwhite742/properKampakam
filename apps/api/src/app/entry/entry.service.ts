@@ -153,7 +153,8 @@ export class EntryService {
 
   //Patch
   async editEntry(data:DbEntry){
-
+    //TODO FIX edit
+    //console.log("Patch recieved data: ",data);
     const entryObj:any={...data};
     delete entryObj.categories
 

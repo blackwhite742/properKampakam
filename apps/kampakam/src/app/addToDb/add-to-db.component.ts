@@ -18,6 +18,7 @@ const ENTRY_FORM_FIELDS = {
   image: [''],
   municipalityId: [''],
   categories: [null],
+  tags: ['']
 };
 
 @Component({
@@ -40,6 +41,7 @@ export class AddToDbComponent implements OnInit,OnChanges {
   checked3=false;
   selectedMunicipality: number;
   municipalities: any;
+  tags:string[];
 
   // Form options and selections
   munOptions:any;
@@ -70,15 +72,30 @@ export class AddToDbComponent implements OnInit,OnChanges {
 
       const temp:any={...this.editData,municipalityId:[this.editData.municipalityId]};
 
+      temp.tags=temp.tags.map((el:any)=>el.name)
+      console.log("Temp is",temp);
       this.form.patchValue(temp);
 
     }
   }
 
-  async submit() {
+  modelReset(){
+    this.checked=false;
+    this.checked1=false;
+    this.checked3=false;
+  }
 
+  async submit() {
+    console.log("Edit data",this.editData);
     const formContent=this.form.getRawValue();
     formContent.municipalityId=formContent.municipalityId[0];
+
+    console.log("Form content:",formContent);
+    const temp:any[]=[];
+    formContent.tags?.forEach((el:any) => {
+      temp.push({name:el})
+    });
+    formContent.tags=temp;
 
     const path = `/api/entry/${this.editData?'edit':'add'}`;
     const prompt=this.editData?'posodobljen':'dodan';
@@ -100,6 +117,7 @@ export class AddToDbComponent implements OnInit,OnChanges {
           this.editDataChange.emit(this.editData);
         }
         this.form.reset();
+        this.modelReset();
       }
       else
         this.messageService.add({severity:'danger', summary:'Napaka', detail:`Prišlo je do napake - ${r}.`}); //TODO maybe dont print r

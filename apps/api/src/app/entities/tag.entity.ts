@@ -6,6 +6,9 @@ export class Tag {
   @Column("varchar", { primary: true, name: "name", length: 50 })
   name: string;
 
-  @ManyToMany(() => Entry, (entry) => entry.tags)
+  @ManyToMany(() => Entry, (entry) => entry.tags, {
+    onDelete: "NO ACTION",
+    onUpdate: "CASCADE",
+  })
   entries: Entry[];
 }

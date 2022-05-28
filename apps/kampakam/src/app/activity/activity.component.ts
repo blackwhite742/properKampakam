@@ -17,6 +17,7 @@ const GENERATOR_FORM_FIELDS = {
   season: [''],
   name: [''],
   municipality: [''],
+  tags: [''],
 };
 
 interface MunMap{
@@ -60,6 +61,10 @@ export class ActivityComponent implements OnInit {
   selectedSeason: string;
   selectedMunicipalities: any[];
 
+  tags:any;
+  filteredSuggestions:any[];
+  tagSuggestions:any;
+
   //Dialog
   queryResult:any;
   popupDisplay=false;
@@ -69,7 +74,9 @@ export class ActivityComponent implements OnInit {
   municipalityKeys:MunMap=MUNICIPALITY_KEYS;
 
   async ngOnInit() {
-
+    this.breakpointObserver.observe(["(max-width:992px)"]).subscribe((res:BreakpointState)=>{
+      this.bigDisplay=!res.matches;
+    })
     this.regOptions = [{label:"Vse regije",value:null},...MUNICIPALITIES]
 
     this.seasons = [
@@ -100,9 +107,9 @@ export class ActivityComponent implements OnInit {
       this.http.get(`/api/category/getAll`)
     );
 
-    this.breakpointObserver.observe(["(max-width:992px)"]).subscribe((res:BreakpointState)=>{
-      this.bigDisplay=!res.matches;
-    })
+    this.tagSuggestions= await firstValueFrom(
+      this.http.get(`/api/tag/getAll`)
+    )
   }
 
   async submit() {
@@ -136,6 +143,19 @@ export class ActivityComponent implements OnInit {
       this.regions=null;
       this.munOptions=[];
     }
+  }
+
+  search(event:any){
+    const filtered: any[] = [];
+    const query = event.query;
+    for (let i = 0; i < this.tagSuggestions.length; i++) {
+      const country = this.tagSuggestions[i];
+      if (country.toLowerCase().indexOf(query.toLowerCase()) == 0) {
+        filtered.push(country);
+      }
+    }
+
+    this.filteredSuggestions = filtered;
   }
 
   debug(){

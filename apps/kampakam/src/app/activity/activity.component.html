@@ -113,7 +113,15 @@
           >
           </p-multiSelect>
         </div>
+        <div class="formField">
+          <h6>Oznake</h6>
+          <p-autoComplete formControlName="tags" [(ngModel)]="tags" [suggestions]="filteredSuggestions"
+          (completeMethod)="search($event)" [multiple]="true"
+          styleClass="w-100"></p-autoComplete>
+        </div>
       </div>
+
+
 
       <button pButton label="Poišči" (click)="submit()" class="mt-1 w-75 mx-auto"></button>
 
