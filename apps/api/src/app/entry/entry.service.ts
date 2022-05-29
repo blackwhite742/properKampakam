@@ -90,7 +90,6 @@ export class EntryService {
   }
 
   async getSpecific(data:Partial<DbEntry>){
-
     const query=this.entryRepository.createQueryBuilder('e');
 
     query.distinct(true);
@@ -100,6 +99,7 @@ export class EntryService {
     query.innerJoinAndSelect("municipality","m", "m.id = e.municipality_id");
     query.innerJoinAndSelect("region","r", "r.id = m.region_id");
     query.leftJoin("entry_has_category","ehc","ehc.entry_id = e.id");
+    query.leftJoin("entry_has_tag","eht","eht.entry_id = e.id");
 
 
 
@@ -134,6 +134,10 @@ export class EntryService {
 
     if(data.categories){
       query.andWhere("ehc.category_id IN(:...ids)",{ids:data.categories});
+    }
+
+    if(data.tags && data.tags.length > 0){
+      query.andWhere("eht.tag_name IN(:...tags)",{tags:data.tags});
     }
 
     //console.log(query.getQuery());
