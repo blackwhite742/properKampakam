@@ -11,4 +11,9 @@ export class TagController {
   getAll(){
     return this.tagService.getAll();
   }
+
+  @Get('getAllCount')
+  getAllCount(){
+    return this.tagService.getAllCount();
+  }
 }

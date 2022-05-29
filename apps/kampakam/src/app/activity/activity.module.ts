@@ -16,7 +16,7 @@ import { MapaModule } from '../mapa/mapa.module';
 import {SelectButtonModule} from 'primeng/selectbutton';
 import { ActivityService } from './activity.service';
 import {AutoCompleteModule} from 'primeng/autocomplete';
-
+import { TagModule } from 'primeng/tag';
 
 @NgModule({
   declarations: [ActivityComponent],
@@ -36,7 +36,8 @@ import {AutoCompleteModule} from 'primeng/autocomplete';
     NavbarModule,
     MapaModule,
     SelectButtonModule,
-    AutoCompleteModule
+    AutoCompleteModule,
+    TagModule
   ],
   providers:[
     ActivityService

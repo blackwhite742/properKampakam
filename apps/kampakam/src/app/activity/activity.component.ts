@@ -7,6 +7,7 @@ import { firstValueFrom } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
 import { MainService } from '../../shared/services/main.service';
+import { DbTagCount } from '../../../../../libs/interfaces/tag.interface';
 
 const GENERATOR_FORM_FIELDS = {
   regions: [''],
@@ -38,6 +39,7 @@ export class ActivityComponent implements OnInit {
     private mainService:MainService
   ) {}
 
+
   items: MegaMenuItem[];
   seasons: any[];
 
@@ -61,8 +63,8 @@ export class ActivityComponent implements OnInit {
   selectedSeason: string;
   selectedMunicipalities: any[];
 
-  tags:any;
-  filteredSuggestions:any[];
+  tags:any=[];
+  filteredSuggestions:DbTagCount[];
   tagSuggestions:any;
 
   //Dialog
@@ -72,6 +74,11 @@ export class ActivityComponent implements OnInit {
   bigDisplay:boolean;
 
   municipalityKeys:MunMap=MUNICIPALITY_KEYS;
+
+  math=Math;
+
+  //Guard
+  loaded:boolean;
 
   async ngOnInit() {
     this.breakpointObserver.observe(["(max-width:992px)"]).subscribe((res:BreakpointState)=>{
@@ -108,8 +115,9 @@ export class ActivityComponent implements OnInit {
     );
 
     this.tagSuggestions= await firstValueFrom(
-      this.http.get(`/api/tag/getAll`)
+      this.http.get(`/api/tag/getAllCount`)
     )
+    this.loaded=true;
   }
 
   async submit() {
@@ -146,16 +154,23 @@ export class ActivityComponent implements OnInit {
   }
 
   search(event:any){
-    const filtered: any[] = [];
-    const query = event.query;
-    for (let i = 0; i < this.tagSuggestions.length; i++) {
-      const country = this.tagSuggestions[i];
-      if (country.toLowerCase().indexOf(query.toLowerCase()) == 0) {
-        filtered.push(country);
-      }
+    this.filteredSuggestions=this.tagSuggestions.filter((tag:any)=>tag.name.toLowerCase().indexOf(event.query.toLowerCase())==0);
+  }
+
+  tagQuickSelect(tag:any){
+    if(!this.tags.find((el:any)=>el.name==tag.name))
+      this.tags=[...this.tags,{name:tag.name}]
+    else{
+      console.log(this.tags.splice(this.tags.findIndex((el:any)=>el.name==tag.name),1));
+      this.tags=[...this.tags]
     }
 
-    this.filteredSuggestions = filtered;
+  }
+
+  isTagSelected(tagName:any){
+    if(this.tags.find((el:any)=>el.name==tagName))
+      return true;
+    return false;
   }
 
   debug(){

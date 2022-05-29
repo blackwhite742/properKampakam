@@ -91,7 +91,6 @@ export class EntryService {
 
   async getSpecific(data:Partial<DbEntry>){
     const query=this.entryRepository.createQueryBuilder('e');
-
     query.distinct(true);
 
 
@@ -137,7 +136,7 @@ export class EntryService {
     }
 
     if(data.tags && data.tags.length > 0){
-      query.andWhere("eht.tag_name IN(:...tags)",{tags:data.tags});
+      query.andWhere("eht.tag_name IN(:...tags)",{tags:data.tags.map((el:any)=>el.name)});
     }
 
     //console.log(query.getQuery());

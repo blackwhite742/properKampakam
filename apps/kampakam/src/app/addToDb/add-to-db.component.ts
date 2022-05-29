@@ -73,7 +73,6 @@ export class AddToDbComponent implements OnInit,OnChanges {
       const temp:any={...this.editData,municipalityId:[this.editData.municipalityId]};
 
       temp.tags=temp.tags.map((el:any)=>el.name)
-      console.log("Temp is",temp);
       this.form.patchValue(temp);
 
     }
