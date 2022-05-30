@@ -16,7 +16,9 @@ export class EntryHasCategoryService {
   }
 
   async getUserCategories(id:number){
-    return await this.entryHasCategoryRepository.find({select:['categoryId'],where: {entryId:id}})
+    const ans = await this.entryHasCategoryRepository.find({where:{entryId:id}});
+    const temp = ans.map(el=>el.categoryId);
+    return temp;
   }
 
   async assignPair(entryId:number, categoryId:number){
@@ -31,7 +33,14 @@ export class EntryHasCategoryService {
   }
 
   async wipeByEntryId(entryId:number){
-    return await this.entryHasCategoryRepository.delete({entryId})
+    const ans=await this.entryHasCategoryRepository.createQueryBuilder()
+    .delete()
+    .from(EntryHasCategory)
+    .where("entry_id = :id",{id:entryId})
+    .execute();
+    return ans
   }
+
+
 
 }

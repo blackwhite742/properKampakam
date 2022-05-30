@@ -22,7 +22,7 @@ export class EntryService {
 
   async getAll(){
     //const ans:any=await this.entryRepository.find({relations:['municipality','entry_has_category','category']});
-    return await this.entryRepository.find();
+    return await this.entryRepository.find({relations:['tags']});
 
     /* const query = this.entryRepository.createQueryBuilder('e');
 
@@ -33,7 +33,7 @@ export class EntryService {
   }
 
   async getId(givenId){
-    const ans:Entry=await this.entryRepository.findOneOrFail({where:{id:givenId}});
+    const ans:Entry=await this.entryRepository.findOneOrFail({relations:["tags"],where:{id:givenId}});
 
     const temp1:boolean=ans.accessibility?true:false;
     const temp2:boolean=ans.accomodation?true:false;
@@ -51,6 +51,7 @@ export class EntryService {
       description:ans.description,
       image:ans.image,
       municipalityId:ans.municipalityId,
+      tags:ans.tags
     } as Entry
   }
 
@@ -89,9 +90,7 @@ export class EntryService {
   }
 
   async getSpecific(data:Partial<DbEntry>){
-
     const query=this.entryRepository.createQueryBuilder('e');
-
     query.distinct(true);
 
 
@@ -99,6 +98,7 @@ export class EntryService {
     query.innerJoinAndSelect("municipality","m", "m.id = e.municipality_id");
     query.innerJoinAndSelect("region","r", "r.id = m.region_id");
     query.leftJoin("entry_has_category","ehc","ehc.entry_id = e.id");
+    query.leftJoin("entry_has_tag","eht","eht.entry_id = e.id");
 
 
 
@@ -135,6 +135,10 @@ export class EntryService {
       query.andWhere("ehc.category_id IN(:...ids)",{ids:data.categories});
     }
 
+    if(data.tags && data.tags.length > 0){
+      query.andWhere("eht.tag_name IN(:...tags)",{tags:data.tags.map((el:any)=>el.name)});
+    }
+
     //console.log(query.getQuery());
 
 
@@ -152,12 +156,12 @@ export class EntryService {
 
   //Patch
   async editEntry(data:DbEntry){
-
     const entryObj:any={...data};
     delete entryObj.categories
 
+
     if(data.id && data.categories){
-      this.entryRepository.update(data.id,entryObj as Entry);
+      this.entryRepository.save(entryObj as Entry);
       await this.entryHasCategoryService.wipeByEntryId(data.id);
       this.entryHasCategoryService.assignMultipleCategories(data.id,data.categories as number[]);
     }

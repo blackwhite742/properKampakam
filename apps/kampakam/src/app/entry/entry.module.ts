@@ -5,7 +5,6 @@ import {ButtonModule} from 'primeng/button';
 import { EntryEditDialogModule } from './entry-edit-dialog/entry-edit-dialog.module';
 import { NavbarModule } from '../navbar/navbar.module';
 
-
 @NgModule({
   declarations: [EntryComponent],
   imports: [

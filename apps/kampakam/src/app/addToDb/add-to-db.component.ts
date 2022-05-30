@@ -18,6 +18,7 @@ const ENTRY_FORM_FIELDS = {
   image: [''],
   municipalityId: [''],
   categories: [null],
+  tags: ['']
 };
 
 @Component({
@@ -40,10 +41,11 @@ export class AddToDbComponent implements OnInit,OnChanges {
   checked3=false;
   selectedMunicipality: number;
   municipalities: any;
+  tags:string[];
 
   // Form options and selections
   munOptions:any;
-  selectedCategories: number;
+  selectedCategories: any=[];
   categories: any;
 
   constructor(
@@ -65,20 +67,33 @@ export class AddToDbComponent implements OnInit,OnChanges {
     );
   }
 
-  ngOnChanges(changes: SimpleChanges) {
+  async ngOnChanges(changes: SimpleChanges) {
     if(changes['editData'] && !changes['editData']['firstChange']){
+      const temp1=await firstValueFrom(this.http.get(`/api/entryHasCategory/entryCategories/${this.editData.id}`));
+      this.selectedCategories=temp1;
+      const temp:any={...this.editData,municipalityId:[this.editData.municipalityId],selectedCategories:this.selectedCategories};
 
-      const temp:any={...this.editData,municipalityId:[this.editData.municipalityId]};
+      temp.tags=temp.tags.map((el:any)=>el.name)
 
       this.form.patchValue(temp);
 
     }
   }
 
-  async submit() {
+  modelReset(){
+    this.checked=false;
+    this.checked1=false;
+    this.checked3=false;
+  }
 
+  async submit() {
     const formContent=this.form.getRawValue();
     formContent.municipalityId=formContent.municipalityId[0];
+    const temp:any[]=[];
+    formContent.tags?.forEach((el:any) => {
+      temp.push({name:el})
+    });
+    formContent.tags=temp;
 
     const path = `/api/entry/${this.editData?'edit':'add'}`;
     const prompt=this.editData?'posodobljen':'dodan';
@@ -100,6 +115,7 @@ export class AddToDbComponent implements OnInit,OnChanges {
           this.editDataChange.emit(this.editData);
         }
         this.form.reset();
+        this.modelReset();
       }
       else
         this.messageService.add({severity:'danger', summary:'Napaka', detail:`Prišlo je do napake - ${r}.`}); //TODO maybe dont print r

@@ -8,6 +8,12 @@ Example for custom styling of PrimeNg component
 }
 */
 
+:host ::ng-deep{
+  .tagActive > span {
+    background: #E94F37 !important;
+  }
+}
+
 main {
   background: url('../../assets/jpg/activity/bowling2.jpg');
   height: 100%;
@@ -38,4 +44,8 @@ nav {
 
 .lessBold{
   font-weight: lighter;
+}
+
+.tag:hover{
+  cursor:pointer;
 }

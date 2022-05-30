@@ -7,6 +7,7 @@ import { firstValueFrom } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
 import { MainService } from '../../shared/services/main.service';
+import { DbTagCount } from '../../../../../libs/interfaces/tag.interface';
 
 const GENERATOR_FORM_FIELDS = {
   regions: [''],
@@ -17,6 +18,7 @@ const GENERATOR_FORM_FIELDS = {
   season: [''],
   name: [''],
   municipality: [''],
+  tags: [''],
 };
 
 interface MunMap{
@@ -36,6 +38,7 @@ export class ActivityComponent implements OnInit {
     private breakpointObserver: BreakpointObserver,
     private mainService:MainService
   ) {}
+
 
   items: MegaMenuItem[];
   seasons: any[];
@@ -60,6 +63,10 @@ export class ActivityComponent implements OnInit {
   selectedSeason: string;
   selectedMunicipalities: any[];
 
+  tags:any=[];
+  filteredSuggestions:DbTagCount[];
+  tagSuggestions:any;
+
   //Dialog
   queryResult:any;
   popupDisplay=false;
@@ -68,8 +75,15 @@ export class ActivityComponent implements OnInit {
 
   municipalityKeys:MunMap=MUNICIPALITY_KEYS;
 
-  async ngOnInit() {
+  math=Math;
 
+  //Guard
+  loaded:boolean;
+
+  async ngOnInit() {
+    this.breakpointObserver.observe(["(max-width:992px)"]).subscribe((res:BreakpointState)=>{
+      this.bigDisplay=!res.matches;
+    })
     this.regOptions = [{label:"Vse regije",value:null},...MUNICIPALITIES]
 
     this.seasons = [
@@ -100,9 +114,10 @@ export class ActivityComponent implements OnInit {
       this.http.get(`/api/category/getAll`)
     );
 
-    this.breakpointObserver.observe(["(max-width:992px)"]).subscribe((res:BreakpointState)=>{
-      this.bigDisplay=!res.matches;
-    })
+    this.tagSuggestions= await firstValueFrom(
+      this.http.get(`/api/tag/getAllCount`)
+    )
+    this.loaded=true;
   }
 
   async submit() {
@@ -136,6 +151,25 @@ export class ActivityComponent implements OnInit {
       this.regions=null;
       this.munOptions=[];
     }
+  }
+
+  search(event:any){
+    this.filteredSuggestions=this.tagSuggestions.filter((tag:any)=>tag.name.toLowerCase().indexOf(event.query.toLowerCase())==0);
+  }
+
+  tagQuickSelect(tag:any){
+    if(!this.tags.find((el:any)=>el.name==tag.name))
+      this.tags=[...this.tags,{name:tag.name}]
+    else{
+      this.tags=[...this.tags]
+    }
+
+  }
+
+  isTagSelected(tagName:any){
+    if(this.tags.find((el:any)=>el.name==tagName))
+      return true;
+    return false;
   }
 
   debug(){
