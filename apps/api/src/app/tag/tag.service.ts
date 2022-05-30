@@ -27,4 +27,14 @@ export class TagService {
     return ans;
   }
 
+
+  //Delete
+  async dropTagsByEntryId(id:number){
+    const query=this.tagRepository.createQueryBuilder('t')
+    query.delete()
+    query.innerJoin("entry_has_tag","eht","eht.tag_name=t.name"); //TODO access eht repository directly
+    query.where("eht.entry_id=:id",{id})
+    return await query.delete().execute();
+  }
+
 }

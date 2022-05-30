@@ -45,7 +45,7 @@ export class AddToDbComponent implements OnInit,OnChanges {
 
   // Form options and selections
   munOptions:any;
-  selectedCategories: number;
+  selectedCategories: any=[];
   categories: any;
 
   constructor(
@@ -67,12 +67,14 @@ export class AddToDbComponent implements OnInit,OnChanges {
     );
   }
 
-  ngOnChanges(changes: SimpleChanges) {
+  async ngOnChanges(changes: SimpleChanges) {
     if(changes['editData'] && !changes['editData']['firstChange']){
-
-      const temp:any={...this.editData,municipalityId:[this.editData.municipalityId]};
+      const temp1=await firstValueFrom(this.http.get(`/api/entryHasCategory/entryCategories/${this.editData.id}`));
+      this.selectedCategories=temp1;
+      const temp:any={...this.editData,municipalityId:[this.editData.municipalityId],selectedCategories:this.selectedCategories};
 
       temp.tags=temp.tags.map((el:any)=>el.name)
+
       this.form.patchValue(temp);
 
     }
@@ -85,11 +87,8 @@ export class AddToDbComponent implements OnInit,OnChanges {
   }
 
   async submit() {
-    console.log("Edit data",this.editData);
     const formContent=this.form.getRawValue();
     formContent.municipalityId=formContent.municipalityId[0];
-
-    console.log("Form content:",formContent);
     const temp:any[]=[];
     formContent.tags?.forEach((el:any) => {
       temp.push({name:el})

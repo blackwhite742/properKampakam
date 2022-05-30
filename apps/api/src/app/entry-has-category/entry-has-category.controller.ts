@@ -22,6 +22,13 @@ export class EntryHasCategoryController {
     return await this.entryHasCategoryService.getAll();
   }
 
+  @Get('entryCategories/:id')
+  async getByEntryId(
+    @Param('id')id:number
+  ){
+    return this.entryHasCategoryService.getUserCategories(id);
+  }
+
   @Delete('wipeByEntryId/:id')
   async wipeByEntryId(
     @Param('id')id:number

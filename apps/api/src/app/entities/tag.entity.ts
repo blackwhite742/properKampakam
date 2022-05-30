@@ -7,7 +7,7 @@ export class Tag {
   name: string;
 
   @ManyToMany(() => Entry, (entry) => entry.tags, {
-    onDelete: "NO ACTION",
+    onDelete: "CASCADE",
     onUpdate: "CASCADE",
   })
   entries: Entry[];

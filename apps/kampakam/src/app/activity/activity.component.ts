@@ -161,7 +161,6 @@ export class ActivityComponent implements OnInit {
     if(!this.tags.find((el:any)=>el.name==tag.name))
       this.tags=[...this.tags,{name:tag.name}]
     else{
-      console.log(this.tags.splice(this.tags.findIndex((el:any)=>el.name==tag.name),1));
       this.tags=[...this.tags]
     }
 

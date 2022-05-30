@@ -1,4 +1,4 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Delete, Body } from '@nestjs/common';
 import { TagService } from './tag.service';
 
 @Controller('tag')
@@ -16,4 +16,12 @@ export class TagController {
   getAllCount(){
     return this.tagService.getAllCount();
   }
+
+  @Delete('dropTagsByEntryId')
+  dropTags(
+    @Body()id:number
+  ){
+    return this.tagService.dropTagsByEntryId(id);
+  }
+
 }

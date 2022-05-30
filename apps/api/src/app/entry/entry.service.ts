@@ -156,13 +156,12 @@ export class EntryService {
 
   //Patch
   async editEntry(data:DbEntry){
-    //TODO FIX edit
-    //console.log("Patch recieved data: ",data);
     const entryObj:any={...data};
     delete entryObj.categories
 
+
     if(data.id && data.categories){
-      this.entryRepository.update(data.id,entryObj as Entry);
+      this.entryRepository.save(entryObj as Entry);
       await this.entryHasCategoryService.wipeByEntryId(data.id);
       this.entryHasCategoryService.assignMultipleCategories(data.id,data.categories as number[]);
     }
