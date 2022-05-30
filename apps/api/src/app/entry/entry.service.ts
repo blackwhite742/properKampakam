@@ -93,7 +93,6 @@ export class EntryService {
     const query=this.entryRepository.createQueryBuilder('e');
     query.distinct(true);
 
-
     //Relations
     query.innerJoinAndSelect("municipality","m", "m.id = e.municipality_id");
     query.innerJoinAndSelect("region","r", "r.id = m.region_id");

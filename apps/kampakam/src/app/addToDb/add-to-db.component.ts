@@ -5,19 +5,21 @@ import { firstValueFrom, first } from 'rxjs';
 import { MUNICIPALITIES } from '../../assets/municipalities';
 import { EntryInterface } from '../../assets/interfaces/entry.interface';
 import {MessageService} from 'primeng/api';
+import {Validators} from '@angular/forms';
+
 
 const ENTRY_FORM_FIELDS = {
   id: [null],
-  name:[''],
-  location: [''],
+  name:['',[Validators.required]],
+  location: ['',[Validators.required]],
   price: [''],
   accessibility: [''],
-  season: [''],
+  season: ['',[Validators.required]],
   accomodation: [''],
-  description: [''],
-  image: [''],
-  municipalityId: [''],
-  categories: [null],
+  description: ['',[Validators.required]],
+  image: ['',[Validators.required]],
+  municipalityId: ['',[Validators.required]],
+  categories: [null,[Validators.required]],
   tags: ['']
 };
 
