@@ -17,3 +17,38 @@ main {
   border-style: solid;
   padding: 1rem;
 }
+
+.event-grid-item {
+  margin: 0.5em;
+  border: 1px solid #dee2e6;
+
+  .event-grid-item-top,
+  .event-grid-item-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  img {
+    width: 75%;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    margin: 2rem 0;
+  }
+
+  .event-grid-item-content {
+    text-align: center;
+  }
+
+  .event-price {
+    font-size: 1.5rem;
+    font-weight: 600;
+  }
+}
+
+.card {
+  padding: 2rem;
+  box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14),
+    0 1px 3px 0 rgba(0, 0, 0, 0.12);
+  border-radius: 4px;
+  margin-bottom: 2rem;
+}

@@ -1,4 +1,3 @@
-
 <main>
   <kampakam-navbar></kampakam-navbar>
   <div class="container pb-5">
@@ -6,34 +5,40 @@
       <!-- Filter here -->
       <div class="card mt-4">
         <p-dataView #dv [value]="data" [paginator]="true" [rows]="10">
-
-          <ng-template let-event pTemplate="listItem">
-
-            <div class="event-list-item">
-            <div class="col-10">
-                <div class="event-name">
-                  {{event.name}}
-                </div>
-
-
-                <div class="event-date">
-                  Datum: {{event.date | date:'dd-MM-YYYY HH:MM:SS'}}
-                </div>
-
-                <div class="event-price">
-                  Plačljivo: <i [ngClass]="event.price ? 'pi pi-check greenIcon' : 'pi pi-times redIcon'"></i>
-                </div>
-
-                <div class="event-accomodation">
-                  Kraj: {{event.municipality.name }}
-                </div>
-            </div>
-
-            </div>
+          <ng-template pTemplate="header">
+            <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
           </ng-template>
 
+          <ng-template let-event pTemplate="gridItem">
+            <div class="col-4">
+              <div class="event-grid-item card">
+                <div class="event-grid-item-top">
+                  <div class="event-name">
+                    {{ event.name }}
+                  </div>
+                </div>
+                <div class="event-grid-item-content">
+                  <div class="event-image">
+                    <img
+                      src="https://www.slovenskenovice.si/media/images/20210918/1029210.2e16d0ba.fill-256x256.jpg"
+                    />
+                  </div>
+                  <div class="event-price">
+                    Plačljivo:
+                    <i
+                      [ngClass]="
+                        event.price
+                          ? 'pi pi-check greenIcon'
+                          : 'pi pi-times redIcon'
+                      "
+                    ></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ng-template>
         </p-dataView>
-        </div>
+      </div>
     </div>
   </div>
 </main>
