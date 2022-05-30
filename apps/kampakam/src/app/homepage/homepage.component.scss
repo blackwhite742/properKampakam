@@ -1,14 +1,13 @@
-@import url("https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap');
 
 .landing {
-  font-family: "Major Mono Display", monospace;
+  font-family: 'Major Mono Display', monospace;
   font-weight: bolder;
   font-size: 3.5vw;
   overflow-y: hidden;
   overflow-x: hidden;
   color: white;
 }
-
 
 .rightside,
 .leftside {
@@ -25,7 +24,7 @@
 
 .rightside {
   background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url("../../assets/jpg/activity/koncert3.jpg");
+    url('../../assets/jpg/activity/koncert3.jpg');
   background-position: center;
   background-repeat: no-repeat; /* Do not repeat the image */
   background-size: cover;
@@ -33,7 +32,7 @@
 }
 .leftside {
   background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url("../../assets/jpg/activity/bowling.jpg");
+    url('../../assets/jpg/activity/BRIDGE.jpg');
   background-position: top;
   background-repeat: no-repeat; /* Do not repeat the image */
   background-size: cover;
