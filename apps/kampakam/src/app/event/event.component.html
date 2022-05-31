@@ -1,16 +1,35 @@
+<link rel="stylesheet" href="https://unpkg.com/primeflex@3.1.2/primeflex.css" />
+
 <main>
   <kampakam-navbar></kampakam-navbar>
   <div class="container pb-5">
-    <div class="forma justify-content-center align-items-center">
+    <div class="forma">
       <!-- Filter here -->
-      <div class="card mt-4">
-        <p-dataView #dv [value]="data" [paginator]="true" [rows]="10">
+      <div class="card">
+        <p-dataView
+          #dv
+          [value]="data"
+          [paginator]="true"
+          [rows]="10"
+          layout="grid"
+        >
           <ng-template pTemplate="header">
-            <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
+            <div
+              class="flex flex-column md:flex-row md:justify-content-between"
+            >
+              <span class="p-float-label">
+                <input
+                  id="float-input"
+                  type="text"
+                  class="p-inputtext-lg"
+                  pInputText
+                />
+                <label for="float-input">Išči po imenu</label>
+              </span>
+            </div>
           </ng-template>
-
           <ng-template let-event pTemplate="gridItem">
-            <div class="col-4">
+            <div class="lg:col-4 md:col-4">
               <div class="event-grid-item card">
                 <div class="event-grid-item-top">
                   <div class="event-name">
@@ -23,8 +42,10 @@
                       src="https://www.slovenskenovice.si/media/images/20210918/1029210.2e16d0ba.fill-256x256.jpg"
                     />
                   </div>
+                </div>
+                <div class="event-grid-item-bottom">
                   <div class="event-price">
-                    Plačljivo:
+                    Cena:
                     <i
                       [ngClass]="
                         event.price

@@ -1,5 +1,5 @@
 main {
-  background: url('../../assets/jpg/activity/koncert2.jpg');
+  background: url('../../assets/jpg/activity/event.jpg');
   height: 100%;
   width: auto;
   background-position: center;
@@ -11,7 +11,7 @@ main {
 
 .forma {
   background: white;
-  opacity: 0.8;
+  opacity: 1;
   border-radius: 10px;
   border: solid wheat 5;
   border-style: solid;
@@ -51,4 +51,8 @@ main {
     0 1px 3px 0 rgba(0, 0, 0, 0.12);
   border-radius: 4px;
   margin-bottom: 2rem;
+}
+
+.event-image {
+  opacity: 1;
 }
