@@ -5,12 +5,12 @@
   <div class="container pb-5">
     <div class="forma">
       <!-- Filter here -->
-      <div class="card">
+      <div class="card1">
         <p-dataView
           #dv
           [value]="data"
           [paginator]="true"
-          [rows]="10"
+          [rows]="12"
           layout="grid"
         >
           <ng-template pTemplate="header">
@@ -28,32 +28,28 @@
               </span>
             </div>
           </ng-template>
-          <ng-template let-event pTemplate="gridItem">
+          <ng-template let-event pTemplate="gridItem" class="grid">
             <div class="lg:col-4 md:col-4">
               <div class="event-grid-item card">
-                <div class="event-grid-item-top">
-                  <div class="event-name">
-                    {{ event.name }}
-                  </div>
-                </div>
+                <div class="event-grid-item-top">Vlado Kreslin</div>
                 <div class="event-grid-item-content">
                   <div class="event-image">
-                    <img
-                      src="https://www.slovenskenovice.si/media/images/20210918/1029210.2e16d0ba.fill-256x256.jpg"
-                    />
+                    <a
+                      href="https://www.eventim.si/si/vstopnice/vlado-kreslin-ljubljana-krizanke-580516/event.html"
+                    >
+                      <img
+                        class="hover"
+                        src="https://content.eventim.com/static/uploaded/at/9/n/z/0/9nz0_210_280.webp"
+                      />
+                    </a>
+                    <div class="event-name">Kulturni dom Mengeš</div>
                   </div>
                 </div>
-                <div class="event-grid-item-bottom">
-                  <div class="event-price">
-                    Cena:
-                    <i
-                      [ngClass]="
-                        event.price
-                          ? 'pi pi-check greenIcon'
-                          : 'pi pi-times redIcon'
-                      "
-                    ></i>
+                <div class="row event-grid-item-bottom">
+                  <div class="event-date">
+                    {{ event.date | date: 'd/MM/YYYY hh:mm' }}
                   </div>
+                  <div class="event-place">Ljubljana</div>
                 </div>
               </div>
             </div>
