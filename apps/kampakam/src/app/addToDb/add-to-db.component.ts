@@ -73,7 +73,7 @@ export class AddToDbComponent implements OnInit,OnChanges {
     if(changes['editData'] && !changes['editData']['firstChange']){
       const temp1=await firstValueFrom(this.http.get(`/api/entryHasCategory/entryCategories/${this.editData.id}`));
       this.selectedCategories=temp1;
-      const temp:any={...this.editData,municipalityId:[this.editData.municipalityId],selectedCategories:this.selectedCategories};
+      const temp:any={...this.editData,municipalityId:[this.editData.municipality.id],selectedCategories:this.selectedCategories};
 
       temp.tags=temp.tags.map((el:any)=>el.name)
 
@@ -108,12 +108,15 @@ export class AddToDbComponent implements OnInit,OnChanges {
       req=this.http.post(path, formContent);
     }
 
-    await req.pipe(first()).subscribe(r=>{
+    await req.pipe(first()).subscribe(async (r:any)=>{
 
       if(r){
         this.messageService.add({severity:'success', summary:`Zapis ${prompt}`, detail:`Zapis je bil uspešno ${prompt}.`});
         if(this.editData){
-          this.editData=formContent as EntryInterface;
+
+          const selMun=await firstValueFrom(this.http.get(`/api/municipality/id/${r.municipalityId}`));
+          this.editData={...r,municipality:selMun} as EntryInterface;
+
           this.editDataChange.emit(this.editData);
         }
         this.form.reset();
