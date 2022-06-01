@@ -20,6 +20,24 @@ export class EntryComponent implements OnInit,OnChanges {
   editData:EntryInterface;
   givenId:any;
 
+  images:any;
+
+  //TODO
+  responsiveOptions:any[] = [
+    {
+        breakpoint: '1024px',
+        numVisible: 5
+    },
+    {
+        breakpoint: '768px',
+        numVisible: 3
+    },
+    {
+        breakpoint: '560px',
+        numVisible: 1
+    }
+];
+
 
   //Flags
   loaded=false;
@@ -39,6 +57,7 @@ export class EntryComponent implements OnInit,OnChanges {
           this.id=params.get('id')
           this.entryData=await firstValueFrom(this.http.get('/api/entry/getWithCat/'+this.id));
           this.loaded=true;
+          this.images=await firstValueFrom(this.http.get('/api/image/entry/'+this.id));
         }
       );
     }

@@ -1,9 +1,19 @@
 <kampakam-navbar *ngIf="displayNavbar"></kampakam-navbar>
 <div class="container">
   <div class="row">
+    <!-- {{images | json}} -->
+    <!-- <img src="{{entryData?.image}}" width="300px" height="300px"/> -->
+    <p-galleria [value]="images" [responsiveOptions]="responsiveOptions" [showThumbnails]="false" [showItemNavigators]="true" [circular]="true" [containerStyle]="{'max-width': '640px'}">
+      <ng-template pTemplate="item" let-item>
+        <img src="{{item.src}}" [alt]="'trash'" style="width: 100%;"/>
+      </ng-template>
 
-    <img src="{{entryData?.image}}" width="300px" height="300px"/>
-
+      <ng-template pTemplate="thumbnail" let-item>
+        <div class="grid grid-nogutter justify-content-center">
+            <img [src]="item.src" style="width: 100%;" />
+        </div>
+    </ng-template>
+    </p-galleria>
   </div>
   <div class="row">
     <div class="col-11">

@@ -1,6 +1,8 @@
 import { Category } from './category.entity';
 import { Municipality } from './municipality.entity';
 import { Tag } from './tag.entity';
+import { Image } from './image.entity';
+import { OneToMany } from 'typeorm';
 import {
   Column,
   Entity,
@@ -61,6 +63,9 @@ export class Entry {
   })
   tags: Tag[];
 
+
+  @OneToMany(() => Image, (image) => image.entry)
+  images: Image[];
 }
 
 export interface EntryDbInterface extends Entry{
