@@ -58,7 +58,7 @@ export class EntryService {
   async getByIdWithCategory(id:number){
     //TODO merge with getId function (optional params)
 
-    const ans:Entry=await this.entryRepository.findOneOrFail({where:{id}});
+    const ans:Entry=await this.entryRepository.findOneOrFail({relations:['municipality','tags'],where:{id}});
     const cats:any=await this.entryHasCategoryService.getUserCategories(id);
     const temp1:boolean=ans.accessibility?true:false;
     const temp2:boolean=ans.accomodation?true:false;
@@ -79,8 +79,9 @@ export class EntryService {
       season:ans.season,
       description:ans.description,
       image:ans.image,
-      municipalityId:ans.municipalityId,
-      categories:catIds
+      municipality:ans.municipality,
+      tags:ans.tags,
+      categories:cats
     }
     return ans;
   }
@@ -92,7 +93,6 @@ export class EntryService {
   async getSpecific(data:Partial<DbEntry>){
     const query=this.entryRepository.createQueryBuilder('e');
     query.distinct(true);
-
 
     //Relations
     query.innerJoinAndSelect("municipality","m", "m.id = e.municipality_id");
@@ -161,11 +161,14 @@ export class EntryService {
 
 
     if(data.id && data.categories){
-      this.entryRepository.save(entryObj as Entry);
+
+      const ans:any = await this.entryRepository.save(entryObj as Entry);
       await this.entryHasCategoryService.wipeByEntryId(data.id);
       this.entryHasCategoryService.assignMultipleCategories(data.id,data.categories as number[]);
+      ans['categories'] = data.categories?data.categories:[];
+      return ans
     }
-    return true;
+    return false;
   }
 
 }
