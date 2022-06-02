@@ -38,7 +38,7 @@ export class Entry {
   @Column("tinyint", { name: "accomodation", nullable: true })
   accomodation: boolean | null;
 
-  @Column("varchar", { name: "description", nullable: true, length: 45 })
+  @Column("varchar", { name: "description", nullable: true, length: 500 })
   description: string | null;
 
   @Column("varchar", { name: "image", nullable: true, length: 100 })

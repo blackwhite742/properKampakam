@@ -5,6 +5,8 @@ import {ButtonModule} from 'primeng/button';
 import { EntryEditDialogModule } from './entry-edit-dialog/entry-edit-dialog.module';
 import { NavbarModule } from '../navbar/navbar.module';
 import {GalleriaModule} from 'primeng/galleria';
+import { TagModule } from 'primeng/tag';
+
 
 @NgModule({
   declarations: [EntryComponent],
@@ -13,7 +15,8 @@ import {GalleriaModule} from 'primeng/galleria';
     ButtonModule,
     EntryEditDialogModule,
     NavbarModule,
-    GalleriaModule
+    GalleriaModule,
+    TagModule
   ],
   exports:[EntryComponent]
 })
