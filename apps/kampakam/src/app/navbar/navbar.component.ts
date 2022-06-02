@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { EntryInterface } from '../../assets/interfaces/entry.interface';
 import { firstValueFrom, map, first } from 'rxjs';
 import { Router } from '@angular/router';
+import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
 
 @Component({
   selector: 'kampakam-navbar',
@@ -15,10 +16,21 @@ export class NavbarComponent implements OnInit {
   items: MegaMenuItem[];
   private entryId: any;
   model: any;
+  bigDisplay: boolean;
+  constructor(
+    private http: HttpClient,
+    public router: Router,
+    private breakpointObserver: BreakpointObserver
+  ) {}
 
-  constructor(private http: HttpClient, public router: Router) {}
+  ngOnInit(): void {
+    this.breakpointObserver
+      .observe(['(max-width:992px)'])
+      .subscribe((res: BreakpointState) => {
+        this.bigDisplay = !res.matches;
+      });
+  }
 
-  ngOnInit(): void {}
   async getRandom() {
     const temp: any = await firstValueFrom(this.http.get(`/api/entry/random`));
     this.entryId = temp[0].id;
