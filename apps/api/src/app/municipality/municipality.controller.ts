@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param } from '@nestjs/common';
 import { MunicipalityService } from './municipality.service';
 
 @Controller('municipality')
@@ -10,6 +10,13 @@ export class MunicipalityController {
     {
 
     }
+
+  @Get('/id/:id')
+  async getById(
+    @Param('id')id:number
+  ){
+    return this.municipalityService.getById(id);
+  }
 
   @Get('/getAll')
   async getAll(){

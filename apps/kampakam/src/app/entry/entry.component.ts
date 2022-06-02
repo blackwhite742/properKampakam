@@ -37,7 +37,7 @@ export class EntryComponent implements OnInit,OnChanges {
         async params=>{
           this.loaded=false;
           this.id=params.get('id')
-          this.entryData=await firstValueFrom(this.http.get('/api/entry/id/'+this.id));
+          this.entryData=await firstValueFrom(this.http.get('/api/entry/getWithCat/'+this.id));
           this.loaded=true;
         }
       );
@@ -47,7 +47,7 @@ export class EntryComponent implements OnInit,OnChanges {
   async ngOnChanges(){
     if(this.passedId){
       this.loaded=false;
-      this.entryData=await firstValueFrom(this.http.get('/api/entry/id/'+this.passedId));
+      this.entryData=await firstValueFrom(this.http.get('/api/entry/getWithCat/'+this.passedId));
       this.loaded=true;
     }
   }

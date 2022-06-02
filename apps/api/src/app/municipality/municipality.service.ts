@@ -14,6 +14,10 @@ export class MunicipalityService {
     return await this.municipalityRepository.find();
   }
 
+  async getById(id:number){
+    return await this.municipalityRepository.findOne({id});
+  }
+
   async getByRegion() {
     const ans = await this.municipalityRepository.find({
       relations: ['region'],

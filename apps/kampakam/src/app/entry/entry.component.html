@@ -5,7 +5,6 @@
     <img src="{{entryData?.image}}" width="300px" height="300px"/>
 
   </div>
-
   <div class="row">
     <div class="col-11">
       <table class="table border-bottom-0">
@@ -17,7 +16,7 @@
             <tr><td>Nastanitev: <i [ngClass]="entryData.accomodation ? 'pi pi-check greenIcon' : 'pi pi-times redIcon'"></i> </td></tr>
             <tr><td>Letni čas: {{entryData.season}}</tr>
             <tr><td>Opis: {{entryData.description}}</td></tr>
-            <tr><td>Občina: {{entryData.municipalityId}}</td></tr> <!-- TODO JOIN in api, so it show the municipality name-->
+            <tr><td>Občina: {{entryData.municipality?.name}}</td></tr>
             <tr><td>Oznake: <span *ngFor="let tag of entryData.tags">{{tag.name}} </span></td></tr>
           </div>
         </tbody>

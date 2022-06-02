@@ -11,7 +11,7 @@ export interface EntryInterface{
   accomodation:boolean,
   description:string,
   image:string,
-  municipalityId:number
+  municipality:any
 }
 
 export interface EntryInterfaceForm{
