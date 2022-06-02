@@ -23,7 +23,7 @@ export class Entry {
   @Column("varchar", { name: "name", nullable: true, length: 45 })
   name: string | null;
 
-  @Column("varchar", { name: "location", nullable: true, length: 45 })
+  @Column("varchar", { name: "location", nullable: true, length: 100 })
   location: string | null;
 
   @Column("tinyint", { name: "price", nullable: true, width: 1 })
@@ -41,7 +41,7 @@ export class Entry {
   @Column("varchar", { name: "description", nullable: true, length: 500 })
   description: string | null;
 
-  @Column("varchar", { name: "image", nullable: true, length: 100 })
+  @Column("varchar", { name: "image", nullable: true, length: 200 })
   image: string | null;
 
   @Column("int", { name: "municipality_id", nullable: true })
