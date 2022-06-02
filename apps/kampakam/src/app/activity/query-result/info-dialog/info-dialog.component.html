@@ -1,4 +1,4 @@
-<p-dialog [(visible)]="display" (onHide)="closeDialog()">
+<p-dialog [(visible)]="display" (onHide)="closeDialog()" styleClass="headerNoPadding">
   <div *ngIf="entryId">
     <kampakam-entry [passedId]="entryId" [displayNavbar]="false"></kampakam-entry>
   </div>

@@ -17,30 +17,34 @@
 
     <ng-template let-entry pTemplate="listItem">
       <div class="entry-list-item">
-      <div class="col-10">
-          <div class="entry-name">
-            {{entry.e_name}}
+        <div class="container">
+          <div class="row">
+        <div class="col-12 col-sm-8 col-lg-10">
+            <div class="entry-name">
+              {{entry.e_name}}
+            </div>
+
+
+            <div class="entry-municipality">
+              {{entry.m_name}} ({{entry.r_name}})
+            </div>
+
+            <div class="entry-price">
+              Plačljivo: <i [ngClass]="entry.e_price ? 'pi pi-check greenIcon' : 'pi pi-times redIcon'"></i>
+            </div>
+
+            <div class="entry-accomodation">
+              Nastanitev: <i [ngClass]="entry.e_accomodation ? 'pi pi-check greenIcon' : 'pi pi-times redIcon'"></i>
+            </div>
+        </div>
+
+        <div class="col-12 col-sm-4 col-lg-2 my-auto">
+          <div class="entry-info">
+            <button pButton label="Več informacij" class="butt" (click)="getInfo(entry.e_id)"></button>
           </div>
-
-
-          <div class="entry-municipality">
-            {{entry.m_name}} ({{entry.r_name}})
-          </div>
-
-          <div class="entry-price">
-            Plačljivo: <i [ngClass]="entry.e_price ? 'pi pi-check greenIcon' : 'pi pi-times redIcon'"></i>
-          </div>
-
-          <div class="entry-accomodation">
-            Nastanitev: <i [ngClass]="entry.e_accomodation ? 'pi pi-check greenIcon' : 'pi pi-times redIcon'"></i>
-          </div>
-      </div>
-
-      <div class="col-2">
-        <div class="entry-info">
-          <button pButton label="Več informacij" (click)="getInfo(entry.e_id)"></button>
         </div>
       </div>
+        </div>
       </div>
     </ng-template>
 
