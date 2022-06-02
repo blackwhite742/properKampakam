@@ -9,6 +9,18 @@
   color: white;
 }
 
+.svg1 {
+  width: 90%;
+  display: flex;
+  align-items: flex-start;
+  height: 50%;
+}
+.svg2 {
+  width: 45%;
+  display: flex;
+  align-items: flex-start;
+  height: 50%;
+}
 .rightside,
 .leftside {
   height: 50vh;
@@ -24,18 +36,19 @@
 
 .rightside {
   background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url('../../assets/jpg/activity/koncert3.jpg');
+    url('../../assets/jpg/activity/event.jpg');
   background-position: center;
   background-repeat: no-repeat; /* Do not repeat the image */
   background-size: cover;
   cursor: pointer;
 }
 .leftside {
-  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url('../../assets/jpg/activity/BRIDGE.jpg');
-  background-position: top;
+  background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+    url('../../assets/jpg/activity/velka.jpg');
+
   background-repeat: no-repeat; /* Do not repeat the image */
   background-size: cover;
+  background-position: top 0px bottom 500px;
   cursor: pointer;
 }
 
