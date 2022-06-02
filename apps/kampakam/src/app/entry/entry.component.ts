@@ -68,6 +68,7 @@ export class EntryComponent implements OnInit,OnChanges {
       this.loaded=false;
       this.entryData=await firstValueFrom(this.http.get('/api/entry/getWithCat/'+this.passedId));
       this.loaded=true;
+      this.images=await firstValueFrom(this.http.get('/api/image/entry/'+this.passedId));
     }
   }
 

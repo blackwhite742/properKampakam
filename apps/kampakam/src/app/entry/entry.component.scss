@@ -6,3 +6,15 @@
   color: green;
 }
 
+.desc {
+  border: 0.1em solid black;
+  border-radius: 1em;
+}
+
+:host ::ng-deep{
+
+  .gal{
+    display: none;
+  }
+
+}
