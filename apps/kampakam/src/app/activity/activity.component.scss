@@ -1,4 +1,3 @@
-
 /*
 Example for custom styling of PrimeNg component
 :host ::ng-deep {
@@ -8,44 +7,54 @@ Example for custom styling of PrimeNg component
 }
 */
 
-:host ::ng-deep{
+:host ::ng-deep {
   .tagActive > span {
-    background: #E94F37 !important;
+    background: #e94f37 !important;
   }
 }
 
 main {
-  background: url('../../assets/jpg/activity/bowling2.jpg');
+  background: linear-gradient(
+      rgba(255, 255, 255, 0.9),
+      rgba(255, 255, 255, 0.9)
+    ),
+    url('../../assets/jpg/activity/velka.jpg');
   height: 100%;
   width: auto;
   background-position: center;
   background-attachment: fixed;
   background-repeat: no-repeat; /* Do not repeat the image */
-  background-size: auto;
+
   min-height: 100vh;
 }
 
 nav {
-  box-shadow:none;
+  box-shadow: none;
 }
 
 .forma {
   background: white;
   opacity: 0.8;
   border-radius: 10px;
-  border: solid wheat 5;
-  border-style: solid;
+
   padding: 1rem;
+  box-shadow: rgba(116, 198, 157, 0.4) 5px 5px,
+    rgba(82, 183, 136, 0.3) 10px 10px, rgba(64, 145, 108, 0.2) 15px 15px,
+    rgba(45, 106, 79, 0.1) 20px 20px, rgba(27, 67, 50, 0.05) 25px 25px;
 }
 
-.formField{
+.formField {
   margin-bottom: 0.7rem;
 }
 
-.lessBold{
+.lessBold {
   font-weight: lighter;
 }
 
-.tag:hover{
-  cursor:pointer;
+.tag:hover {
+  cursor: pointer;
+}
+
+.mapa {
+  padding-top: 5rem;
 }

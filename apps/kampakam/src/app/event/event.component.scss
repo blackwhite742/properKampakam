@@ -1,5 +1,19 @@
+/*
+Example for custom styling of PrimeNg component
+:host ::ng-deep {
+  .greenBg.p-multiselect .p-multiselect-label{
+    background: green;
+  }
+}
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
 main {
-  background: url('../../assets/jpg/activity/koncert2.jpg');
+  background: linear-gradient(
+      rgba(255, 255, 255, 0.6),
+      rgba(255, 255, 255, 0.9)
+    ),
+    url('../../assets/jpg/activity/event.jpg');
   height: 100%;
   width: auto;
   background-position: center;
@@ -7,13 +21,100 @@ main {
   background-repeat: no-repeat; /* Do not repeat the image */
   background-size: auto;
   min-height: 100vh;
+  font-family: 'Open Sans', sans-serif;
 }
 
 .forma {
-  background: white;
-  opacity: 0.8;
-  border-radius: 10px;
-  border: solid wheat 5;
-  border-style: solid;
-  padding: 1rem;
+  border-radius: 1px;
+  background: linear-gradient(
+    90deg,
+    rgba(95, 15, 64, 1) 0%,
+    rgba(154, 3, 30, 1) 35%,
+    rgba(251, 139, 36, 1) 55%,
+    rgba(227, 100, 20, 1) 80%,
+    rgba(15, 76, 92, 1) 100%
+  );
+  opacity: 1;
+
+  box-shadow: rgba(95, 15, 64, 0.4) 5px 5px, rgba(154, 3, 30, 0.3) 10px 10px,
+    rgba(251, 139, 36, 0.2) 5px 15px, rgba(227, 100, 20, 0.1) 20px 20px,
+    rgba(15, 76, 92, 0.05) 25px 25px;
+  padding: 4px;
+}
+.dataview {
+  border-radius: 30px;
+}
+.card {
+  opacity: 0.9;
+  display: flex;
+  justify-content: center;
+}
+.event-grid-item {
+  opacity: 1;
+  margin: 0.5em;
+  border: 1px solid #dee2e6;
+
+  img {
+    width: 75%;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    margin-bottom: 1em;
+    margin-top: 2em;
+  }
+
+  .event-grid-item-content {
+    text-align: center;
+    opacity: 1;
+  }
+
+  .event-price {
+    font-size: 1.5rem;
+    font-weight: 600;
+  }
+}
+
+.card {
+  padding: 2rem;
+  box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14),
+    0 1px 3px 0 rgba(0, 0, 0, 0.12);
+  border-radius: 4px;
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.event-image {
+  opacity: 1 !important;
+}
+
+.event-image {
+  padding-bottom: 2em;
+}
+
+.event-grid-item-top {
+  font-size: 1.5em;
+  font-weight: bolder;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.event-grid-item-bottom {
+  font-size: 1.2em;
+  font-weight: lighter;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  .event-place {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+.event-image:hover .hover {
+  box-shadow: rgba(95, 15, 64, 0.4) 2px 2px, rgba(154, 3, 30, 0.3) 4px 4px,
+    rgba(251, 139, 36, 0.2) 2px 2px, rgba(227, 100, 20, 0.1) 5px 5px,
+    rgba(15, 76, 92, 0.05) 5px 5px;
 }
