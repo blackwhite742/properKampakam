@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { firstValueFrom } from 'rxjs';
 import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
@@ -12,10 +12,15 @@ export class EventComponent implements OnInit {
 
   bigDisplay: boolean;
   layout: string;
+  filterVal:string;
+
   constructor(
     private http: HttpClient,
     private breakpointObserver: BreakpointObserver
   ) {}
+
+  @ViewChild('dv')dv:any;
+  @ViewChild('filterInput')filterInput:any;
 
   async ngOnInit() {
     this.breakpointObserver
@@ -31,5 +36,11 @@ export class EventComponent implements OnInit {
       });
 
     this.data = await firstValueFrom(this.http.get('/api/event/getAll'));
+  }
+
+  debug(data:any){
+    //console.log(data);
+    this.dv.filter(this.filterInput.nativeElement.value);
+    //console.log("Dv is ",this.dv);
   }
 }

@@ -13,20 +13,16 @@
           [paginator]="true"
           [rows]="9"
           [layout]="layout"
+          filterBy="name"
         >
           <ng-template pTemplate="header">
             <div
               class="flex flex-column md:flex-row md:justify-content-between"
             >
-              <span class="p-float-label">
-                <input
-                  id="float-input"
-                  type="text"
-                  class="p-inputtext-lg"
-                  pInputText
-                />
-                <label for="float-input">Išči po imenu</label>
-              </span>
+            <span class="p-input-icon-left p-mb-2 p-mb-md-0">
+              <i class="pi pi-search"></i>
+              <input #filterInput type="search" pInputText placeholder="Search by Name" (input)="debug($event)">
+            </span>
             </div>
           </ng-template>
           <ng-template let-event pTemplate="listItem">
@@ -44,7 +40,7 @@
                 <div
                   class="event-list-detail d-flex flex-column align-items-center"
                 >
-                  <div class="event-name-list">Vlado Kreslin</div>
+                  <div class="event-name-list">{{event.name}}</div>
                   <div class="event-location">Kulturni dom Mengeš</div>
                   <div class="event-date">
                     {{ event.date | date: 'd/MM/YYYY hh:mm' }}
