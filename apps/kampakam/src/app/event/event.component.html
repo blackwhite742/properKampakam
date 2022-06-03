@@ -12,7 +12,7 @@
           [value]="data"
           [paginator]="true"
           [rows]="9"
-          layout="grid"
+          [layout]="layout"
         >
           <ng-template pTemplate="header">
             <div
@@ -27,7 +27,6 @@
                 />
                 <label for="float-input">Išči po imenu</label>
               </span>
-              <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
             </div>
           </ng-template>
           <ng-template let-event pTemplate="listItem">
