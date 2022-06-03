@@ -11,8 +11,8 @@
           #dv
           [value]="data"
           [paginator]="true"
-          [rows]="12"
-          layout="grid"
+          [rows]="9"
+          [layout]="layout"
         >
           <ng-template pTemplate="header">
             <div
@@ -29,6 +29,32 @@
               </span>
             </div>
           </ng-template>
+          <ng-template let-event pTemplate="listItem">
+            <div class="col-12">
+              <div class="event-list-item">
+                <a
+                  href="https://www.eventim.si/si/vstopnice/vlado-kreslin-ljubljana-krizanke-580516/event.html"
+                >
+                  <img
+                    class="hover"
+                    src="https://content.eventim.com/static/uploaded/at/9/n/z/0/9nz0_210_280.webp"
+                  />
+                </a>
+
+                <div
+                  class="event-list-detail d-flex flex-column align-items-center"
+                >
+                  <div class="event-name-list">Vlado Kreslin</div>
+                  <div class="event-location">Kulturni dom Mengeš</div>
+                  <div class="event-date">
+                    {{ event.date | date: 'd/MM/YYYY hh:mm' }}
+                  </div>
+                  <div class="event-place">Ljubljana</div>
+                </div>
+              </div>
+            </div>
+          </ng-template>
+
           <ng-template let-event pTemplate="gridItem" class="grid">
             <div class="lg:col-4 md:col-4">
               <div class="event-grid-item card">

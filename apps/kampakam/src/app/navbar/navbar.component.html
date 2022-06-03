@@ -1,4 +1,7 @@
-<nav class="navbar top navbar-expand-lg navbar-light">
+<nav
+  class="navbar top navbar-expand-lg navbar-light d-flex"
+  [ngClass]="{ 'justify-content-center': !bigDisplay }"
+>
   <a
     class="navbar-brand"
     [routerLink]="['/']"
