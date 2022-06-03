@@ -37,7 +37,6 @@ export class NavbarComponent implements OnInit {
     this.router.navigate([`/entry/${this.entryId}`]);
   }
   hasRoute(route: string) {
-    console.log(this.router.url == route);
     return this.router.url == route;
   }
 }

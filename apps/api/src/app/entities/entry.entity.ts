@@ -1,6 +1,8 @@
 import { Category } from './category.entity';
 import { Municipality } from './municipality.entity';
 import { Tag } from './tag.entity';
+import { Image } from './image.entity';
+import { OneToMany } from 'typeorm';
 import {
   Column,
   Entity,
@@ -21,7 +23,7 @@ export class Entry {
   @Column("varchar", { name: "name", nullable: true, length: 45 })
   name: string | null;
 
-  @Column("varchar", { name: "location", nullable: true, length: 45 })
+  @Column("varchar", { name: "location", nullable: true, length: 100 })
   location: string | null;
 
   @Column("tinyint", { name: "price", nullable: true, width: 1 })
@@ -36,10 +38,10 @@ export class Entry {
   @Column("tinyint", { name: "accomodation", nullable: true })
   accomodation: boolean | null;
 
-  @Column("varchar", { name: "description", nullable: true, length: 45 })
+  @Column("varchar", { name: "description", nullable: true, length: 500 })
   description: string | null;
 
-  @Column("varchar", { name: "image", nullable: true, length: 100 })
+  @Column("varchar", { name: "image", nullable: true, length: 200 })
   image: string | null;
 
   @Column("int", { name: "municipality_id", nullable: true })
@@ -61,6 +63,9 @@ export class Entry {
   })
   tags: Tag[];
 
+
+  @OneToMany(() => Image, (image) => image.entry)
+  images: Image[];
 }
 
 export interface EntryDbInterface extends Entry{
