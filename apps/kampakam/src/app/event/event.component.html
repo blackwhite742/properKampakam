@@ -62,21 +62,20 @@
                 <div class="event-grid-item-content">
                   <div class="event-image">
                     <a
-                      href="https://www.eventim.si/si/vstopnice/vlado-kreslin-ljubljana-krizanke-580516/event.html"
+                      [href]="event.link"
                     >
                       <img
                         class="hover"
-                        src="https://content.eventim.com/static/uploaded/at/9/n/z/0/9nz0_210_280.webp"
-                      />
+                        [src]="event.image"/>
                     </a>
-                    <div class="event-name">Kulturni dom Mengeš</div>
+                    <div class="event-name">{{event.location}}</div>
                   </div>
                 </div>
                 <div class="row event-grid-item-bottom">
                   <div class="event-date">
                     {{ event.date | date: 'd/MM/YYYY hh:mm' }}
                   </div>
-                  <div class="event-place">Ljubljana</div>
+                  <div class="event-place">{{event.municipality.name}</div>
                 </div>
               </div>
             </div>
