@@ -20,10 +20,10 @@ export class Entry {
   @PrimaryGeneratedColumn({ type: "int", name: "id" })
   id: number;
 
-  @Column("varchar", { name: "name", nullable: true, length: 45 })
+  @Column("varchar", { name: "name", nullable: true, length: 100 })
   name: string | null;
 
-  @Column("varchar", { name: "location", nullable: true, length: 100 })
+  @Column("varchar", { name: "location", nullable: true, length: 150 })
   location: string | null;
 
   @Column("tinyint", { name: "price", nullable: true, width: 1 })

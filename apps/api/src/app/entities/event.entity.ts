@@ -16,7 +16,7 @@ export class Event {
   @PrimaryGeneratedColumn({ type: "int", name: "id" })
   id: number;
 
-  @Column("varchar", { name: "name", nullable: true, length: 45 })
+  @Column("varchar", { name: "name", nullable: true, length: 100 })
   name: string | null;
 
   @Column("datetime", { name: "date", nullable: true })
@@ -24,6 +24,15 @@ export class Event {
 
   @Column("tinyint", { name: "price", nullable: true, width: 1 })
   price: boolean | null;
+
+  @Column("varchar", { name: "image", nullable: true, length: 200 })
+  image: string | null;
+
+  @Column("varchar", { name: "link", nullable: true, length: 150 })
+  link: string | null;
+
+  @Column("varchar", { name: "location", nullable: true, length: 150 })
+  location: string | null;
 
   @Column("int", { name: "municipality_id", nullable: true })
   municipalityId: number | null;
