@@ -9,10 +9,19 @@ import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
 })
 export class EventComponent implements OnInit {
   data: any;
+  filteredData:any;
 
   bigDisplay: boolean;
   layout: string;
   filterVal:string;
+
+  fromDate:Date;
+  toDate:Date;
+
+  //Filter flags
+  fromFilterApplied=false;
+  toFilterApplied=false;
+  categoryFilterApplied=false;
 
   constructor(
     private http: HttpClient,
@@ -32,14 +41,45 @@ export class EventComponent implements OnInit {
         } else {
           this.layout = 'list';
         }
-        console.log(this.layout);
       });
 
     this.data = await firstValueFrom(this.http.get('/api/event/getAll'));
+    this.filteredData = this.data;
+  }
+
+  fromDateChange(){
+    this.fromDate?this.fromFilterApplied=true:this.fromFilterApplied=false;
+    this.reapplyFilters();
+  }
+
+  toDateChange(){
+    this.toDate?this.toFilterApplied=true:this.toFilterApplied=false;
+    this.reapplyFilters();
+  }
+
+  reapplyFilters(){
+    this.filteredData=this.data;
+    if(this.fromFilterApplied){
+      this.filteredData=this.filteredData.filter((el:any) => Date.parse(el.date) > this.fromDate.getTime());
+    }
+    if(this.toFilterApplied){
+      this.filteredData=this.filteredData.filter((el:any) => Date.parse(el.date) < this.toDate.getTime());
+    }
+    if(this.categoryFilterApplied){
+      //TODO
+    }
+  }
+
+  resetFilters(){
+    this.filteredData=this.data;
+
+    this.filterInput.nativeElement.value="";
+    this.dv.filter(this.filterInput.nativeElement.value);
+    this.fromDate=null;
+    this.toDate=null;
   }
 
   debug(data:any){
-    //console.log(data);
     this.dv.filter(this.filterInput.nativeElement.value);
     //console.log("Dv is ",this.dv);
   }

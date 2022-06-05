@@ -9,7 +9,7 @@
         <p-dataView
           class="dataview"
           #dv
-          [value]="data"
+          [value]="filteredData"
           [paginator]="true"
           [rows]="9"
           [layout]="layout"
@@ -20,9 +20,12 @@
               class="flex flex-column md:flex-row md:justify-content-between"
             >
             <span class="p-input-icon-left p-mb-2 p-mb-md-0">
-              <i class="pi pi-search"></i>
-              <input #filterInput type="search" pInputText placeholder="Search by Name" (input)="debug($event)">
+              <input #filterInput type="search" pInputText placeholder="Search by Name" (input)="debug($event)" class="form-control">
             </span>
+
+            <p-calendar [(ngModel)]="fromDate" dateFormat="dd/mm/yy" (ngModelChange)="fromDateChange()" [maxDate]="toDate"></p-calendar>
+            <p-calendar [(ngModel)]="toDate" dateFormat="dd/mm/yy" (ngModelChange)="toDateChange()" [minDate]="fromDate"></p-calendar>
+            <button pButton label="Reset" (click)="resetFilters()"></button>
             </div>
           </ng-template>
           <ng-template let-event pTemplate="listItem">
