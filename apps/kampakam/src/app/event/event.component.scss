@@ -179,3 +179,50 @@ main {
   font-weight: bolder;
   font-size: larger;
 }
+
+.event-grid-item {
+  height: 35rem;
+}
+
+.hover {
+  width: 210px;
+  height: 280px;
+  object-fit: cover;
+  aspect-ratio: 1 / 1.1;
+}
+
+.naslov {
+  width: auto;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: center;
+}
+@media only screen and (max-width: 992px) {
+  .hover {
+    width: 70px;
+    height: 100px;
+    object-fit: cover;
+    aspect-ratio: 1 / 2;
+  }
+  .naslov {
+    width: auto;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: center;
+    font-size: 1.1rem;
+  }
+  .naslovcic {
+    text-align: center;
+  }
+}
+.naslovcic {
+  text-align: center;
+}
+@media only screen and (max-width: 667px) {
+  .naslovcic {
+    font-size: 1rem;
+    text-align: center;
+  }
+}

@@ -32,24 +32,19 @@
           <ng-template let-event pTemplate="listItem">
             <div class="col-12">
               <div class="event-list-item">
-                <a
-                  [href]="event.link"
-                >
-                  <img
-                    class="hover"
-                    [src]="event.image"
-                  />
+                <a [href]="event.link">
+                  <img class="hover" [src]="event.image" />
                 </a>
 
                 <div
                   class="event-list-detail d-flex flex-column align-items-center"
                 >
-                  <div class="event-name-list">{{event.name}}</div>
-                  <div class="event-location">{{event.location}}</div>
+                  <div class="event-name-list naslovcic">{{ event.name }}</div>
+                  <div class="event-location">{{ event.location }}</div>
                   <div class="event-date">
                     {{ event.date | date: 'd/MM/YYYY hh:mm' }}
                   </div>
-                  <div class="event-place">{{event.municipality.name}}</div>
+                  <div class="event-place">{{ event.municipality.name }}</div>
                 </div>
               </div>
             </div>
@@ -58,24 +53,22 @@
           <ng-template let-event pTemplate="gridItem" class="grid">
             <div class="lg:col-4 md:col-4">
               <div class="event-grid-item card">
-                <div class="event-grid-item-top">{{event.name}}</div>
+                <div class="event-grid-item-top naslov">
+                  {{ event.name }}
+                </div>
                 <div class="event-grid-item-content">
                   <div class="event-image">
-                    <a
-                      [href]="event.link"
-                    >
-                      <img
-                        class="hover"
-                        [src]="event.image"/>
+                    <a [href]="event.link">
+                      <img class="hover" [src]="event.image" />
                     </a>
-                    <div class="event-name">{{event.location}}</div>
+                    <div class="event-name">{{ event.location }}</div>
                   </div>
                 </div>
                 <div class="row event-grid-item-bottom">
                   <div class="event-date">
                     {{ event.date | date: 'd/MM/YYYY hh:mm' }}
                   </div>
-                  <div class="event-place">{{event.municipality.name}}</div>
+                  <div class="event-place">{{ event.municipality.name }}</div>
                 </div>
               </div>
             </div>
