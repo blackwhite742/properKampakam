@@ -1,5 +1,6 @@
-import { Controller, Get, Param } from '@nestjs/common';
+import { Controller, Get, Param, Body, Post } from '@nestjs/common';
 import { EventService } from './event.service';
+import { Event } from '../entities/event.entity';
 
 @Controller('event')
 export class EventController {
@@ -20,5 +21,12 @@ export class EventController {
   @Get('getAll')
   async getAll(){
     return this.eventService.getAll();
+  }
+
+  @Post('add')
+  async add(
+    @Body()event:Event
+  ){
+    return this.eventService.add(event);
   }
 }

@@ -20,4 +20,12 @@ export class EventService {
   async getId(givenId:number){
     return await this.eventRepository.findOneOrFail({where:{id:givenId}});
   }
+
+
+  //Add
+  async add(event:Event){
+    return await this.eventRepository.save(event);
+  }
+
+
 }

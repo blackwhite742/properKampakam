@@ -31,12 +31,13 @@ import { TagController } from './tag/tag.controller';
 import { TagModule } from './tag/tag.module';
 import { Image } from './entities/image.entity';
 import { ImageModule } from './image/image.module';
+import { EventCategory } from './entities/eventCategory.entity';
 
 @Module({
   imports: [
     TypeOrmModule.forRoot({
       ...DbConfig,
-      entities:[Entry,Category,Municipality,Region,MainCategory,Event,EntryHasCategory,Tag,Image],
+      entities:[Entry,Category,Municipality,Region,MainCategory,Event,EntryHasCategory,Tag,Image,EventCategory],
       synchronize:true,
       autoLoadEntities:true
     }),
