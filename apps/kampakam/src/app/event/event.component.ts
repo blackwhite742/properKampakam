@@ -37,7 +37,7 @@ export class EventComponent implements OnInit {
 
   async ngOnInit() {
     this.breakpointObserver
-      .observe(['(max-width:992px)'])
+      .observe(['(max-width:1200px)'])
       .subscribe((res: BreakpointState) => {
         this.bigDisplay = !res.matches;
         if (this.bigDisplay === true) {
