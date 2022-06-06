@@ -32,6 +32,7 @@ import { TagModule } from './tag/tag.module';
 import { Image } from './entities/image.entity';
 import { ImageModule } from './image/image.module';
 import { EventCategory } from './entities/eventCategory.entity';
+import { EventCategoryModule } from './event-category/event-category.module';
 
 @Module({
   imports: [
@@ -48,7 +49,8 @@ import { EventCategory } from './entities/eventCategory.entity';
     EventModule,
     EntryHasCategoryModule,
     TagModule,
-    ImageModule
+    ImageModule,
+    EventCategoryModule
   ],
   controllers: [AppController,EntryController, CategoryController, MunicipalityController, RegionController, EventController, EntryHasCategoryController, TagController],
   providers: [AppService,EntryService],

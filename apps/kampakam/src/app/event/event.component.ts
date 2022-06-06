@@ -17,6 +17,10 @@ export class EventComponent implements OnInit {
 
   fromDate:Date;
   toDate:Date;
+  selectedCategories:any;
+
+  categoryOptions:any;
+  filteredSuggestions:any;
 
   //Filter flags
   fromFilterApplied=false;
@@ -45,6 +49,7 @@ export class EventComponent implements OnInit {
 
     this.data = await firstValueFrom(this.http.get('/api/event/getAll'));
     this.filteredData = this.data;
+    this.categoryOptions=await firstValueFrom(this.http.get('/api/eventCategory/getAll'));
   }
 
   fromDateChange(){
@@ -66,7 +71,8 @@ export class EventComponent implements OnInit {
       this.filteredData=this.filteredData.filter((el:any) => Date.parse(el.date) < this.toDate.getTime());
     }
     if(this.categoryFilterApplied){
-      //TODO
+      const selCatNames=this.selectedCategories.map((el:any)=>el.name);
+      this.filteredData=this.filteredData.filter((el:any) =>  el.eventCategories.some(cat=>selCatNames.includes(cat.name)));
     }
   }
 
@@ -79,8 +85,21 @@ export class EventComponent implements OnInit {
     this.toDate=null;
   }
 
-  debug(data:any){
+  search(event:any){
+    this.filteredSuggestions=this.categoryOptions.filter((tag:any)=>tag.name.toLowerCase().indexOf(event.query.toLowerCase())==0);
+  }
+
+  filterName(data:any){
     this.dv.filter(this.filterInput.nativeElement.value);
-    //console.log("Dv is ",this.dv);
+  }
+
+  test(event:any){
+    if(!this.selectedCategories.length){
+      this.categoryFilterApplied=false;
+    }
+    else{
+      this.categoryFilterApplied=true;
+    }
+    this.reapplyFilters();
   }
 }
