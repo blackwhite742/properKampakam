@@ -19,18 +19,18 @@
           <!-- TOOLBAR -->
           <ng-template pTemplate="header">
             <div
-              class="flex flex-column md:flex-row md:justify-content-between"
+              class="flex flex-column md:flex-row md:justify-content-between md:align-items-center"
             >
-            <span class="p-input-icon-left p-mb-2 p-mb-md-0">
-              <input #filterInput type="search" pInputText placeholder="Ime dogodka" (input)="filterName($event)" class="form-control">
+            <span class="">
+              <input pInputText #filterInput type="search" pInputText placeholder="Ime dogodka" (input)="filterName($event)" class="form-control">
             </span>
 
             <p-calendar [(ngModel)]="fromDate" dateFormat="dd/mm/yy" (ngModelChange)="fromDateChange()" [maxDate]="toDate" placeholder="Od"></p-calendar>
             <p-calendar [(ngModel)]="toDate" dateFormat="dd/mm/yy" (ngModelChange)="toDateChange()" [minDate]="fromDate" placeholder="Do"></p-calendar>
-            <p-autoComplete [(ngModel)]="selectedCategories"
-            [suggestions]="filteredSuggestions" (completeMethod)="search($event)"
-            field="name" [multiple]="true" placeholder="Izberi kategorije"
-            (ngModelChange)="test($event)"></p-autoComplete>
+            <p-multiSelect [options]="categoryOptions"
+            [(ngModel)]="selectedCategories" optionLabel="name"
+            placeholder="Izberi kategorije" (ngModelChange)="selectCategory($event)"></p-multiSelect>
+
             <button pButton label="Reset" (click)="resetFilters()"></button>
             </div>
           </ng-template>
@@ -53,7 +53,9 @@
                     {{ event.date | date: 'd/MM/YYYY hh:mm' }}
                   </div>
                   <div class="event-place">{{event.municipality.name}}</div>
-                  <span *ngFor="let tag of event.eventCategories"><p-tag [value]="tag.name"></p-tag></span>
+                  <div class="d-flex flexin">
+                    <p-tag *ngFor="let tag of event.eventCategories" [value]="tag.name"></p-tag>
+                  </div>
                 </div>
               </div>
             </div>
@@ -79,7 +81,9 @@
                     {{ event.date | date: 'd/MM/YYYY hh:mm' }}
                   </div>
                   <div class="event-place">{{event.municipality.name}}</div>
-                  <span *ngFor="let tag of event.eventCategories"><p-tag [value]="tag.name"></p-tag></span>
+                  <div class="d-flex flexin">
+                  <p-tag *ngFor="let tag of event.eventCategories" [value]="tag.name" class="me-1"></p-tag>
+                  </div>
                 </div>
               </div>
             </div>

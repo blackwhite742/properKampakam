@@ -7,7 +7,8 @@ import {CalendarModule} from 'primeng/calendar';
 import { FormsModule } from '@angular/forms';
 import { TagModule } from 'primeng/tag';
 import {AutoCompleteModule} from 'primeng/autocomplete';
-
+import {MultiSelectModule} from 'primeng/multiselect';
+import {InputTextModule} from 'primeng/inputtext';
 
 @NgModule({
   declarations: [EventComponent],
@@ -18,7 +19,9 @@ import {AutoCompleteModule} from 'primeng/autocomplete';
     FormsModule,
     CalendarModule,
     TagModule,
-    AutoCompleteModule
+    AutoCompleteModule,
+    MultiSelectModule,
+    InputTextModule
   ],
   exports:[
     EventComponent

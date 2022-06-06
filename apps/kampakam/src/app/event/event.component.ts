@@ -20,7 +20,6 @@ export class EventComponent implements OnInit {
   selectedCategories:any;
 
   categoryOptions:any;
-  filteredSuggestions:any;
 
   //Filter flags
   fromFilterApplied=false;
@@ -83,17 +82,17 @@ export class EventComponent implements OnInit {
     this.dv.filter(this.filterInput.nativeElement.value);
     this.fromDate=null;
     this.toDate=null;
-  }
-
-  search(event:any){
-    this.filteredSuggestions=this.categoryOptions.filter((tag:any)=>tag.name.toLowerCase().indexOf(event.query.toLowerCase())==0);
+    this.fromFilterApplied=false;
+    this.toFilterApplied=false;
+    this.categoryFilterApplied=false;
+    this.selectedCategories=[];
   }
 
   filterName(data:any){
     this.dv.filter(this.filterInput.nativeElement.value);
   }
 
-  test(event:any){
+  selectCategory(event:any){
     if(!this.selectedCategories.length){
       this.categoryFilterApplied=false;
     }
