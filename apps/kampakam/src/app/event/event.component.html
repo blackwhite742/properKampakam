@@ -9,26 +9,34 @@
         <p-dataView
           class="dataview"
           #dv
-          [value]="data"
+          [value]="filteredData"
           [paginator]="true"
           [rows]="9"
           [layout]="layout"
+          filterBy="name"
         >
+
+          <!-- TOOLBAR -->
           <ng-template pTemplate="header">
             <div
-              class="flex flex-column md:flex-row md:justify-content-between"
+              class="flex flex-column md:flex-row md:justify-content-between md:align-items-center"
             >
-              <span class="p-float-label">
-                <input
-                  id="float-input"
-                  type="text"
-                  class="p-inputtext-lg"
-                  pInputText
-                />
-                <label for="float-input">Išči po imenu</label>
-              </span>
+            <span class="">
+              <input pInputText #filterInput type="search" pInputText placeholder="Ime dogodka" (input)="filterName($event)" class="form-control">
+            </span>
+
+            <p-calendar [(ngModel)]="fromDate" dateFormat="dd/mm/yy" (ngModelChange)="fromDateChange()" [maxDate]="toDate" placeholder="Od"></p-calendar>
+            <p-calendar [(ngModel)]="toDate" dateFormat="dd/mm/yy" (ngModelChange)="toDateChange()" [minDate]="fromDate" placeholder="Do"></p-calendar>
+            <p-multiSelect [options]="categoryOptions"
+            [(ngModel)]="selectedCategories" optionLabel="name"
+            placeholder="Izberi kategorije" (ngModelChange)="selectCategory($event)"></p-multiSelect>
+
+            <button pButton label="Reset" (click)="resetFilters()"></button>
             </div>
           </ng-template>
+
+
+          <!-- LIST VIEW -->
           <ng-template let-event pTemplate="listItem">
             <div class="col-12">
               <div class="event-list-item">
@@ -44,12 +52,16 @@
                   <div class="event-date">
                     {{ event.date | date: 'd/MM/YYYY hh:mm' }}
                   </div>
-                  <div class="event-place">{{ event.municipality.name }}</div>
+                  <div class="event-place">{{event.municipality.name}}</div>
+                  <div class="d-flex flexin">
+                    <p-tag *ngFor="let tag of event.eventCategories" [value]="tag.name"></p-tag>
+                  </div>
                 </div>
               </div>
             </div>
           </ng-template>
 
+          <!-- GRID VIEW -->
           <ng-template let-event pTemplate="gridItem" class="grid">
             <div class="lg:col-4 md:col-4">
               <div class="event-grid-item card">
@@ -68,7 +80,10 @@
                   <div class="event-date">
                     {{ event.date | date: 'd/MM/YYYY hh:mm' }}
                   </div>
-                  <div class="event-place">{{ event.municipality.name }}</div>
+                  <div class="event-place">{{event.municipality.name}}</div>
+                  <div class="d-flex flexin">
+                  <p-tag *ngFor="let tag of event.eventCategories" [value]="tag.name" class="me-1"></p-tag>
+                  </div>
                 </div>
               </div>
             </div>

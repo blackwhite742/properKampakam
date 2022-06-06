@@ -5,10 +5,12 @@ import {
   JoinColumn,
   ManyToMany,
   ManyToOne,
+  JoinTable
 } from "typeorm";
 import { Category } from "./category.entity";
 import { Municipality } from "./municipality.entity";
 import { PrimaryGeneratedColumn } from 'typeorm';
+import { EventCategory } from './eventCategory.entity';
 
 @Index("fk_event_municipality1_idx", ["municipalityId"], {})
 @Entity("event", { schema: "mydb" })
@@ -37,8 +39,16 @@ export class Event {
   @Column("int", { name: "municipality_id", nullable: true })
   municipalityId: number | null;
 
-  @ManyToMany(() => Category, (category) => category.events)
-  categories: number[];
+  @ManyToMany(() => EventCategory, (eventCategory) => eventCategory.events)
+  @JoinTable({
+    name: "event_has_eventCategory",
+    joinColumns: [{ name: "event_id", referencedColumnName: "id" }],
+    inverseJoinColumns: [
+      { name: "eventCategory_id", referencedColumnName: "id" },
+    ],
+    schema: "mydb",
+  })
+  eventCategories: EventCategory[];
 
   @ManyToOne(() => Municipality, (municipality) => municipality.events, {
     onDelete: "NO ACTION",

@@ -19,15 +19,6 @@ export class Category {
   @Column("varchar", { name: "name", nullable: true, length: 45 })
   name: string | null;
 
-  @ManyToMany(() => Event, (event) => event.categories)
-  @JoinTable({
-    name: "category_has_event",
-    joinColumns: [{ name: "category_id", referencedColumnName: "id" }],
-    inverseJoinColumns: [{ name: "event_id", referencedColumnName: "id" }],
-    schema: "mydb",
-  })
-  events: Event[];
-
   @ManyToMany(() => MainCategory, (mainCategory) => mainCategory.categories)
   @JoinTable({
     name: "category_has_mainCategory",

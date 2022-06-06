@@ -181,7 +181,7 @@ main {
 }
 
 .event-grid-item {
-  height: 35rem;
+  height: 36rem;
 }
 
 .hover {
@@ -189,6 +189,13 @@ main {
   height: 280px;
   object-fit: cover;
   aspect-ratio: 1 / 1.1;
+}
+
+.flexin {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	align-content: center;
 }
 
 .naslov {
@@ -201,7 +208,7 @@ main {
 @media only screen and (max-width: 1200px) {
   .hover {
     width: 70px;
-    height: 100px;
+    height: 120px;
     object-fit: cover;
     aspect-ratio: 1 / 2;
   }
