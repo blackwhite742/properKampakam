@@ -3,16 +3,9 @@ import { CommonModule } from '@angular/common';
 import { HomepageComponent } from './homepage.component';
 import { RouterModule } from '@angular/router';
 
-
-
 @NgModule({
   declarations: [HomepageComponent],
-  imports: [
-    CommonModule,
-    RouterModule
-  ],
-  exports: [
-    HomepageComponent
-  ]
+  imports: [CommonModule, RouterModule],
+  exports: [HomepageComponent],
 })
-export class HomepageModule { }
+export class HomepageModule {}

@@ -2,11 +2,7 @@
   class="navbar top navbar-expand-lg navbar-light d-flex"
   [ngClass]="{ 'justify-content-center': !bigDisplay }"
 >
-  <a
-    class="navbar-brand"
-    [routerLink]="['/']"
-    *ngIf="!hasRoute('/activityHomePage')"
-  >
+  <a class="navbar-brand" [routerLink]="['/']" *ngIf="hasRoute('/events')">
     <img
       src="../../assets/jpg/activity/GremRdec.svg"
       width="100"
@@ -20,6 +16,15 @@
     [routerLink]="['/']"
     *ngIf="hasRoute('/activityHomePage')"
   >
+    <img
+      src="../../assets/jpg/activity/GremZelen.svg"
+      width="100"
+      height="50"
+      alt=""
+    />
+  </a>
+
+  <a class="navbar-brand" [routerLink]="['/']" *ngIf="hasRoute('/kontakt')">
     <img
       src="../../assets/jpg/activity/GremZelen.svg"
       width="100"

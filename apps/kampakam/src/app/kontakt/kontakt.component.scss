@@ -1,0 +1,38 @@
+main {
+  background: linear-gradient(
+      rgba(255, 255, 255, 0.6),
+      rgba(255, 255, 255, 0.9)
+    ),
+    url('../../assets/jpg/activity/velka.jpg');
+  height: 100%;
+  width: auto;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat; /* Do not repeat the image */
+
+  min-height: 100vh;
+}
+
+.forma {
+  margin: auto;
+  background: white;
+  opacity: 0.8;
+  border-radius: 10px;
+  width: fit-content;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  padding: 10px;
+  padding-top: 25px;
+  padding-bottom: 25px;
+  transform: translate(-50%, -50%);
+
+  box-shadow: rgba(116, 198, 157, 0.4) 5px 5px,
+    rgba(82, 183, 136, 0.3) 10px 10px, rgba(64, 145, 108, 0.2) 15px 15px,
+    rgba(45, 106, 79, 0.1) 20px 20px, rgba(27, 67, 50, 0.05) 25px 25px;
+}
+
+.button {
+  margin: auto;
+  text-align: center;
+}

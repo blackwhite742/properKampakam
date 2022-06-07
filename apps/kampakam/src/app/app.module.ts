@@ -16,6 +16,7 @@ import { ToastModule } from 'primeng/toast';
 import { MainService } from '../shared/services/main.service';
 import { EventModule } from './event/event.module';
 import { FormsModule } from '@angular/forms';
+import { KontaktModule } from './kontakt/kontakt.module';
 
 @NgModule({
   declarations: [AppComponent, FooterComponent],
@@ -32,6 +33,7 @@ import { FormsModule } from '@angular/forms';
     ToastModule,
     EventModule,
     FormsModule,
+    KontaktModule,
     MDBBootstrapModule.forRoot(),
   ],
   schemas: [NO_ERRORS_SCHEMA],
