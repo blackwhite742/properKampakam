@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, OnChanges, SimpleChanges,EventEmitter,Output } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { firstValueFrom, first } from 'rxjs';
 import { MUNICIPALITIES } from '../../assets/municipalities';
@@ -17,7 +17,6 @@ const ENTRY_FORM_FIELDS = {
   season: ['',[Validators.required]],
   accomodation: [''],
   description: ['',[Validators.required]],
-  image: ['',[Validators.required]],
   municipalityId: ['',[Validators.required]],
   categories: [null,[Validators.required]],
   tags: ['']
@@ -58,9 +57,15 @@ export class AddToDbComponent implements OnInit,OnChanges {
 
   }
 
+  get images():FormArray{
+    return <FormArray>this.form.get('images');
+  }
+
   async ngOnInit() {
     this.munOptions=MUNICIPALITIES;
-    this.form = this.formBuilder.group(ENTRY_FORM_FIELDS);
+
+    this.form = this.formBuilder.group({...ENTRY_FORM_FIELDS,images:this.formBuilder.array([this.createImage()],Validators.required)});
+
     this.municipalities = await firstValueFrom(
       this.http.get(`/api/municipality/getAll`)
     );
@@ -127,6 +132,18 @@ export class AddToDbComponent implements OnInit,OnChanges {
     })
 
   }
+
+
+  createImage(){
+    return this.formBuilder.group({
+      src: ['',Validators.required]
+    })
+  }
+
+  addImage(){
+    this.images.push(this.createImage());
+  }
+
 
   debug() {
     console.log(this.form.getRawValue());

@@ -12,7 +12,9 @@ import { InputSwitchModule } from 'primeng/inputswitch';
 import { TreeSelectModule } from 'primeng/treeselect';
 import { MessageService } from 'primeng/api';
 import { NavbarModule } from '../navbar/navbar.module';
-import {ChipsModule} from 'primeng/chips';
+import { ChipsModule } from 'primeng/chips';
+import { BrowserModule } from '@angular/platform-browser';
+
 
 @NgModule({
   declarations: [AddToDbComponent],
@@ -28,7 +30,8 @@ import {ChipsModule} from 'primeng/chips';
     InputSwitchModule,
     TreeSelectModule,
     NavbarModule,
-    ChipsModule
+    ChipsModule,
+    BrowserModule
   ],
   exports: [AddToDbComponent],
   providers:[MessageService]

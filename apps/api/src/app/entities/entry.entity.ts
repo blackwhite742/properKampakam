@@ -64,7 +64,7 @@ export class Entry {
   tags: Tag[];
 
 
-  @OneToMany(() => Image, (image) => image.entry)
+  @OneToMany(() => Image, (image) => image.entry,{cascade:true})
   images: Image[];
 }
 
