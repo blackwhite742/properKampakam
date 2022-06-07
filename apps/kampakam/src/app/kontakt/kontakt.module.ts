@@ -7,7 +7,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { RippleModule } from 'primeng/ripple';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { NavbarModule } from '../navbar/navbar.module';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [KontaktComponent],
   imports: [
@@ -18,6 +18,8 @@ import { NavbarModule } from '../navbar/navbar.module';
     RippleModule,
     InputTextareaModule,
     NavbarModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   exports: [KontaktComponent],
 })
