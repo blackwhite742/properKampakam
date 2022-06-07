@@ -18,7 +18,27 @@ main {
   background: white;
   opacity: 0.8;
   border-radius: 10px;
-  width: fit-content;
+  height: 23.5em;
+  width: 18em;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  padding: 10px;
+  padding-top: 25px;
+  padding-bottom: 25px;
+  transform: translate(-50%, -50%);
+
+  box-shadow: rgba(116, 198, 157, 0.4) 5px 5px,
+    rgba(82, 183, 136, 0.3) 10px 10px, rgba(64, 145, 108, 0.2) 15px 15px,
+    rgba(45, 106, 79, 0.1) 20px 20px, rgba(27, 67, 50, 0.05) 25px 25px;
+}
+
+.forma1 {
+  margin: auto;
+  background: white;
+  opacity: 0.8;
+  border-radius: 1px;
+  width: 18zzem;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -35,4 +55,30 @@ main {
 .button {
   margin: auto;
   text-align: center;
+}
+
+.active {
+  .forma {
+    display: hide;
+  }
+}
+
+.forma1 {
+  height: 23.5em;
+  width: 18em;
+  display: flex;
+  justify-content: center;
+  border-radius: 10px;
+  .pix {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    font-size: 10em;
+    padding-top: 0.2em;
+  }
+
+  .text {
+    font-size: 1.5em;
+    text-align: center;
+  }
 }
