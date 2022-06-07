@@ -1,8 +1,21 @@
 <main>
   <kampakam-navbar></kampakam-navbar>
-  <div class="forma">
+  <div class="forma1" *ngIf="clicked">
+    <div class="container">
+      <div class="row pb-4">
+        <div class="col-12">
+          <span><i class="pix pi pi-telegram"></i></span>
+        </div>
+      </div>
+      <div class="row pb-4">
+        <div class="col-12 text">Hvala, vaše sporočilo je bilo poslano.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="forma" *ngIf="!clicked">
     <div class="container-fluid">
-      <div [formGroup]="form">
+      <form [formGroup]="formData" (ngSubmit)="onSubmit(formData)">
         <div class="row pb-4">
           <div class="col-12">
             <div class="p-inputgroup ng-invalid ng-dirty">
@@ -49,15 +62,15 @@
             <button
               pButton
               pRipple
-              (click)="submit()"
-              [disabled]="!form.valid"
-              type="button"
+              [ngClass]="{ active: clicked === true }"
+              [disabled]="!formData.valid"
+              type="submit"
               label="Pošlji"
               class="p-button-raised p-button-success"
             ></button>
           </div>
         </div>
-      </div>
+      </form>
     </div>
   </div>
 </main>

@@ -64,6 +64,9 @@ main {
 }
 
 .forma1 {
+  animation: fadeInAnimation ease 3s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
   height: 23.5em;
   width: 18em;
   display: flex;
@@ -80,5 +83,13 @@ main {
   .text {
     font-size: 1.5em;
     text-align: center;
+  }
+}
+@keyframes fadeInAnimation {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
   }
 }

@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Validators } from '@angular/forms';
+import { ServicesService } from '../contact.service';
 
 const SPOROCILO = {
   name: ['', [Validators.required]],
-  email: ['', [Validators.email, Validators.required]],
+  email: ['', [Validators.required, Validators.email]],
 
   sporocilo: ['', [Validators.required]],
 };
@@ -15,16 +16,29 @@ const SPOROCILO = {
   styleUrls: ['./kontakt.component.scss'],
 })
 export class KontaktComponent implements OnInit {
-  form: FormGroup;
-
-  constructor(private formBuilder: FormBuilder) {}
+  formData: FormGroup;
+  clicked = false;
+  constructor(
+    private formBuilder: FormBuilder,
+    private contact: ServicesService
+  ) {}
 
   ngOnInit(): void {
-    this.form = this.formBuilder.group(SPOROCILO);
-    console.log(this.form);
+    this.formData = this.formBuilder.group(SPOROCILO);
   }
 
-  submit() {
-    console.log(this.form.getRawValue());
+  onSubmit(formData) {
+    this.clicked = true;
+    const podatki = formData.value;
+    this.contact.PostMessage(podatki).subscribe(
+      (response) => {
+        location.href = 'https://mailthis.to/confirm';
+        console.log(response);
+      },
+      (error) => {
+        console.warn(error.responseText);
+        console.log({ error });
+      }
+    );
   }
 }
