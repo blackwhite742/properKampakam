@@ -1,9 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
 .active {
   filter: drop-shadow(0.35rem 0.35rem 0.4rem rgba(0, 0, 0, 0.5));
-  fill: #E94F37;
+  fill: #e94f37;
 }
 
-.textActive{
+.textActive {
   display: block !important;
 }
 
@@ -22,67 +23,92 @@
   display: none;
 }
 #Koroška-2:hover {
+  cursor: pointer;
   .textKoroska {
     display: block;
   }
 }
 #Štajerska-2:hover {
+  cursor: pointer;
   .textStajerska {
     display: block;
   }
 }
 
 #Prekmurje-2:hover {
+  cursor: pointer;
   .textPomurska {
     display: block;
   }
 }
 
 #Zasavska-2:hover {
+  cursor: pointer;
   .textZasavska {
     display: block;
   }
 }
 
 #Posavska-2:hover {
+  cursor: pointer;
   .textPosavska {
     display: block;
   }
 }
 #Savinjska-2:hover {
+  cursor: pointer;
   .textSavinjska {
     display: block;
   }
 }
 
 #Notranjska-2:hover {
+  cursor: pointer;
   .textNotranjska {
     display: block;
   }
 }
 
 #Goriška-2:hover {
+  cursor: pointer;
   .textGoriška {
     display: block;
   }
 }
 #Obala-2:hover {
+  cursor: pointer;
   .textObala {
     display: block;
   }
 }
 #Dolenjska-2:hover {
+  cursor: pointer;
   .textDolenjska {
     display: block;
   }
 }
 #Osrednja-2:hover {
+  cursor: pointer;
   .textOsrednja {
     display: block;
   }
 }
 #Gorenjska-2:hover {
+  cursor: pointer;
   .textGorenjska {
     display: block;
   }
+}
+
+.naslov {
+  display: block;
+  margin: auto;
+  padding-top: 30px;
+  max-width: 60%;
+  display: flex;
+  justify-content: center;
+}
+
+.container {
+  padding-top: 2.2rem;
 }
