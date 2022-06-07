@@ -13,7 +13,7 @@
 
   <div class="row mb-1">
     <div class="mx-auto">
-    <p-galleria [value]="images" [responsiveOptions]="responsiveOptions" [showThumbnails]="false"
+    <p-galleria *ngIf="imagesLoaded" [value]="images" [responsiveOptions]="responsiveOptions" [showThumbnails]="false"
     [showItemNavigators]="true" [circular]="true" [containerStyle]="{'max-width': '100%'}"
     styleClass="gal">
       <ng-template pTemplate="item" let-item>

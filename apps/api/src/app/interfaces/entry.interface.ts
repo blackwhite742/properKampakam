@@ -11,6 +11,7 @@ export interface DbEntry{
   categories:number[],
   municipality:number[],
   regions:number,
-  tags:string[]
+  tags:string[],
+  images:any
 }
 

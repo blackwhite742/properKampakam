@@ -17,12 +17,12 @@ export class Image {
   @Column("varchar", { name: "src", length: 200 })
   src: string;
 
-  @Column("int", { name: "entry_id" })
+  @Column("int", { name: "entry_id",nullable: true })
   entryId: number;
 
   @ManyToOne(() => Entry, (entry) => entry.images, {
     onDelete: "CASCADE",
-    onUpdate: "CASCADE",
+    onUpdate: "CASCADE", orphanedRowAction: 'delete'
   })
   @JoinColumn([{ name: "entry_id", referencedColumnName: "id" }])
   entry: Entry;

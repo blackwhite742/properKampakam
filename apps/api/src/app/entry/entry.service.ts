@@ -58,7 +58,7 @@ export class EntryService {
   async getByIdWithCategory(id:number){
     //TODO merge with getId function (optional params)
 
-    const ans:Entry=await this.entryRepository.findOneOrFail({relations:['municipality','tags'],where:{id}});
+    const ans:Entry=await this.entryRepository.findOneOrFail({relations:['municipality','tags','images'],where:{id}});
     const cats:any=await this.entryHasCategoryService.getUserCategories(id);
     const temp1:boolean=ans.accessibility?true:false;
     const temp2:boolean=ans.accomodation?true:false;
@@ -81,7 +81,8 @@ export class EntryService {
       image:ans.image,
       municipality:ans.municipality,
       tags:ans.tags,
-      categories:cats
+      categories:cats,
+      images:ans.images
     }
     return ans;
   }
@@ -156,12 +157,11 @@ export class EntryService {
 
   //Patch
   async editEntry(data:DbEntry){
+
     const entryObj:any={...data};
     delete entryObj.categories
 
-
     if(data.id && data.categories){
-
       const ans:any = await this.entryRepository.save(entryObj as Entry);
       await this.entryHasCategoryService.wipeByEntryId(data.id);
       this.entryHasCategoryService.assignMultipleCategories(data.id,data.categories as number[]);
