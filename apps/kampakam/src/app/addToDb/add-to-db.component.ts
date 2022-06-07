@@ -49,6 +49,8 @@ export class AddToDbComponent implements OnInit,OnChanges {
   selectedCategories: any=[];
   categories: any;
 
+  images:FormArray;
+
   constructor(
     private formBuilder: FormBuilder,
     private http: HttpClient,
@@ -57,14 +59,10 @@ export class AddToDbComponent implements OnInit,OnChanges {
 
   }
 
-  get images():FormArray{
-    return <FormArray>this.form.get('images');
-  }
-
   async ngOnInit() {
     this.munOptions=MUNICIPALITIES;
-
-    this.form = this.formBuilder.group({...ENTRY_FORM_FIELDS,images:this.formBuilder.array([this.createImage()],Validators.required)});
+    this.images=this.formBuilder.array([this.createImage()]);
+    this.form = this.formBuilder.group({...ENTRY_FORM_FIELDS,images:this.images});
 
     this.municipalities = await firstValueFrom(
       this.http.get(`/api/municipality/getAll`)
@@ -82,8 +80,14 @@ export class AddToDbComponent implements OnInit,OnChanges {
 
       temp.tags=temp.tags.map((el:any)=>el.name)
 
-      this.form.patchValue(temp);
+      const justSrc=temp.images.map(el=>{return{src:el.src}});
 
+      const fieldImages=temp.images.map(el=>this.createSpecificImage(el));
+
+      this.images=this.formBuilder.array(fieldImages);
+      this.form = this.formBuilder.group({...ENTRY_FORM_FIELDS,images:this.images});
+      const objekat={...temp,images:justSrc};
+      this.form.patchValue(objekat);
     }
   }
 
@@ -107,10 +111,17 @@ export class AddToDbComponent implements OnInit,OnChanges {
 
     let req;
     if(this.editData){
+      formContent.images=formContent.images.map(el=>{
+        if(el.id)return {...el,entryId:this.editData.id}
+        else return {...el,entryId:this.editData.id,id:undefined}
+      });
       req=this.http.patch(path, formContent);
     }
     else{
-      req=this.http.post(path, formContent);
+      formContent.images=formContent.images.map(el=>{
+        return {...el,entryId:undefined,id:undefined}
+      });
+      req=this.http.post(path, {...formContent});
     }
 
     await req.pipe(first()).subscribe(async (r:any)=>{
@@ -136,7 +147,17 @@ export class AddToDbComponent implements OnInit,OnChanges {
 
   createImage(){
     return this.formBuilder.group({
-      src: ['',Validators.required]
+      id:[null],
+      src: ['',Validators.required],
+      entryId:[null]
+    })
+  }
+
+  createSpecificImage(data){
+    return this.formBuilder.group({
+      id:[data.id],
+      src: [data,Validators.required],
+      entryId:[data.entryId]
     })
   }
 
@@ -144,8 +165,14 @@ export class AddToDbComponent implements OnInit,OnChanges {
     this.images.push(this.createImage());
   }
 
+  removeImage(index){
+    this.images.removeAt(index)
+  }
+
 
   debug() {
+    console.log("Images: ",this.images);
+    console.log("Form: ",this.form);
     console.log(this.form.getRawValue());
   }
 }
