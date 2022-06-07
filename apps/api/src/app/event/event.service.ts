@@ -14,10 +14,18 @@ export class EventService {
   }
 
   async getAll(){
-    return await this.eventRepository.find({relations:['municipality'],order:{date:"ASC"}});
+    return await this.eventRepository.find({relations:['municipality','eventCategories'],order:{date:"ASC"}});
   }
 
   async getId(givenId:number){
-    return await this.eventRepository.findOneOrFail({where:{id:givenId}});
+    return await this.eventRepository.findOneOrFail({relations:['municipality','eventCategories'],where:{id:givenId}});
   }
+
+
+  //Add
+  async add(event:Event){
+    return await this.eventRepository.save(event);
+  }
+
+
 }

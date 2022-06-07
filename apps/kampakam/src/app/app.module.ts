@@ -15,7 +15,7 @@ import { MapaModule } from './mapa/mapa.module';
 import { ToastModule } from 'primeng/toast';
 import { MainService } from '../shared/services/main.service';
 import { EventModule } from './event/event.module';
-
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [AppComponent, FooterComponent],
@@ -31,6 +31,7 @@ import { EventModule } from './event/event.module';
     MapaModule,
     ToastModule,
     EventModule,
+    FormsModule,
     MDBBootstrapModule.forRoot(),
   ],
   schemas: [NO_ERRORS_SCHEMA],
