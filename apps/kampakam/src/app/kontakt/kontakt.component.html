@@ -1,0 +1,76 @@
+<main>
+  <kampakam-navbar></kampakam-navbar>
+  <div class="forma1" *ngIf="clicked">
+    <div class="container">
+      <div class="row pb-4">
+        <div class="col-12">
+          <span><i class="pix pi pi-telegram"></i></span>
+        </div>
+      </div>
+      <div class="row pb-4">
+        <div class="col-12 text">Hvala, vaše sporočilo je bilo poslano.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="forma" *ngIf="!clicked">
+    <div class="container-fluid">
+      <form [formGroup]="formData" (ngSubmit)="onSubmit(formData)">
+        <div class="row pb-4">
+          <div class="col-12">
+            <div class="p-inputgroup ng-invalid ng-dirty">
+              <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
+              <input
+                type="text"
+                pInputText
+                placeholder="Ime in priimek"
+                formControlName="name"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="row pb-4">
+          <div class="col-12">
+            <div class="p-inputgroup">
+              <span class="p-inputgroup-addon"><i class="pi pi-at"></i></span>
+              <input
+                type="text"
+                pInputText
+                placeholder="E-pošta"
+                formControlName="email"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="row pb-2">
+          <div class="col-12">
+            <span class="p-float-label">
+              <textarea
+                id="float-input"
+                [rows]="5"
+                [cols]="30"
+                pInputTextarea
+                [autoResize]="true"
+                formControlName="sporocilo"
+              ></textarea>
+              <label for="float-input">Sporočilo</label></span
+            >
+          </div>
+        </div>
+        <div class="row pb-0.5 d-flex justify-content-center">
+          <div class="button">
+            <button
+              pButton
+              pRipple
+              [ngClass]="{ active: clicked === true }"
+              [disabled]="!formData.valid"
+              type="submit"
+              label="Pošlji"
+              class="p-button-raised p-button-success"
+            ></button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</main>

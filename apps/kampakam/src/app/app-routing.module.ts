@@ -7,9 +7,11 @@ import { EntryComponent } from './entry/entry.component';
 import { MapaComponent } from './mapa/mapa.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { EventComponent } from './event/event.component';
+import { KontaktComponent } from './kontakt/kontakt.component';
 
 const routes: Routes = [
   { path: '', component: HomepageComponent },
+  { path: 'kontakt', component: KontaktComponent },
   {
     path: 'activityHomePage',
     component: ActivityComponent,
@@ -24,8 +26,8 @@ const routes: Routes = [
   {
     path: 'events',
     component: EventComponent,
-    data: { animation: 'isRight'}
-  }
+    data: { animation: 'isRight' },
+  },
 ];
 
 @NgModule({

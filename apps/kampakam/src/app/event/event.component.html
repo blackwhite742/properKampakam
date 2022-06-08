@@ -2,7 +2,7 @@
 
 <main>
   <kampakam-navbar></kampakam-navbar>
-  <div class="container pb-5">
+  <div class="container pt-5 pb-5">
     <div class="forma">
       <!-- Filter here -->
       <div class="card1">
@@ -15,26 +15,48 @@
           [layout]="layout"
           filterBy="name"
         >
-
           <!-- TOOLBAR -->
           <ng-template pTemplate="header">
             <div
               class="flex flex-column md:flex-row md:justify-content-between md:align-items-center"
             >
-            <span class="">
-              <input pInputText #filterInput type="search" pInputText placeholder="Ime dogodka" (input)="filterName($event)" class="form-control">
-            </span>
+              <span class="">
+                <input
+                  pInputText
+                  #filterInput
+                  type="search"
+                  pInputText
+                  placeholder="Ime dogodka"
+                  (input)="filterName($event)"
+                  class="form-control"
+                />
+              </span>
 
-            <p-calendar [(ngModel)]="fromDate" dateFormat="dd/mm/yy" (ngModelChange)="fromDateChange()" [maxDate]="toDate" placeholder="Od"></p-calendar>
-            <p-calendar [(ngModel)]="toDate" dateFormat="dd/mm/yy" (ngModelChange)="toDateChange()" [minDate]="fromDate" placeholder="Do"></p-calendar>
-            <p-multiSelect [options]="categoryOptions"
-            [(ngModel)]="selectedCategories" optionLabel="name"
-            placeholder="Izberi kategorije" (ngModelChange)="selectCategory($event)"></p-multiSelect>
+              <p-calendar
+                [(ngModel)]="fromDate"
+                dateFormat="dd/mm/yy"
+                (ngModelChange)="fromDateChange()"
+                [maxDate]="toDate"
+                placeholder="Od"
+              ></p-calendar>
+              <p-calendar
+                [(ngModel)]="toDate"
+                dateFormat="dd/mm/yy"
+                (ngModelChange)="toDateChange()"
+                [minDate]="fromDate"
+                placeholder="Do"
+              ></p-calendar>
+              <p-multiSelect
+                [options]="categoryOptions"
+                [(ngModel)]="selectedCategories"
+                optionLabel="name"
+                placeholder="Izberi kategorije"
+                (ngModelChange)="selectCategory($event)"
+              ></p-multiSelect>
 
-            <button pButton label="Reset" (click)="resetFilters()"></button>
+              <button pButton label="Reset" (click)="resetFilters()"></button>
             </div>
           </ng-template>
-
 
           <!-- LIST VIEW -->
           <ng-template let-event pTemplate="listItem">
@@ -52,9 +74,12 @@
                   <div class="event-date">
                     {{ event.date | date: 'd/MM/YYYY hh:mm' }}
                   </div>
-                  <div class="event-place">{{event.municipality.name}}</div>
+                  <div class="event-place">{{ event.municipality.name }}</div>
                   <div class="d-flex flexin">
-                    <p-tag *ngFor="let tag of event.eventCategories" [value]="tag.name"></p-tag>
+                    <p-tag
+                      *ngFor="let tag of event.eventCategories"
+                      [value]="tag.name"
+                    ></p-tag>
                   </div>
                 </div>
               </div>
@@ -80,9 +105,13 @@
                   <div class="event-date">
                     {{ event.date | date: 'd/MM/YYYY hh:mm' }}
                   </div>
-                  <div class="event-place">{{event.municipality.name}}</div>
+                  <div class="event-place">{{ event.municipality.name }}</div>
                   <div class="d-flex flexin">
-                  <p-tag *ngFor="let tag of event.eventCategories" [value]="tag.name" class="me-1"></p-tag>
+                    <p-tag
+                      *ngFor="let tag of event.eventCategories"
+                      [value]="tag.name"
+                      class="me-1"
+                    ></p-tag>
                   </div>
                 </div>
               </div>

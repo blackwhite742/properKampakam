@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import 'reflect-metadata';
 import { Router, RouterOutlet } from '@angular/router';
 import { slider } from './route-animations';
+import { PrimeNGConfig } from 'primeng/api';
 @Component({
   selector: 'kampakam-root',
   templateUrl: './app.component.html',
@@ -19,5 +20,12 @@ export class AppComponent {
     );
   }
 
-  constructor(private http: HttpClient, public router: Router) {}
+  constructor(
+    private http: HttpClient,
+    public router: Router,
+    private primengConfig: PrimeNGConfig
+  ) {}
+  ngOnInit() {
+    this.primengConfig.ripple = true;
+  }
 }

@@ -1,29 +1,57 @@
 <nav
-  class="navbar top navbar-expand-lg navbar-light d-flex"
+  class="navbar top navbar-expand-lg navbar-light d-flex pb-3 pt-3 jusitfy-content-space-between"
   [ngClass]="{ 'justify-content-center': !bigDisplay }"
 >
+  <a class="navbar-brand" [routerLink]="['/']" *ngIf="hasRoute('/kontakt')">
+    <img
+      src="../../assets/jpg/activity/GremZelen.svg"
+      width="auto"
+      height="50"
+      alt=""
+    />
+  </a>
   <a
-    class="navbar-brand"
-    [routerLink]="['/']"
-    *ngIf="!hasRoute('/activityHomePage')"
+    class="navbar-brand posta mr-auto"
+    *ngIf="!hasRoute('/kontakt')"
+    [routerLink]="['/kontakt']"
   >
     <img
+      src="../../assets/jpg/activity/postikapostika.png"
+      width="auto"
+      height="32px"
+      alt=""
+    />
+  </a>
+  <a class="navbar-brand" [routerLink]="['/']" *ngIf="hasRoute('/events')">
+    <img
       src="../../assets/jpg/activity/GremRdec.svg"
-      width="100"
+      width="auto"
       height="50"
       alt=""
     />
   </a>
 
   <a
-    class="navbar-brand"
+    class="navbar-brand m-auto"
     [routerLink]="['/']"
     *ngIf="hasRoute('/activityHomePage')"
   >
     <img
       src="../../assets/jpg/activity/GremZelen.svg"
-      width="100"
+      width="auto"
       height="50"
+      alt=""
+    />
+  </a>
+
+  <a
+    class="navbar-brand pivo ml-auto"
+    href="https://www.buymeacoffee.com/gremsi"
+  >
+    <img
+      src="../../assets/jpg/activity/beer.png"
+      width="auto"
+      height="40"
       alt=""
     />
   </a>
