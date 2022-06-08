@@ -1,24 +1,24 @@
 <nav
-  class="navbar top navbar-expand-lg navbar-light d-flex pt-3 jusitfy-content-space-between"
+  class="navbar top navbar-expand-lg navbar-light d-flex pb-3 pt-3 jusitfy-content-space-between"
   [ngClass]="{ 'justify-content-center': !bigDisplay }"
 >
   <a class="navbar-brand" [routerLink]="['/']" *ngIf="hasRoute('/kontakt')">
     <img
       src="../../assets/jpg/activity/GremZelen.svg"
-      width="100"
+      width="auto"
       height="50"
       alt=""
     />
   </a>
   <a
-    class="navbar-brand pivo mr-auto"
+    class="navbar-brand posta mr-auto"
     *ngIf="!hasRoute('/kontakt')"
     [routerLink]="['/kontakt']"
   >
     <img
-      src="../../assets/jpg/activity/kontakt.png"
+      src="../../assets/jpg/activity/postikapostika.png"
       width="auto"
-      height="40"
+      height="32px"
       alt=""
     />
   </a>
