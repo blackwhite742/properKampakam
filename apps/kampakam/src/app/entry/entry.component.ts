@@ -21,6 +21,7 @@ export class EntryComponent implements OnInit,OnChanges {
   givenId:any;
 
   images:any;
+  imagesLoaded=false;
 
   //TODO
   responsiveOptions:any[] = [
@@ -58,6 +59,7 @@ export class EntryComponent implements OnInit,OnChanges {
           this.entryData=await firstValueFrom(this.http.get('/api/entry/getWithCat/'+this.id));
           this.loaded=true;
           this.images=await firstValueFrom(this.http.get('/api/image/entry/'+this.id));
+          this.imagesLoaded=true;
         }
       );
     }
@@ -65,10 +67,12 @@ export class EntryComponent implements OnInit,OnChanges {
 
   async ngOnChanges(){
     if(this.passedId){
+      this.imagesLoaded=false;
       this.loaded=false;
       this.entryData=await firstValueFrom(this.http.get('/api/entry/getWithCat/'+this.passedId));
       this.loaded=true;
       this.images=await firstValueFrom(this.http.get('/api/image/entry/'+this.passedId));
+      this.imagesLoaded=true;
     }
   }
 

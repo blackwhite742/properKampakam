@@ -36,19 +36,25 @@
           />
         </div>
 
-        <div class="field col-12 md:col-3">
-          <label>Slika</label>
-          <input
-            pInputText
-            type="text"
-            class="form-control"
-            formControlName="image"
-            placeholder="Vnesi URL slike"
-          />
-        </div>
-      </div>
 
-    <h6>Cena</h6>
+      </div>
+    <div formArrayName="images" *ngFor="let im of images.controls;let i=index" class="row mb-1">
+      <label class="mt-1">Slika {{i+1}}</label>
+      <div [formGroupName]="i" class="d-flex align-items-center">
+        <input
+          pInputText
+          type="text"
+          class="form-control"
+          formControlName="src"
+          placeholder="Vnesi URL slike"
+          style="flex:1;flex-grow: 0.5"
+        />
+
+        <p-button icon="pi pi-minus-circle" class="ms-1" styleClass="danger" (click)="removeImage(i)"></p-button>
+      </div>
+    </div>
+    <p-button icon="pi pi-plus" class="p-button-rounded ms-1 mt-5" label="Dodaj sliko" (click)="addImage()"></p-button>
+    <h6 class="mt-1">Cena</h6>
     <p-inputSwitch
       formControlName="price"
       [(ngModel)]="checked"
@@ -116,5 +122,6 @@
     <div class="flex align-items-center justify-content-center">
       <button pButton (click)="submit()" [disabled]="!form.valid" label="Potrdi"></button>
     </div>
+
   </div>
 </div>

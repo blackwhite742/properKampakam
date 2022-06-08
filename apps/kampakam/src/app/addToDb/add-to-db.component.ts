@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, OnChanges, SimpleChanges,EventEmitter,Output } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { firstValueFrom, first } from 'rxjs';
 import { MUNICIPALITIES } from '../../assets/municipalities';
@@ -17,7 +17,6 @@ const ENTRY_FORM_FIELDS = {
   season: ['',[Validators.required]],
   accomodation: [''],
   description: ['',[Validators.required]],
-  image: ['',[Validators.required]],
   municipalityId: ['',[Validators.required]],
   categories: [null,[Validators.required]],
   tags: ['']
@@ -50,6 +49,8 @@ export class AddToDbComponent implements OnInit,OnChanges {
   selectedCategories: any=[];
   categories: any;
 
+  images:FormArray;
+
   constructor(
     private formBuilder: FormBuilder,
     private http: HttpClient,
@@ -60,7 +61,9 @@ export class AddToDbComponent implements OnInit,OnChanges {
 
   async ngOnInit() {
     this.munOptions=MUNICIPALITIES;
-    this.form = this.formBuilder.group(ENTRY_FORM_FIELDS);
+    this.images=this.formBuilder.array([this.createImage()]);
+    this.form = this.formBuilder.group({...ENTRY_FORM_FIELDS,images:this.images});
+
     this.municipalities = await firstValueFrom(
       this.http.get(`/api/municipality/getAll`)
     );
@@ -77,8 +80,14 @@ export class AddToDbComponent implements OnInit,OnChanges {
 
       temp.tags=temp.tags.map((el:any)=>el.name)
 
-      this.form.patchValue(temp);
+      const justSrc=temp.images.map(el=>{return{src:el.src}});
 
+      const fieldImages=temp.images.map(el=>this.createSpecificImage(el));
+
+      this.images=this.formBuilder.array(fieldImages);
+      this.form = this.formBuilder.group({...ENTRY_FORM_FIELDS,images:this.images});
+      const objekat={...temp,images:justSrc};
+      this.form.patchValue(objekat);
     }
   }
 
@@ -102,10 +111,17 @@ export class AddToDbComponent implements OnInit,OnChanges {
 
     let req;
     if(this.editData){
+      formContent.images=formContent.images.map(el=>{
+        if(el.id)return {...el,entryId:this.editData.id}
+        else return {...el,entryId:this.editData.id,id:undefined}
+      });
       req=this.http.patch(path, formContent);
     }
     else{
-      req=this.http.post(path, formContent);
+      formContent.images=formContent.images.map(el=>{
+        return {...el,entryId:undefined,id:undefined}
+      });
+      req=this.http.post(path, {...formContent});
     }
 
     await req.pipe(first()).subscribe(async (r:any)=>{
@@ -128,7 +144,35 @@ export class AddToDbComponent implements OnInit,OnChanges {
 
   }
 
+
+  createImage(){
+    return this.formBuilder.group({
+      id:[null],
+      src: ['',Validators.required],
+      entryId:[null]
+    })
+  }
+
+  createSpecificImage(data){
+    return this.formBuilder.group({
+      id:[data.id],
+      src: [data,Validators.required],
+      entryId:[data.entryId]
+    })
+  }
+
+  addImage(){
+    this.images.push(this.createImage());
+  }
+
+  removeImage(index){
+    this.images.removeAt(index)
+  }
+
+
   debug() {
+    console.log("Images: ",this.images);
+    console.log("Form: ",this.form);
     console.log(this.form.getRawValue());
   }
 }
