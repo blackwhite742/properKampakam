@@ -44,14 +44,15 @@
         </div>
         <div class="row pb-2">
           <div class="col-12">
-            <span class="p-float-label">
+            <span class="p-float-label text">
               <textarea
                 id="float-input"
                 [rows]="5"
                 [cols]="30"
                 pInputTextarea
-                [autoResize]="true"
+                [autoResize]="false"
                 formControlName="sporocilo"
+                style="max-width: 15rem"
               ></textarea>
               <label for="float-input">Sporočilo</label></span
             >
