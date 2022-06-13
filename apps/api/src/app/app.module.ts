@@ -13,7 +13,7 @@ import { MunicipalityController } from './municipality/municipality.controller';
 import { RegionModule } from './region/region.module';
 import { RegionController } from './region/region.controller';
 import { MunicipalityModule } from './municipality/municipality.module';
-import { DbConfig } from 'dbConfig'
+//import { DbConfig } from 'dbConfig'
 
 import {Category} from './entities/category.entity';
 import {Municipality} from './entities/municipality.entity';
@@ -37,7 +37,12 @@ import { EventCategoryModule } from './event-category/event-category.module';
 @Module({
   imports: [
     TypeOrmModule.forRoot({
-      ...DbConfig,
+      type:"mysql",
+      host:"64.227.122.109",
+      port:3306,
+      username:"miha",
+      password:"primeng",
+      database:"mydb",
       entities:[Entry,Category,Municipality,Region,MainCategory,Event,EntryHasCategory,Tag,Image,EventCategory],
       synchronize:true,
       autoLoadEntities:true
