@@ -19,7 +19,7 @@ services:
     links:
       - api
     networks:
-      - test-network
+      - kampaNetwork
     command: npx nx serve --host 0.0.0.0 --poll 2000
   api:
     container_name: api
@@ -34,14 +34,14 @@ services:
     #  - /usr/src/app/node_modules
     ports:
       - 3333:3333
-      - 9229:9229
+    #  - 9229:9229
     command: npm run start:api
     env_file:
       - .env
     networks:
-      - test-network
+      - kampaNetwork
 
 
 networks:
-  test-network:
+  kampaNetwork:
     driver: bridge
