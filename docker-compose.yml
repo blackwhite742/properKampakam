@@ -1,0 +1,47 @@
+version: '3.7'
+#test
+services:
+  kampakam:
+    container_name: kampakam
+    hostname: kampakam
+    image: kampakam
+    build:
+      context: .
+      dockerfile: ./apps/kampakam/Dockerfile
+      target: development
+    #volumes:
+    #  - .:/usr/src/app
+    #  - /usr/src/app/node_modules
+    depends_on:
+      - api
+    ports:
+      - 4200:4200
+    links:
+      - api
+    networks:
+      - kampaNetwork
+    command: npx nx serve --host 0.0.0.0 --poll 2000 --disable-host-check
+  api:
+    container_name: api
+    hostname: api
+    image: api
+    build:
+      context: .
+      dockerfile: ./apps/api/Dockerfile
+      target: development
+    #volumes:
+    #  - .:/usr/src/app
+    #  - /usr/src/app/node_modules
+    ports:
+      - 3333:3333
+    #  - 9229:9229
+    command: npm run start:api
+    env_file:
+      - .env
+    networks:
+      - kampaNetwork
+
+
+networks:
+  kampaNetwork:
+    driver: bridge

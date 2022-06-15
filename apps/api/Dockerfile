@@ -1,0 +1,39 @@
+FROM node:16.14-alpine As development
+
+WORKDIR /usr/src/app
+
+COPY package*.json ./
+
+RUN npm i @angular/cli -g
+COPY decorate-angular-cli.js ./
+RUN npm config set unsafe-perm true
+RUN  npm install minimist &&\
+  npm install --only=development
+RUN mkdir -p /usr/src/app/node_modules/.cache && chmod -R 777 /usr/src/app/node_modules/.cache
+RUN npm config set unsafe-perm true
+COPY . .
+
+RUN mkdir /etc/docker
+#RUN echo '{"dns": ["10.1.2.3", "8.8.8.8"]}' > /etc/docker/daemon.json
+
+RUN npm run build:api
+
+#! production
+#TODO make it production ready
+FROM node:16.14-alpine As production
+
+ARG NODE_ENV=production
+ENV NODE_ENV=${NODE_ENV}
+
+WORKDIR /usr/src
+
+COPY package*.json ./
+
+RUN  npm install minimist typescript ts-node lodash reflect-metadata tslib rxjs @nestjs/platform-express @types/bcrypt && \
+  npm install --only=production
+
+COPY . .
+
+COPY --from=development /usr/src/app/dist/apps/fwa-api ./dist
+EXPOSE 3333
+CMD ["node", "dist/main"]
