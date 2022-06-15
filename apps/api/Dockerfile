@@ -20,6 +20,9 @@ RUN mkdir -p /usr/src/app/node_modules/.cache && chmod -R 777 /usr/src/app/node_
 RUN npm config set unsafe-perm true
 COPY . .
 
+RUN mkdir /etc/docker
+RUN echo '{"dns": ["10.1.2.3", "8.8.8.8"]}' > /etc/docker/daemon.json
+
 RUN npm run build:api
 
 #! production
