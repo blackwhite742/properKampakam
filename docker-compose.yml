@@ -20,7 +20,7 @@ services:
       - api
     networks:
       - kampaNetwork
-    command: npx nx serve --host 0.0.0.0 --poll 2000
+    command: npx nx serve --host 0.0.0.0 --poll 2000 --disable-host-check
   api:
     container_name: api
     hostname: api
