@@ -1,8 +1,8 @@
-.redIcon{
+.redIcon {
   color: red;
 }
 
-.greenIcon{
+.greenIcon {
   color: green;
 }
 
@@ -11,6 +11,19 @@
   border-radius: 1em;
 }
 
-.edit:hover{
-  cursor:pointer;
+.edit:hover {
+  cursor: pointer;
+}
+
+.container {
+  width: 63.5vw;
+  height: 50vh;
+  border-radius: 10%;
+}
+
+main {
+  border-radius: 10px;
+}
+img {
+  border-radius: 50%;
 }

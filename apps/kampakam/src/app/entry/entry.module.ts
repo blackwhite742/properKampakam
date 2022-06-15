@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { EntryComponent } from './entry.component';
-import {ButtonModule} from 'primeng/button';
+import { ButtonModule } from 'primeng/button';
 import { EntryEditDialogModule } from './entry-edit-dialog/entry-edit-dialog.module';
 import { NavbarModule } from '../navbar/navbar.module';
-import {GalleriaModule} from 'primeng/galleria';
+import { GalleriaModule } from 'primeng/galleria';
 import { TagModule } from 'primeng/tag';
-
+import { ImageModule } from 'primeng/image';
 
 @NgModule({
   declarations: [EntryComponent],
@@ -16,8 +16,9 @@ import { TagModule } from 'primeng/tag';
     EntryEditDialogModule,
     NavbarModule,
     GalleriaModule,
-    TagModule
+    TagModule,
+    ImageModule,
   ],
-  exports:[EntryComponent]
+  exports: [EntryComponent],
 })
-export class EntryModule { }
+export class EntryModule {}

@@ -1,130 +1,28 @@
 <kampakam-navbar *ngIf="displayNavbar"></kampakam-navbar>
-<div class="container pt-5" *ngIf="loaded">
-  <div class="wrapper w-100 mx-auto">
-    <div class="row mb-3">
-      <div class="col">
-        <h3 class="text-center">{{ entryData.name }}</h3>
+
+<main>
+  <div
+    class="container flex-column flex-md-row align-items-center justify-content-center"
+    *ngIf="loaded"
+  >
+    <div
+      class="row text-center flex-column flex-md-row align-items-center justify-content-center"
+    >
+      <div class="col-12">
+        <h1>{{ entryData.name }}</h1>
       </div>
     </div>
-    <div class="row">
-      <span class="text-center pb-1 my-auto"
-        >{{ entryData.municipality?.name }}
-        <a
-          href="https://www.google.com/maps/place/{{ entryData.location }}"
-          *ngIf="entryData.location"
-          >(Točna lokacija)</a
-        ></span
-      >
-    </div>
-
-    <div class="row mb-1">
-      <div class="mx-auto">
-        <p-galleria
-          *ngIf="imagesLoaded"
-          [value]="images"
-          [responsiveOptions]="responsiveOptions"
-          [showThumbnails]="false"
-          [showItemNavigators]="true"
-          [circular]="true"
-          [containerStyle]="{ 'max-width': '100%' }"
-          styleClass="gal"
-        >
-          <ng-template pTemplate="item" let-item>
-            <img src="{{ item.src }}" [alt]="'trash'" style="width: 100%" />
-          </ng-template>
-        </p-galleria>
-        <div class="float-start">
-          <i class="pi pi-pencil edit" (click)="edit()"></i>
-        </div>
-        <div class="row">
-          <span class="text-center pb-1 my-auto"
-            >{{ entryData.municipality?.name }}
-            <a
-              href="https://www.google.com/maps/place/{{ entryData.location }}"
-              *ngIf="entryData.location"
-              >(Točna lokacija)</a
-            ></span
-          >
-        </div>
-
-        <div class="row mb-1">
-          <div class="mx-auto">
-            <p-galleria
-              [value]="images"
-              [responsiveOptions]="responsiveOptions"
-              [showThumbnails]="false"
-              [showItemNavigators]="true"
-              [circular]="true"
-              [containerStyle]="{ 'max-width': '100%' }"
-              styleClass="gal"
-            >
-              <ng-template pTemplate="item" let-item>
-                <img src="{{ item.src }}" [alt]="'trash'" style="width: 100%" />
-              </ng-template>
-            </p-galleria>
-            <div class="float-start">
-              <i class="pi pi-pencil edit" (click)="edit()"></i>
-            </div>
-            <div class="float-end mt-1">
-              <p-tag
-                *ngFor="let tag of entryData.tags"
-                value="{{ tag.name }}"
-                styleClass="me-1"
-                [rounded]="true"
-              ></p-tag>
-            </div>
-          </div>
-        </div>
-
-        <div class="row mb-3 desc">
-          <div class="p-1 text-justify">
-            {{ entryData.description }}
-          </div>
-        </div>
-
-        <div class="row mb-2">
-          <div class="d-flex justify-content-around">
-            <!-- TODO captions instead of checkmarks-->
-            <div>
-              Cena:
-              <i
-                [ngClass]="
-                  entryData.price
-                    ? 'pi pi-check greenIcon'
-                    : 'pi pi-times redIcon'
-                "
-              ></i>
-            </div>
-            <div>
-              Dostopnost:
-              <i
-                [ngClass]="
-                  entryData.accessibility
-                    ? 'pi pi-check greenIcon'
-                    : 'pi pi-times redIcon'
-                "
-              ></i>
-            </div>
-            <div>
-              Nastanitev:
-              <i
-                [ngClass]="
-                  entryData.accomodation
-                    ? 'pi pi-check greenIcon'
-                    : 'pi pi-times redIcon'
-                "
-              ></i>
-            </div>
-          </div>
-        </div>
-
-        <kampakam-entry-edit-dialog
-          [entryData]="editData"
-          [(display)]="editMode"
-          (displayChange)="editMode = $event"
-          (entryDataChange)="entryDataChange($event)"
-        ></kampakam-entry-edit-dialog>
+    <div
+      class="row flex-column flex-md-row align-items-center justify-content-center"
+    >
+      <div class="col-6">{{ entryData.description }}</div>
+      <div class="col-6">
+        <img
+          src="https://phantom-marca.unidadeditorial.es/f05288ebbb00fcefb86713d0b435c7fb/resize/1320/f/jpg/assets/multimedia/imagenes/2021/12/10/16391545485537.jpg"
+          alt=""
+          width="400px"
+        />
       </div>
     </div>
   </div>
-</div>
+</main>
