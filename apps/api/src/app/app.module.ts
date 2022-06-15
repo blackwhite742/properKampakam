@@ -13,8 +13,6 @@ import { MunicipalityController } from './municipality/municipality.controller';
 import { RegionModule } from './region/region.module';
 import { RegionController } from './region/region.controller';
 import { MunicipalityModule } from './municipality/municipality.module';
-//import { DbConfig } from 'dbConfig'
-
 import {Category} from './entities/category.entity';
 import {Municipality} from './entities/municipality.entity';
 import {Entry} from './entities/entry.entity';
@@ -33,16 +31,17 @@ import { Image } from './entities/image.entity';
 import { ImageModule } from './image/image.module';
 import { EventCategory } from './entities/eventCategory.entity';
 import { EventCategoryModule } from './event-category/event-category.module';
+import "dotenv/config";
 
 @Module({
   imports: [
     TypeOrmModule.forRoot({
       type:"mysql",
-      host:"64.227.122.109",
-      port:3306,
-      username:"miha",
-      password:"primeng",
-      database:"mydb",
+      host:process.env.DB_HOST,
+      port:Number(process.env.DB_PORT),
+      username:process.env.DB_USERNAME,
+      password:process.env.DB_PASSWORD,
+      database:process.env.DB_NAME,
       entities:[Entry,Category,Municipality,Region,MainCategory,Event,EntryHasCategory,Tag,Image,EventCategory],
       synchronize:true,
       autoLoadEntities:true

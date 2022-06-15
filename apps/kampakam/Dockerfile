@@ -12,9 +12,11 @@ RUN mkdir -p /usr/src/app/node_modules/.cache && chmod -R 777 /usr/src/app/node_
 
 
 COPY . .
+RUN echo '{"/api": {  "target": "http://api:3333", "secure": false}}' > "/usr/src/app/apps/kampakam/proxy.conf.json"
 EXPOSE 4200
 RUN npm run build:kampakam
 
+#TODO make it production ready, configure nginx
 FROM nginx:latest as production
 COPY ./docker/angular.conf /etc/nginx/nginx.conf
 COPY --from=development /usr/src/dist/apps/kampakam /usr/share/nginx/html
