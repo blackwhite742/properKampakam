@@ -5,50 +5,81 @@
   "r_id": 4, "r_name": "Koroška" }
 
 {{data[0] | json}}-->
-<div class="card mt-4">
-  <p-dataView #dv [value]="data" [paginator]="true" [rows]="10">
+<div class="container flex-direction-column pt-5 pb-5">
+  <div class="forma">
+    <!-- Filter here -->
+    <div class="card1">
+      <p-dataView
+        [value]="data"
+        class="dataview"
+        #dv
+        [paginator]="true"
+        [rows]="9"
+        [layout]="layout"
+        filterBy="name"
+      >
+        <!-- TOOLBAR -->
 
-    <ng-template pTemplate="header">
-      <div class="flex flex-column md:flex-row md:justify-content-between">
-        <!--Alternate view, maybe in the future-->
-        <!--<p-dataViewLayoutOptions></p-dataViewLayoutOptions> -->
-      </div>
-  </ng-template>
+        <!-- LIST VIEW -->
+        <ng-template let-event pTemplate="listItem">
+          <div class="col-12">
+            <div class="event-list-item listcard">
+              <i *ngIf="event.e_price === 1" class="euro pi pi-euro">
+                plačljivo</i
+              >
+              <img class="slika" [src]="event.e_image" />
 
-    <ng-template let-entry pTemplate="listItem">
-      <div class="entry-list-item">
-        <div class="container">
-          <div class="row">
-        <div class="col-12 col-sm-8 col-lg-10">
-            <div class="entry-name">
-              {{entry.e_name}}
+              <div
+                class="event-list-detail d-flex flex-column align-items-center"
+              >
+                <div class="event-name-list event-name pb-3">
+                  {{ event.e_name }}
+                </div>
+                <div class="event-description">
+                  {{ event.e_description }}
+                </div>
+                <div class="event-location">
+                  Lokacija: {{ event.m_name }}, Cena: {{ event.e_price }}
+                </div>
+              </div>
+              <div class="event-list-action">
+                <p-button
+                  icon="pi pi-info-circle"
+                  label="Informacije"
+                ></p-button>
+              </div>
             </div>
-
-
-            <div class="entry-municipality">
-              {{entry.m_name}} ({{entry.r_name}})
-            </div>
-
-            <div class="entry-price">
-              Plačljivo: <i [ngClass]="entry.e_price ? 'pi pi-check greenIcon' : 'pi pi-times redIcon'"></i>
-            </div>
-
-            <div class="entry-accomodation">
-              Nastanitev: <i [ngClass]="entry.e_accomodation ? 'pi pi-check greenIcon' : 'pi pi-times redIcon'"></i>
-            </div>
-        </div>
-
-        <div class="col-12 col-sm-4 col-lg-2 my-auto">
-          <div class="entry-info">
-            <button pButton label="Več informacij" class="butt" (click)="getInfo(entry.e_id)"></button>
           </div>
-        </div>
-      </div>
-        </div>
-      </div>
-    </ng-template>
+        </ng-template>
+        <ng-template let-event pTemplate="gridItem" class="grid">
+          <div class="event-grid-item card">
+            <i *ngIf="event.e_price === 1" class="euro pi pi-euro">
+              plačljivo</i
+            >
 
-  </p-dataView>
+            <div class="event-grid-item-top event-grid-name">
+              {{ event.e_name }}
+            </div>
+            <div class="event-grid-item-content">
+              <div class="event-grid-image">
+                <img [src]="event.e_image" alt="" />
+                <div class="event-grid-description">
+                  {{ event.e_description }}
+                </div>
+              </div>
+            </div>
+            <div class="row event-grid-item-bottom">
+              <div class="event-grid-location">
+                Lokacija: {{ event.m_name }}
+              </div>
+
+              <p-button icon="pi pi-info-circle" label="Informacije"></p-button>
+            </div>
+          </div>
+        </ng-template>
+      </p-dataView>
+    </div>
   </div>
 
-<kampakam-info-dialog></kampakam-info-dialog>
+  <kampakam-info-dialog></kampakam-info-dialog>
+</div>
