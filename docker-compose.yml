@@ -7,8 +7,8 @@ services:
     image: kampakam
     build:
       context: .
-      dockerfile: ./apps/kampakam/Dockerfile
-      target: development
+      dockerfile: ./apps/kampakam/Dockerfile.kampakam
+    #  target: development
     #volumes:
     #  - .:/usr/src/app
     #  - /usr/src/app/node_modules
@@ -27,8 +27,8 @@ services:
     image: api
     build:
       context: .
-      dockerfile: ./apps/api/Dockerfile
-      target: development
+      dockerfile: ./apps/api/Dockerfile.api
+    #  target: development
     #volumes:
     #  - .:/usr/src/app
     #  - /usr/src/app/node_modules

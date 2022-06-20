@@ -1,0 +1,4 @@
+build:
+  docker:
+    api: ./apps/api/Dockerfile.api
+    kampakam: ./apps/kampakam/Dockerfile.kampakam
